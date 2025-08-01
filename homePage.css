@@ -5,7 +5,8 @@
 }
 body{
     font-family: 'QuickSand', sans-serif;
-    background: linear-gradient(to bottom right , #e6fff9, #f2fbff);
+    /* background: linear-gradient(to bottom right , #e6f4f7, #fefefe); */
+    background-color: #f4f8f9;
     color: #2D3748;
     overflow: hidden;
 }
@@ -24,10 +25,19 @@ header{
 .logo{
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1c6460;
+    /* color: #1c6460; */
+    color: #287a8f;
 }
 
 nav a{
     margin-left: 25px;
-    color: #1c6460;
+    /* color: #1c6460; */
+    color: #308ca3;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+nav a:hover{
+    color: #1b6b69;
+    text-decoration: underline;
 }
