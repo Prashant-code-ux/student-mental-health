@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splash Screen</title>
+</head>
+<style>
+    
+    body{
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #9fe8fa, #a7f3d0);
+        font-family:'Segoe UI',  Verdana, Geneva, Tahoma, sans-serif;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        animation: fadeOut 1s ease-in-out 4s forwards;
+    }
+    .quote-box{
+        text-align: center;
+        padding: 30px;
+        height: 7rem;
+        width: 40rem;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        max-width: 600px;
+       animation: fadeIn 1s ease-in-out ;
+    }
+    .logo{
+        font-size: 2.2rem;
+        font-weight: bold;
+        color:#2a808f;
+        font-family: cursive;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+        animation: slideIn 1s ease-in;
+        
+
+    }
+    .quote{
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #527496;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        text-align: center;
+        display: inline-block;
+        animation: typing 3s steps(100) forwards;
+    }
+     @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+    }
+     @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 50ch } /* Adjust the number based on characters in your text */
+
+     }
+    
+</style>
+<body>
+    
+    <div class="quote-box">
+
+        <div class="logo">Welcome to Moodify!</div>
+ 
+           <div class="quote" id="quote"></div>
+          
+    </div>
+</body>
+<script>
+   // Redirect after 4 seconds
+    setTimeout(function() {
+      window.location.href = "home.html"; // Change to your actual homepage file
+    }, 4000);
+    
+    const quotes = [
+      "Your mental health is a priority.",
+      "Take care of your mental health — you deserve peace.",
+      "Every day is a fresh start. Breathe and begin again.",
+      "Progress is not linear — you're doing better than you think.",
+      "It's okay to ask for help. You are not alone.",
+      "Healing is not a race. Go at your own pace."
+    ];
+
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").innerText = quotes[randomIndex];
+  </script>
+</html>
