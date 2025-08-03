@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'QuickSand', sans-serif;
+    background: linear-gradient(to bottom right , #e6fff9, #f2fbff);
+    color: #2D3748;
+    /* overflow-x: hidden; */
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255 , 255 , 255 , 0.6);
+    position: sticky;
+    top: 0;
+    /* z-index: 10; */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.logo{
+    font-size: 1.8rem;
+    font-weight: 700;
+    /* color: #287a8f; */
+    color: #38B2AC;
+}
+
+nav a{
+    margin-left: 25px;
+    /* color: #287a8f; */
+    color: #2D3748;
+    text-decoration: none;
+    font-weight: 900;
+    transition: color 0.3s ease;
+}
+nav a:hover{
+   
+    color: #319795;
+    
+}
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 6% 4rem;
+    flex-wrap: wrap;
+}
+.hero-content{
+    max-width: 500px;
+}
+.hero-content H1{
+    font-size: 3rem;
+    color: #285E61;
+}
+.hero-content p{
+    font-size: 1.2rem;
+    color: #4A5568;
+    margin-bottom: 2REM;
+}
+.hero-content button{
+    background-color: #38B2AC;
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.hero-content button:hover{
+    background-color: #2C7A7B;
+}
+.features{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+padding: 3rem 1.5rem;
+/* background-color: #F0FFF4; */
+}
+.feature-box{
+    flex: 1 1 250px;
+    margin: 1rem;
+    padding: 2rem;
+    background-color: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.feature-box h3{
+    color: #065F46;
+    margin-top: 0.5rem;
+}
+.feature-box p{
+    font-size: 0.95rem;
+    color: #4B5563;
+}
+footer{
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    background-color: #ccf8ef;
+    margin-top: 3rem;
+    color: #4A5568;
+}
