@@ -124,3 +124,39 @@ footer{
     margin-top: 3rem;
     color: #4A5568;
 }
+
+
+
+
+
+
+/* the media queries */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .feature a {
+        display: block;
+        margin: 10px 0;
+    }
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-image img {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .feature-box {
+        padding: 1rem;
+    }
+}
