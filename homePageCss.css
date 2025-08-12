@@ -192,9 +192,9 @@ header {
 }
 
 /* Navigation */
-nav {
+/* nav {
     display: flex;
-    justify-content: center; /* horizontally center */
+    justify-content: center; 
     align-items: center;      
     
     
@@ -205,6 +205,28 @@ nav {
 
 .feature a{
     margin-left: 25px;
+    color: #2D3748;
+    text-decoration: none;
+    font-weight: 900;
+    transition: color 0.3s ease;
+}  */
+
+
+nav {
+    display: flex;
+    justify-content: space-between; /* spread feature links and login apart */
+    align-items: center;
+    gap: 2rem;
+}
+
+.feature {
+    display: flex;
+    justify-content: center; /* center the links horizontally */
+    flex: 1; /* take up all space between logo and login */
+}
+
+.feature a {
+    margin: 0 15px; /* equal space between links */
     color: #2D3748;
     text-decoration: none;
     font-weight: 900;
