@@ -317,6 +317,86 @@ footer {
     color: #4A5568;
 }
 
+/* Large laptops (1280px and above) - desktop style */
+@media (min-width: 1280px) {
+    header {
+        padding: 1rem 4rem;
+    }
+    .logo {
+        font-size: 2rem;
+    }
+    .feature a {
+        margin: 0 20px;
+        font-size: 1rem;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 1.25rem;
+    }
+    .feature-box {
+        max-width: 300px;
+        padding: 2rem;
+    }
+}
+
+/* Medium laptops (1024px to 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    header {
+        padding: 1rem 3rem;
+    }
+    .logo {
+        font-size: 1.8rem;
+    }
+    .feature a {
+        margin: 0 15px;
+        font-size: 0.95rem;
+    }
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    .feature-box {
+        max-width: 280px;
+        padding: 1.8rem;
+    }
+}
+
+/* Small laptops (768px to 1023px) — usually tablets or small laptops */
+@media (min-width: 768px) and (max-width: 1023px) {
+    header {
+        padding: 1rem 2rem;
+        flex-wrap: wrap;
+    }
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .feature {
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    .feature a {
+        margin: 0 12px;
+        font-size: 0.9rem;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .feature-box {
+        max-width: 45%;
+        padding: 1.5rem;
+    }
+}
+
+
 /* MEDIA 
 
 /* Tablets */
@@ -346,7 +426,7 @@ footer {
 /* MEDIA QUERIES */
 
 /* Medium screens (Tablets) */
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
     nav {
         gap: 1rem;
     }
@@ -366,10 +446,10 @@ footer {
     .feature-box {
         max-width: 45%;
     }
-}
+} */
 
 /* Small screens (Mobile) */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     header {
         flex-direction: column;
         align-items: flex-start;
@@ -403,10 +483,10 @@ footer {
     .feature-box {
         max-width: 100%;
     }
-}
+} */
 
 /* Very small screens */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     header {
         padding: 1rem;
     }
@@ -427,4 +507,4 @@ footer {
         padding: 0.7rem 1.5rem;
         font-size: 0.9rem;
     }
-}
+} */
