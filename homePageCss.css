@@ -341,7 +341,7 @@ footer {
     }
 }
 
-/* Desktops */
+
 @media (min-width: 900px) {
     .hero-content h1 {
         font-size: 3rem;
