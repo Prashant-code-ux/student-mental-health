@@ -12,6 +12,8 @@
 <body>
     <header>
         <div class="logo">🌱 Moodify</div>
+
+      
         <nav>
             
                 <div class="feature">
@@ -20,12 +22,16 @@
                 <a href="#">Wellness Tools</a>
                 <a href="#">Contact</a>               
                 </div>
-            
+            </nav>
+
+            <div class="right-section">
             <div class="login">
                 <i class="fa-solid fa-user"></i>
                 <a href="LoginPage.html">Login</a>
             </div>
-        </nav>
+          <div class="menu-toggle">&#9776;</div>
+          </div>
+
     </header>
 
     <section class="hero">
@@ -57,6 +63,14 @@
     <footer>
         © 2025 Moodify — Made for students, with care and calm 💚
     </footer>
+
+
+    <script>
+        document.querySelector(".menu-toggle").addEventListener("click", () => {
+  document.querySelector(".feature").classList.toggle("show");
+});
+
+    </script>
 
 </body>
 </html>
