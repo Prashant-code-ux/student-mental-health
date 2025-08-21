@@ -11,66 +11,42 @@
 </head>
 <body>
     <header>
-        <div class="logo">🌱 Moodify</div>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Wellness Tools</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
 
-      
-        <nav>
-            
-                <div class="feature">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Wellness Tools</a>
-                <a href="#">Contact</a>               
-                </div>
-            </nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Feel Better, One Day at a Time</h1>
+      <p>Welcome to Moodify — your calming companion to track moods, reduce stress, and find positivity. 🌿</p>
+      <button onclick="alert('Let’s get Started')">Start Your Journey</button>
+    </div>
+  </section>
 
-            <div class="right-section">
-            <div class="login">
-                <i class="fa-solid fa-user"></i>
-                <a href="LoginPage.html">Login</a>
-            </div>
-          <div class="menu-toggle">&#9776;</div>
-          </div>
+  <section class="features">
+    <div class="feature-box"><h3>🌤️ Mood Tracker</h3><p>Track emotional patterns daily and understand your mental health better.</p></div>
+    <!-- <div class="feature-box"><h3>Daily Affirmations</h3><p>Get gentle reminders and affirmations to boost confidence.</p></div> -->
+     <div class="feature-box">
+  <h3>📊 Mental Health Tests</h3>
+  <p>Take simple, quick assessments to check your mental wellbeing. Get personalized feedback and understand your emotional health better.</p>
+</div>
+    <div class="feature-box"><h3>🧘‍♀️ Self-help Tools</h3><p>Explore exercises, diet tips, and stay positive every day.</p></div>
+  </section>
 
-    </header>
+  <footer>© 2025 Moodify — Made for students, with care and calm 💚</footer>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Feel Better. One Day at a Time.</h1>
-            <p>Welcome to Moodify, your calming companion for managing stress, tracking mood, and discovering positivity.🌿 </p>
-            <button onclick="alert('Let’s get Started')">Start Your Journey</button>
-        </div>
-       
-     <div class="hero-image">
-        <img src="" alt="Wellness illustration">
-     </div>
-    </section>
-    <section class="features">
-        <div class="feature-box">
-            <h3>Mood Tracker</h3>
-            <p>Track your emotional patterns daily and understand your mental health better.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Daily Affirmations</h3>
-            <p>Receive gentle reminders and positive affirmations to boost your confidence.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Self-help Tools</h3>
-            <p>Explore exercises, Diet and tips, journaling prompts</p>
-        </div>
-    </section>
-
-    <footer>
-        © 2025 Moodify — Made for students, with care and calm 💚
-    </footer>
-
-
-    <script>
-        document.querySelector(".menu-toggle").addEventListener("click", () => {
-  document.querySelector(".feature").classList.toggle("show");
-});
-
-    </script>
+  <script>
+    document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+  </script>
 
 </body>
 </html>

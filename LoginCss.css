@@ -12,7 +12,8 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom right, #e6fff9, #f2fbff);
+    background: linear-gradient(to bottom right, #afe6d9, #f2fbff);
+    
     
 
 }
@@ -20,7 +21,10 @@ body{
     position: relative;
     width: 400px;
     height: 500px;
-    background:  linear-gradient(to bottom right, #70e4c9,#67caf4);
+    /* background:  #fff; */
+     /* background-color: #fff */
+     /* background: linear-gradient(to bottom right, #afe9db, #cee9f4); */
+     background: #fff;
      border-radius: 20px;
      box-shadow: 0 0 50px rgba(0, 0, 0, .1);
     padding: 40px;
@@ -37,14 +41,14 @@ body{
 
 h2{
     font-size: 30px;
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
 .input-group{
     position: relative;
     margin: 30px 0;
-    border-bottom: 2px solid #fff ;
+    border-bottom: 2px solid #000000 ;
 }
 
 .input-group label{
@@ -53,7 +57,7 @@ h2{
     left: 5px;
     transform: translateY(-50%);
    font-size: 16px;
-   color: #fff;
+   color: #020202;
    pointer-events:  none;
 }
 
@@ -61,7 +65,7 @@ h2{
     width: 320px;
     height: 40px;
     font-size: 16px;
-    color: #fff;
+    color: #000000;
     padding: 0 5px;
     background: transparent;
     border: none;
@@ -73,12 +77,12 @@ h2{
   margin: -5px 0 15px 5px;   
 }
 .remember{
-    color: #fff;
+    color: #000000;
     font-size: 14px;
 }
 
 .remember label input{
-    accent-color: #d4157e;
+    accent-color:#85bbad;
 }
 
 button{
@@ -87,7 +91,7 @@ button{
     height: 40px;
     background: #f4157e;
     font-size: 15px;
-    color: #fff;
+    color: #000000;
     cursor: pointer;
     border-radius: 30px;
     border: none;
@@ -101,7 +105,7 @@ button{
 
 }
 .signUp-link p{
-    color: #fff;
+    color: #000000;
 }
 .signUp-link p a{
     color: #f4157e ;
@@ -116,7 +120,7 @@ button{
 
 .social-platform {
     font-size: 14px;
-    color: #fff;
+    color: #000;
     text-align: center;
 }
 
@@ -125,7 +129,7 @@ button{
     width: 35px;
     height:35px;
     background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #000000;
     border-radius: 50%;
     text-align: center;
     line-height: 35px;
