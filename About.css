@@ -74,72 +74,49 @@
     
     }
 
-    /* Centered Hero */
-    .hero{
-        flex:1;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        text-align:center;
-        padding:2rem;
-    }
-    .hero-content{
-        max-width:500px;
-    }
-    .hero-content h1{
-        font-size:1.8rem;
-        line-height:1.3;
-        color:#285E61;
-        margin-bottom:1rem;
-    }
-    .hero-content p{
-        font-size:1rem;
-        line-height:1.5;
-        color:#4A5568;
-        margin-bottom:1.5rem;
-    }
-    .hero-content button{
-        background:#38B2AC;
-        color:#fff;
-        border:none;
-        padding:.8rem 1.6rem;
-        border-radius:10px;
-        cursor:pointer;
-        font-size:.95rem;
-    }
-    .hero-content button:hover{
-        background:#2C7A7B;
-    }
 
-    .features{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        padding:2rem;
-        gap:1.5rem;
-    }
-    .feature-box{
-        flex:1 1 250px;
-        max-width:300px;
-        padding:1.5rem;
-        background:#fff;
-        border:1px solid #E2E8F0;
-        border-radius:12px;
-        box-shadow:0 2px 6px rgba(0,0,0,.05);
-        text-align:center;
-    }
-    .feature-box h3{
-        color:#065F46;
-        margin-bottom:.5rem;
-        font-size:1rem;
-    }
-    .feature-box p{
-        font-size:.9rem;
-        color:#4B5563;
-    }
+.about-section{
+    background-color:#e3f4f0 ;
+    /* padding: 60px 20px; */
+        padding: 10px 20px;
 
-    footer{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.container{
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Headings */
+.center-heading{
+    font-size: 32px;
+    color: #42796e;
+    margin: 40px 0 20px 0;
+}
+
+/* Text */
+.about-text, .resources-text{
+    color: #444;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.quote-banner{
+    background-color:#85bfb3;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-style: italic;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+ footer{
         
         
       
@@ -149,3 +126,4 @@
         padding:1rem;
         font-size:.85rem;
     }
+

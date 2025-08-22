@@ -1,14 +1,16 @@
-const title = document.getElementById('title');
-const NameField = document.getElementById('NameField');
-const Signbtn = document.getElementById('signbtn');
-const signupbtn = document.getElementById('signupbtn');
+const signInForm = document.getElementById("signinForm");
+const signUpForm = document.getElementById("signupForm");
+const goToSignup = document.getElementById("goToSignup");
+const goToLogin = document.getElementById("goToLogin");
 
-signupbtn.onclick = function() {
-    title.innerHTML = "Sign Up";
-    NameField.style.display = "block";
-}
+goToSignup.onclick = function(e) {
+  e.preventDefault();
+  signInForm.style.display = "none";
+  signUpForm.style.display = "block";
+};
 
-Signbtn.onclick = function() {
-    title.innerHTML = "Login";
-    NameField.style.display = "none";
-}
+goToLogin.onclick = function(e) {
+  e.preventDefault();
+  signUpForm.style.display = "none";
+  signInForm.style.display = "block";
+};
