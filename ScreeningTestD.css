@@ -63,17 +63,28 @@ nav a:hover,
 /* ===== Main Container ===== */
 .container {
     width: 100%;
-    height: 140px;
-    background: #2D3748;
+    /* height: 140px; */
+    height: 200px;
+    /* background: #2D3748; */
+     /* background: linear-gradient(135deg, #89f7fe, #66a6ff); */
+     background: linear-gradient(135deg, #99e4e0, #29696b);
+    
     margin-bottom: 50px;
     display: flex;
     align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    justify-content: center;
 }
 
 .container h1 {
-    color: #fff;
+    /* color: #fff;
     margin-left: 20px;
+    font-size: 3rem; */
+    color: #fff;
     font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 }
 
 /* ===== Progress Bar ===== */
@@ -172,27 +183,35 @@ nav a:hover,
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
+     
 }
 
 .option button {
     border-radius: 25px;
     height: 45px;
-    width: 200px;
-    background-color: #009688;
-    color: white;
-    border: none;
+    min-width: 200px;
+    background-color: #d3e9e7;
+    color: #023e37;
+    border: 0.5px solid grey;
     cursor: pointer;
     transition: 0.3s ease;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }
 
 .option button:hover {
-    background-color: #00796b;
+    background-color: #a0eae0;
     transform: scale(1.05);
 }
+.option button.active {
+    background-color: #048a7a !important; /* highlight color */
+    color: #fff;
+    transform: scale(1.05);
+}
+
 
 /* ===== Next Button ===== */
 .button_next {
@@ -215,10 +234,35 @@ nav a:hover,
     background: #2c7a7b;
 }
 
+.step.completed .circle {
+    background: #38B2AC;
+    border-color: #38B2AC;
+    position: relative;
+}
+
+.step.completed .circle::after {
+    content: "✔";
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    font-weight: bold;
+    /* top: 4px;
+    left: 7px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.button_next2{
+    display: flex;
+     justify-content: space-between;
+      margin-top: 40px;
+}
+
+
 /* ===== Footer ===== */
 footer {
     margin-top: 0;
-    background-color: #2c7a7b;
+    background-color: #38B2AC;
     color: white;
     position: relative;
     padding-top: 50px;
@@ -228,7 +272,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
-    padding: 0 12% 60px;
+    padding: 0 12% 10px;
 }
 
 .footer-col h3 {

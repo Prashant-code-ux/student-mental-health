@@ -5,7 +5,6 @@
     }
     body{
         font-family:'Quicksand',sans-serif;
-        /* background:linear-gradient(to bottom right,#e6fff9,#f2fbff); */
         background-color: #f9fefb;
         color:#2D3748;
         min-height:100vh;
@@ -17,8 +16,6 @@
        
         display: flex;
         justify-content: space-between;
-        /* display:grid;
-        grid-template-columns:auto 1fr auto; */
         align-items:center;
         padding:1rem 2rem;
         background:#fff;
@@ -56,13 +53,13 @@
 
     .hero-section{
         
-        /* background-color: #e8f0f0; */
         text-align: center;
         background-color: #e6fff9;
-        height: 270px;
-        color: #2c7a7b;
+        height: auto;
+        color: #2c7a7b; 
         padding: 30px;
         margin: 40px;
+        margin-bottom: 0;
         border-bottom-left-radius: 30px;
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
@@ -83,44 +80,43 @@
         gap: 24px;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         max-width: 1100px;
-        width: 100%;
-        margin-left: 22px;
-        margin-bottom: 40px;
+        background: #f9fefb;
+        text-align: center;
+        padding: 60px 20px;
+        margin: 20px auto;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
     .test-card{
-        /* background-color: rgb(67, 182, 184); */
+        
         background-color: #fff;
         border-radius: 16px;
-        padding: 15px;
-        margin-left: 35px;
+        padding: 25px;
         box-shadow: 0 6px 14px rgba(0,0,0,0.15);
         transition: all 0.3s ease;
-        width: 80%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        text-align: center;
+     
+        
     }
     .test-card:hover{
+        background-color: #eef4f4;
         transform: translateY(-6px);
         box-shadow: 0 12px 26px rgba(0,0,0,0.2);
 
     }
     .test-title{
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         font-weight: 700;
         margin-bottom: 10px;
-        color: #107167;
+        color: #444;
     }
     .test-desc{
-        font-size: 1rem;
+        font-size: 0.95rem;
         color: #4a5568;
-        flex-grow: 1;
         margin-bottom: 16px;
-        line-height: 1.5;
     }
     .start-btn{
-        align-self: flex-start;
+        align-self:flex-start; 
         padding: 10px 18px;
         font-size:1rem;
         font-weight: 600;
@@ -130,18 +126,17 @@
         color: white;
         cursor: pointer;
         transition: background 0.2s ease;
+
     }
     .start-btn:hover{
          background:#2C7A7B;
     }
 
     .how-it-works{
-       background-color: #e6fff9;
-        height: 300px;
-         color: #2c7a7b; 
-        /* color: #444; */
+       background-color: white;
+        color: #2c7a7b;  ;
         padding: 30px;
-        margin: 40px;
+        margin: 20px auto;
         text-align: center;
         border-bottom-left-radius: 30px;
         border-top-right-radius: 30px;
@@ -154,6 +149,7 @@
         margin-bottom: 10px;
     }
     .how-it-works .subtitle{
+        color: #444;
         font-size: 1.1rem;
         margin-bottom: 40px;
     }
@@ -164,6 +160,9 @@
         gap: 25px;
         flex-wrap: nowrap;
     }
+   .step p{
+    color: #444;
+   }
 
     .step{
  
@@ -215,10 +214,84 @@
     .step:hover{
         transform: translateY(-10px) scale(1.05);
         box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-  background: linear-gradient(135deg, #ffffff, #f0faff);
+        background: linear-gradient(135deg, #ffffff, #f0faff);
 
     }
 
+    .diseases{
+        background: #f9fefb;
+        text-align: center;
+        padding: 60px 20px;
+        margin: 40px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .diseases h2{
+        font-size: 2rem;
+        color: #2c7a7b;
+        margin-bottom: 10px;
+    }
+
+    .diseases .description{
+        color: #444;
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+    .disease-cards{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        max-width: 1100px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .disease-card{
+        background: #fff;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    .disease-card:hover{
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        background-color: #eef4f4;
+    }
+
+     .disease-card icon{
+        font-size: 2.5rem;
+        color: #38B2AC;
+        margin-bottom: 15px;
+     }
+     .disease-card h3{
+        font-size: 1.3rem;
+        color: #444;
+        margin-bottom: 10px;
+    
+    }
+    .disease-card p{
+  
+        font-size: 0.95rem;
+        color: #444;
+        margin-bottom: 16px;
+        line-height: 1.4;
+    }
+
+    .learn-btn{
+        display: inline-block;
+        padding: 8px 16px;
+        background: #38B2AC;
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s ease;
+    }
+    .learn-btn:hover{
+        background: #2c7a7b;
+    }
 
 
     footer{

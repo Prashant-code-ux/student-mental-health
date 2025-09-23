@@ -77,7 +77,7 @@
      <!-- question 2 -->
       
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>2. Feeling down, depressed, or hopeless?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -90,7 +90,7 @@
      <!-- question 3 -->
      
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>3. Trouble falling or staying asleep, or sleeping too much?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -102,7 +102,7 @@
      <!-- question 4 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>4. Feeling tired or having little energy?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -115,7 +115,7 @@
 
        
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>5. Poor appetite or overeating?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -127,7 +127,7 @@
      <!-- question 6 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>6. Feeling bad about yourself — or that you are a failure?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -141,7 +141,7 @@
 
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>7. Trouble concentrating on things, such as reading or watching TV?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -153,7 +153,7 @@
  <!-- this is 8 question  -->
 
       <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>8. Moving or speaking so slowly that other people noticed, or being fidgety or restless?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -167,7 +167,7 @@
       <!-- this is 9 question  -->
 
        <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>9. Thoughts that you would be better off dead or of hurting yourself?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -182,7 +182,7 @@
       <!-- this is 10 question  -->
 
       <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>10. Difficulty performing daily responsibilities due to these feelings?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -191,16 +191,11 @@
       </div>
     </div>
 
-
-
      <div class="button_next">
-      <a href="Depression_optional.html" target="_blank">NEXT ></a>
+      <a href="Depression_optional.html" target="_blank" id="nextBtn">NEXT ></a>
      </div>
              
-
     </div>
-
-
 
      <!-- footer -->
   <footer>
@@ -229,7 +224,61 @@
         </div>
       
     </footer>
+<script>
+// Score mapping
+
+const optionScores = {
+  "NOT AT ALL": 0,
+  "SEVERAL DAYS": 1,
+  "MORE THAN HALF THE DAYS": 2,
+  "NEARLY EVERY DAY": 3
+};
+
+// Array to hold answers
+let answers = Array.from(document.querySelectorAll(".question")).map(() => null);
+
+// Make each button clickable
+document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
+  const buttons = questionEl.querySelectorAll("button");
+
+  buttons.forEach((btn, bIndex) => {
+    btn.addEventListener("click", () => {
+      // Remove active from all buttons in this question
+      buttons.forEach(b => b.classList.remove("active"));
+      // Add active to clicked button
+      btn.classList.add("active");
+
+      // Save score
+      const score = optionScores[btn.textContent.trim()];
+      answers[qIndex] = score;
+      console.log(`Q${qIndex + 1}: ${btn.textContent} => ${score}`);
+    });
+  });
+});
+
+
+
+// Handle Next Button
+document.getElementById("nextBtn").addEventListener("click", (e) => {
+  // check if all answered
+  if (answers.includes(null)) {
+    e.preventDefault();
+    alert("Please answer all questions before moving to next page.");
+    return;
+  }
+
+  // save to localStorage (to use in next page)
+  localStorage.setItem("depressionAnswers", JSON.stringify(answers));
+
+  // mark progress bar step as done
+  const steps = document.querySelectorAll(".step");
+  steps[0].classList.add("completed");
+  steps[1].classList.add("active");
+});
+</script>
+
+
+
     
 </body>
 </html>
-
