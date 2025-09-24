@@ -15,8 +15,15 @@
     <nav>
       <a href="homePage.html" target="_blank">Home</a>
       <a href="About.html" target="_blank">About</a>
-      <a href="#">Wellness Tools</a>
-      <a href="ContactForm.html" target="_blank">Contact</a>
+      <div class="dropdown">
+  <a href="#" target="_blank">Wellness Tools <i class="fa-solid fa-caret-down"></i></a>
+  <div class="dropdown-content">
+    <a href="MoodTracker.html">Mood Tracker</a>
+    <a href="HealthTest.html">Mental Health Tests</a>
+    <a href="BreathingExercise.html">Breathing Exercises</a>
+  </div>
+  </div>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
     </nav>
     <div class="right-section">
       <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
@@ -275,6 +282,24 @@ document.getElementById("nextBtn").addEventListener("click", (e) => {
   steps[0].classList.add("completed");
   steps[1].classList.add("active");
 });
+
+// On page load, restore answers if they exist
+window.addEventListener("DOMContentLoaded", () => {
+  const savedAnswers = JSON.parse(localStorage.getItem("depressionAnswers"));
+  if (savedAnswers) {
+    savedAnswers.forEach((score, qIndex) => {
+      if (score !== null) {
+        const questionEl = document.querySelectorAll(".question")[qIndex];
+        const buttons = questionEl.querySelectorAll("button");
+        const selectedBtn = Array.from(buttons).find(
+          btn => optionScores[btn.textContent.trim()] === score
+        );
+        if (selectedBtn) selectedBtn.classList.add("active");
+      }
+    });
+  }
+});
+
 </script>
 
 

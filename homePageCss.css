@@ -42,6 +42,45 @@
     nav a:hover,.login a:hover{
         color:#319795;
     }
+
+    /* Dropdown Wrapper */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown Content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background: #fff;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: #2D3748;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: #e6fff9;
+  color: #319795;
+}
+
+/* Show on Hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
     .right-section{
         display:flex;
         align-items:center;
