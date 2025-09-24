@@ -248,7 +248,7 @@ nav a:hover,
     background-color: #a0eae0;
     transform: scale(1.05);
 }
-.option button.active {
+.question .option button.active {
     background-color: #048a7a !important; /* highlight color */
     color: #fff;
     transform: scale(1.05);

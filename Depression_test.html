@@ -290,6 +290,7 @@ window.addEventListener("DOMContentLoaded", () => {
     savedAnswers.forEach((score, qIndex) => {
       if (score !== null) {
         const questionEl = document.querySelectorAll(".question")[qIndex];
+         if (!questionEl) return;
         const buttons = questionEl.querySelectorAll("button");
         const selectedBtn = Array.from(buttons).find(
           btn => optionScores[btn.textContent.trim()] === score
