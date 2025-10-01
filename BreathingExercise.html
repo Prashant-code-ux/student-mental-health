@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Breathing Exercise</title>
+     <link rel="icon"  href="Home.png">
+    <link rel="stylesheet" href="BreathingExercise.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+  <div class="container">
+  <!-- Circle with countdown inside -->
+  <div id="circle">4</div>
+
+  <!-- Controls + Score + Quote -->
+  <div class="controls">
+    <div id="text">Click Start</div>
+    <div id="score">Breaths: 0</div>
+    <div id="quote">“Breathe in calm… exhale stress.”</div>
+    <div class="button-group">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn" disabled>Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const circle = document.getElementById('circle');
+const text = document.getElementById('text');
+const score = document.getElementById('score');
+const quote = document.getElementById('quote');
+const startBtn = document.getElementById('startBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+const quotes = [
+  "Breathe in calm… exhale stress.",
+  "Let go of tension with every breath.",
+  "Your mind is powerful; breathe to refocus it.",
+  "Inhale peace, exhale worry.",
+  "Relax. Every breath is a fresh start.",
+  "Feel the air, release the tension.",
+  "Breathe slowly, feel deeply, live fully."
+];
+
+// Box breathing steps
+let cycle = [
+  {action: "Inhale", scale: 1.5, color: "#38B2AC", shadow: "0 0 50px rgba(56,178,172,0.6)"},
+  {action: "Hold", scale: 1.5, color: "#319795", shadow: "0 0 50px rgba(49,151,149,0.5)"},
+  {action: "Exhale", scale: 1.0, color: "#2C7A7B", shadow: "0 0 40px rgba(44,122,133,0.5)"},
+  {action: "Hold", scale: 1.0, color: "#285E61", shadow: "0 0 40px rgba(40,94,97,0.5)"}
+];
+
+let index = 0;
+let breaths = 0;
+let running = false;
+let paused = false;
+let timer;
+let quoteIndex = 0;
+const stepSeconds = 4; // seconds for each step
+
+function updateUI(secondsLeft) {
+  text.innerText = running ? cycle[index].action : "Click Start";
+  score.innerText = "Breaths: " + breaths;
+  circle.innerText = secondsLeft;
+}
+
+function showQuote() {
+  quote.style.opacity = 0;
+  setTimeout(() => {
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+    quote.innerText = quotes[quoteIndex];
+    quote.style.opacity = 1;
+  }, 500);
+}
+
+function runCycle() {
+  if (!running || paused) return;
+
+  let step = cycle[index];
+  let secondsLeft = stepSeconds;
+  
+  text.innerText = step.action;
+  circle.style.transform = `scale(${step.scale})`;
+  circle.style.background = step.color;
+  circle.style.boxShadow = step.shadow;
+  circle.style.fontSize = `${48 * step.scale}px`;
+
+  function countdown() {
+    if (!running || paused) return;
+
+    updateUI(secondsLeft);
+    if (secondsLeft > 0) {
+      secondsLeft--;
+      timer = setTimeout(countdown, 1000);
+    } else {
+      index = (index + 1) % cycle.length;
+      if (index === 0) breaths++;
+      if (index === 0) showQuote();
+      runCycle();
+    }
+  }
+  countdown();
+}
+
+startBtn.addEventListener('click', () => {
+  if (!running) {
+    running = true;
+    paused = false;
+    index = 0;
+    breaths = 0;
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    runCycle();
+  }
+});
+
+pauseBtn.addEventListener('click', () => {
+  paused = !paused;
+  if (!paused) runCycle();
+  pauseBtn.innerText = paused ? "Resume" : "Pause";
+});
+
+resetBtn.addEventListener('click', () => {
+  running = false;
+  paused = false;
+  clearTimeout(timer);
+  index = 0;
+  breaths = 0;
+  circle.style.transform = "scale(1)";
+  circle.style.background = "#38B2AC";
+  circle.style.boxShadow = "0 0 40px rgba(56,178,172,0.6)";
+  circle.style.fontSize = "48px";
+  updateUI(stepSeconds);
+  quote.innerText = "Breathe in calm… exhale stress.";
+  startBtn.disabled = false;
+  pauseBtn.disabled = true;
+  pauseBtn.innerText = "Pause";
+});
+
+ document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+</script>
+    
+</body>
+</html>

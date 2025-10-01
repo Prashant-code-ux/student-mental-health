@@ -7,18 +7,18 @@
 
     body {
       display: flex;
-      flex-direction: column; /* Stack content vertically */
-      min-height: 100vh;     /* Full height */
+      flex-direction: column; 
+      min-height: 100vh;    
       background: linear-gradient(135deg, #e6fff9, #f2fbff);
     }
 
     .wrapper {
-      flex: 1; /* Push footer down */
+      flex: 1; 
       display: flex;
       justify-content: center;
       align-items: center;
-        align-items: flex-start; /* align to top instead of center */
-         padding: 60px 0; /* Space from top and bottom */
+        align-items: flex-start; 
+         padding: 60px 0; 
     }
 
     .wrapper .form-wrapper {
@@ -154,7 +154,7 @@
     footer {
       background-color: #38B2AC;
       color: white;
-      margin-top: 10px; /* Push footer to bottom */
+      margin-top: 10px; 
       padding: 40px 0 20px;
     }
 

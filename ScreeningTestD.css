@@ -13,7 +13,6 @@ body {
     flex-direction: column;
 }
 
-/* ===== Header ===== */
 header {
     display: flex;
     justify-content: space-between;
@@ -53,43 +52,6 @@ nav a:hover,
     align-items: center;
     gap: 15px;
 }
-/* Dropdown Wrapper */
-.dropdown {
-  position: relative;
-}
-
-/* Dropdown Content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%; 
-  left: 0;
-  background: #fff;
-  min-width: 180px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  z-index: 1000;
-}
-/* Dropdown Links */
-.dropdown-content a {
-  display: block;
-  padding: 10px 15px;
-  color: #2D3748;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.3s;
-}
-
-.dropdown-content a:hover {
-  background: #e6fff9;
-  color: #319795;
-}
-
-/* Show on Hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
     .right-section{
         display:flex;
         align-items:center;
@@ -102,7 +64,7 @@ nav a:hover,
     cursor: pointer;
 }
 
-/* ===== Main Container ===== */
+
 .container {
     width: 100%;
     /* height: 140px; */
@@ -129,7 +91,7 @@ nav a:hover,
     text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 }
 
-/* ===== Progress Bar ===== */
+
 .progress-container {
     display: flex;
     justify-content: center;
@@ -189,7 +151,7 @@ nav a:hover,
     max-width: 80px;
 }
 
-/* ===== Text Section ===== */
+
 .text {
     width: 60%;
     margin: 0 auto;
@@ -206,7 +168,7 @@ nav a:hover,
     font-size: 0.9rem;
 }
 
-/* ===== Questions ===== */
+
 .question {
     margin: 40px auto;
     width: 80%;
@@ -219,7 +181,7 @@ nav a:hover,
     font-weight: 600;
 }
 
-/* ===== Centered Options ===== */
+
 .option {
     margin: 0 auto;
     width: 100%;
@@ -249,7 +211,7 @@ nav a:hover,
     transform: scale(1.05);
 }
 .question .option button.active {
-    background-color: #048a7a !important; /* highlight color */
+    background-color: #048a7a !important; 
     color: #fff;
     transform: scale(1.05);
 
@@ -257,7 +219,7 @@ nav a:hover,
 }
 
 
-/* ===== Next Button ===== */
+
 .button_next {
     display: flex;
     justify-content: center;
@@ -303,7 +265,6 @@ nav a:hover,
 }
 
 
-/* ===== Footer ===== */
 footer {
     margin-top: 0;
     background-color: #38B2AC;

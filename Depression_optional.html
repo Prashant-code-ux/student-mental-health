@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon"  href="Home.png">
     <link rel="stylesheet" href="ScreeningTestD.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <title>Screening</title>
+    <title>Depression Test</title>
 </head>
 <body>
      <header>
@@ -15,14 +16,6 @@
     <nav>
       <a href="homePage.html" target="_blank">Home</a>
       <a href="About.html" target="_blank">About</a>
-      <div class="dropdown">
-  <a href="#" target="_blank">Wellness Tools <i class="fa-solid fa-caret-down"></i></a>
-  <div class="dropdown-content">
-    <a href="MoodTracker.html">Mood Tracker</a>
-    <a href="HealthTest.html">Mental Health Tests</a>
-    <a href="BreathingExercise.html">Breathing Exercises</a>
-  </div>
-  </div>
       <a href="Learn.html" target="_blank">Learn about mental health</a>
     </nav>
     <div class="right-section">
@@ -184,7 +177,7 @@
           <a href="homePage.html" target="_blank">Home</a>
           <a href="About.html" target="_blank">About</a>
           <a href="">Wellness tools</a>
-          <a href="ContactForm.html" target="_blank">Contact</a>
+          <a href="Learn.html" target="_blank">Learn about mental health</a>
         </div>
         <div class="footer-col">
           <h3>Resources</h3>
@@ -207,7 +200,7 @@
 
 
  <script>
-// Score mapping (optional)
+
 const optionScores = {
   "NOT AT ALL": 0,
   "SEVERAL DAYS": 1,
@@ -215,10 +208,10 @@ const optionScores = {
   "NEARLY EVERY DAY": 3
 };
 
-// Array to hold answers
+
 let answers = Array.from(document.querySelectorAll(".question")).map(() => null);
 
-// Make each button clickable
+
 document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
   const buttons = questionEl.querySelectorAll("button");
 
@@ -234,22 +227,22 @@ document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
   });
 });
 
-// Handle Next Button
+
 document.getElementById("nextBtn").addEventListener("click", (e) => {
-  // Save to localStorage 
+  
   localStorage.setItem("optionalAnswers", JSON.stringify(answers));
 
-  // Move to next step
+
   const steps = document.querySelectorAll(".step");
-  if (steps[1]) steps[1].classList.add("completed"); // Optional Question step done
-  if (steps[2]) steps[2].classList.add("active");    // Move to Result step
+  if (steps[1]) steps[1].classList.add("completed"); 
+  if (steps[2]) steps[2].classList.add("active");    
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Mark the first step as completed
+   
     const steps = document.querySelectorAll(".step");
-    if (steps[0]) steps[0].classList.add("completed"); // Test Question step done
-    if (steps[1]) steps[1].classList.add("active");    // Optional Question step active
+    if (steps[0]) steps[0].classList.add("completed"); 
+    if (steps[1]) steps[1].classList.add("active");    
 });
 
 
