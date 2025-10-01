@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grounding Exercise</title>
+<link rel="icon"  href="Home.png">
+<link rel="stylesheet" href="GroundingTechnique.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+     <!-- Navbar -->
+    <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+<div class="center-wrapper">
+    <div class="container">
+    <!-- Left Side: Question + Input -->
+    <div class="left">
+        <h1><i class="fa-solid fa-leaf"></i> Grounding Exercise</h1>
+        <p>Focus on your senses. Type your answers below.</p>
+        <div id="exercise" class="step">Click Next to start</div>
+        <input type="text" id="answerBox" placeholder="" style="display:none;">
+        <button class="btn" onclick="nextStep()">Next</button>
+    </div>
+
+    <!-- Right Side: Stored Answers -->
+    <div class="right">
+        <div class="answers-box">
+            <h2>Answers So Far</h2>
+            <ul id="answersList"></ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+const steps = [
+    {icon: "fa-eye", text: "Look around and name 5 things you can see.", max: 5},
+    {icon: "fa-hand-paper", text: "Touch and notice 4 things you can feel.", max: 4},
+    {icon: "fa-ear-listen", text: "Listen closely and name 3 things you can hear.", max: 3},
+    {icon: "fa-wind", text: "Take a breath and notice 2 things you can smell.", max: 2},
+    {icon: "fa-utensils", text: "Finally, notice 1 thing you can taste.", max: 1},
+    {icon: "fa-check-circle", text: "Well done! You are grounded in the present moment.", max:0}
+];
+
+let currentStep = 0;
+let answers = [];
+
+function nextStep() {
+    const exerciseDiv = document.getElementById("exercise");
+    const answerBox = document.getElementById("answerBox");
+    const answersList = document.getElementById("answersList");
+
+    // Validate previous input
+    if (answerBox.style.display === "block") {
+        let val = answerBox.value.trim();
+        if (!val) {
+            alert("Please provide an answer before continuing.");
+            return;
+        }
+        let maxItems = steps[currentStep - 1].max;
+        let parts = val.split(",").map(x => x.trim()).filter(x => x !== "");
+        if (parts.length > maxItems) {
+            alert(`You can only list up to ${maxItems} things.`);
+            return;
+        }
+        if (parts.length < maxItems) {
+            alert(`Please list exactly ${maxItems} things.`);
+            return;
+        }
+        answers.push({question: steps[currentStep-1].text, response: parts});
+        answerBox.value = "";
+    }
+
+    // Show next step
+    if (currentStep < steps.length) {
+        exerciseDiv.innerHTML = `<i class="fa-solid ${steps[currentStep].icon}"></i> ${steps[currentStep].text}`;
+        if (steps[currentStep].max > 0) {
+            answerBox.style.display = "block";
+            answerBox.placeholder = `Enter ${steps[currentStep].max} item(s), separated by commas`;
+        } else {
+            answerBox.style.display = "none";
+        }
+        currentStep++;
+    } else {
+        exerciseDiv.innerHTML = "✨ You’ve completed the exercise!";
+        answerBox.style.display = "none";
+    }
+
+    // Update right-side answers
+    answersList.innerHTML = "";
+    answers.forEach((ans, i) => {
+        const li = document.createElement("li");
+        li.textContent = `${ans.question} → ${ans.response.join(", ")}`;
+        answersList.appendChild(li);
+    });
+}
+
+ document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+</script>
+
+</body>
+</html>

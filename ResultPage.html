@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Result</title>
+  <link rel="icon"  href="Home.png">
   <link rel="stylesheet" href="ScreeningTestD.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,14 +16,6 @@
   <nav>
     <a href="homePage.html" target="_blank">Home</a>
     <a href="About.html" target="_blank">About</a>
-    <div class="dropdown">
-  <a href="#" target="_blank">Wellness Tools <i class="fa-solid fa-caret-down"></i></a>
-  <div class="dropdown-content">
-    <a href="MoodTracker.html">Mood Tracker</a>
-    <a href="HealthTest.html">Mental Health Tests</a>
-    <a href="BreathingExercise.html">Breathing Exercises</a>
-  </div>
-  </div>
     <a href="Learn.html" target="_blank">Learn about mental health</a>
   </nav>
   <div class="right-section">
@@ -59,7 +52,6 @@
 </div>
 
 <div class="question" id="answersSection">
-  <!-- Answers will be injected here -->
 </div>
 
 <div class="button_next">
@@ -127,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
-  // Calculate score
+ 
   const totalScore = depressionAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
   document.getElementById("finalScore").textContent = `Your Total Score: ${totalScore}`;
 
-  // Interpretation
+
   let interpretation = "";
   if (totalScore <= 4) interpretation = "Normal (Minimal or No Depression)";
   else if (totalScore <= 9) interpretation = "Mild Depression";
@@ -142,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("finalScore").innerHTML = 
     `Your Total Score: <b>${totalScore}</b><br><span style="color:#cc0000">${interpretation}</span>`;
 
-  // Display answers
+
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
   

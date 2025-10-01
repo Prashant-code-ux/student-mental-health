@@ -1,0 +1,139 @@
+*{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+    body{
+        font-family:'Quicksand',sans-serif;
+        background:linear-gradient(to bottom right,#e6fff9,#f2fbff);
+        color:#2D3748;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+    }
+
+    header{
+       
+        display: flex;
+        justify-content: space-between;
+        /* display:grid;
+        grid-template-columns:auto 1fr auto; */
+        align-items:center;
+        padding:1rem 2rem;
+        background:#fff;
+        box-shadow:0 4px 12px rgba(0,0,0,.05);
+    }
+    .logo{
+        font-size:1.4rem;
+        font-weight:700;
+        color:#38B2AC;
+    }
+    nav{
+        display:flex;
+        gap:30px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    nav a,.login a{
+        color:#2D3748;
+        text-decoration:none;
+        font-weight:600;
+    }
+    nav a:hover,.login a:hover{
+        color:#319795;
+    }
+    .right-section{
+        display:flex;
+        align-items:center;
+        gap:15px;
+    }
+    .menu-toggle{
+        display:none;
+        font-size:1.8rem;
+        cursor:pointer;
+    }
+
+    @media(max-width:768px){
+      nav{
+        position:absolute;
+        top:60px;left:0;
+        right:0;
+        background:#fff;flex-direction:column;
+        align-items:center;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .4s;
+    }
+      nav.show{
+        max-height:300px;
+        padding:1rem 0;
+    }
+      .menu-toggle{
+        display:block;
+    }
+    
+    }
+
+.main-container {
+  flex: 1; 
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  flex-direction: column;   
+  text-align: center;
+  padding: 20px;
+}
+
+  h1 {
+    margin-bottom: 20px;
+    color: #2d3748;
+  }
+  #instruction {
+    font-size: 1.3rem;
+    margin: 20px 0;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* min-width: 100px; */
+  }
+
+  #timer {
+    font-size: 2rem;
+    margin-top: 10px;
+    color: #2d3748;
+  }
+#progressContainer {
+    width: 80%;
+    background: #e2e8f0;
+    border-radius: 12px;
+    margin: 15px 0;
+    height: 20px;
+  }
+
+  #progressBar {
+    height: 100%;
+    width: 0%;
+    background: #4c9aff;
+    border-radius: 12px;
+    transition: width 0.5s;
+  }
+
+  #emoji {
+    font-size: 3rem;
+    margin: 10px 0;
+  }
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4c9aff;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  button:hover {
+    background-color: #357ae8;
+  }

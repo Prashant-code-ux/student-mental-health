@@ -1,9 +1,79 @@
+ *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+    body{
+        font-family:'Quicksand',sans-serif;
+        background:linear-gradient(to bottom right,#e6fff9,#f2fbff);
+        color:#2D3748;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+    }
 
- 
- 
- 
+    header{
+       
+        display: flex;
+        justify-content: space-between;
+        /* display:grid;
+        grid-template-columns:auto 1fr auto; */
+        align-items:center;
+        padding:1rem 2rem;
+        background:#fff;
+        box-shadow:0 4px 12px rgba(0,0,0,.05);
+    }
+    .logo{
+        font-size:1.4rem;
+        font-weight:700;
+        color:#38B2AC;
+    }
+    nav{
+        display:flex;
+        gap:30px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    nav a,.login a{
+        color:#2D3748;
+        text-decoration:none;
+        font-weight:600;
+    }
+    nav a:hover,.login a:hover{
+        color:#319795;
+    }
+    .right-section{
+        display:flex;
+        align-items:center;
+        gap:15px;
+    }
+    .menu-toggle{
+        display:none;
+        font-size:1.8rem;
+        cursor:pointer;
+    }
+
+    @media(max-width:768px){
+      nav{
+        position:absolute;
+        top:60px;left:0;
+        right:0;
+        background:#fff;flex-direction:column;
+        align-items:center;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .4s;
+    }
+      nav.show{
+        max-height:300px;
+        padding:1rem 0;
+    }
+      .menu-toggle{
+        display:block;
+    }
+  }
  body {
-      font-family: 'Quicksand', sans-serif;
+     
       line-height: 1.6;
       background: #ffffff;
       color: #2D3748;
@@ -64,7 +134,9 @@
 
     .article h2 {
       font-size: 1.8rem;
-      color: #2b6cb0;
+      /* color: #2b6cb0; */
+       /* color:#065F46; */
+        color:#285E61;
       margin: 20px 0 10px;
     }
 
@@ -88,7 +160,8 @@
 
     .btn {
       display: inline-block;
-      background: #2b6cb0;
+      /* background: #2b6cb0; */
+       background:#38B2AC;
       color: white;
       padding: 12px 25px;
       border-radius: 8px;
@@ -98,7 +171,8 @@
     }
 
     .btn:hover {
-      background: #1e4e8c;
+      /* background: #1e4e8c; */
+      background:#2C7A7B;
     }
 
      /* footer */

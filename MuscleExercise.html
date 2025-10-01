@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive PMR Exercise</title>
+    <link rel="icon"  href="Home.png">
+    <link rel="stylesheet" href="MuscleExercise.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+      <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+
+  <h1>Interactive PMR Exercise</h1>
+
+  <div id="instruction">Click "Start" to begin relaxing your muscles</div>
+  <div id="emoji">😌</div>
+  <div id="timer"></div>
+  <div id="progressContainer">
+    <div id="progressBar"></div>
+    <button id="StartBtn">Start</button>
+  </div>
+
+  </div>
+
+  
+<script>
+const steps = [
+  { muscle: 'Hands', action: 'Clench your fists tightly', emoji: '✊', duration: 5 },
+  { muscle: 'Arms', action: 'Tense your biceps', emoji: '💪', duration: 5 },
+  { muscle: 'Shoulders', action: 'Raise shoulders towards ears', emoji: '🤷', duration: 5 },
+  { muscle: 'Face', action: 'Scrunch your face tightly', emoji: '😬', duration: 5 },
+  { muscle: 'Legs', action: 'Tighten your thigh muscles', emoji: '🦵', duration: 5 },
+  { muscle: 'Feet', action: 'Curl your toes', emoji: '🦶', duration: 5 }
+];
+
+const instructionDiv = document.getElementById('instruction');
+const timerDiv = document.getElementById('timer');
+const startBtn = document.getElementById('StartBtn');
+const progressBar = document.getElementById('progressBar');
+const emojiDiv = document.getElementById('emoji');
+
+let currentStep = 0;
+
+function startStep(stepIndex) {
+  if(stepIndex >= steps.length) {
+    instructionDiv.textContent = "Well done! You have completed the PMR exercise. Take a deep breath and relax. 😌";
+    timerDiv.textContent = "";
+    emojiDiv.textContent = "🌿";
+    progressBar.style.width = '100%';
+    startBtn.style.display = 'inline-block';
+    document.body.style.background = '#f0f4f8';
+    return;
+  }
+
+  const step = steps[stepIndex];
+  instructionDiv.textContent = `${step.action} for ${step.duration} seconds.`;
+  emojiDiv.textContent = step.emoji;
+  document.body.style.background = '#d0ebff'; // Change background to indicate tensing
+
+  let timeLeft = step.duration;
+  timerDiv.textContent = timeLeft;
+
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timerDiv.textContent = timeLeft;
+    if(timeLeft <= 0) {
+      clearInterval(countdown);
+      instructionDiv.textContent = `Release your ${step.muscle} and relax.`;
+      emojiDiv.textContent = '😌';
+      document.body.style.background = '#c6f6d5'; // Relax color
+      timerDiv.textContent = "5"; // Relax 5 seconds
+      let relaxTime = 5;
+      const relaxInterval = setInterval(() => {
+        relaxTime--;
+        timerDiv.textContent = relaxTime;
+        progressBar.style.width = `${Math.round((stepIndex+1)/steps.length*100)}%`;
+        if(relaxTime <= 0){
+          clearInterval(relaxInterval);
+          startStep(stepIndex + 1);
+        }
+      }, 1000);
+    }
+  }, 1000);
+}
+
+startBtn.addEventListener('click', () => {
+  startBtn.style.display = 'none';
+  startStep(currentStep);
+});
+
+    document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+</script>
+    
+</body>
+</html>
