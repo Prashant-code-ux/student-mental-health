@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Boost — Diet & Tips</title>
+  <link rel="icon"  href="Home.png">
+    <link rel="stylesheet" href="Diet-tips.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+     <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+<div class="hero-section">
+      <h1>Mind Boost — Diet & Tips</h1>
+  <p>Click on a card to see the benefit and when it is needed</p>
+</div>
+
+<h2>Food Groups</h2>
+<div class="container" id="foodContainer"></div>
+
+<h2>Tips & Practices</h2>
+<div class="container" id="tipsContainer"></div>
+
+  <!-- footer -->
+  <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="homePage.html" target="_blank">Home</a>
+          <a href="About.html" target="_blank">About</a>
+          <a href="Learn.html" target="_blank">Learn about mental health</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="#">Blog</a>
+           <a href="#">Self-Care Tips</a>
+            <a href="#">Mental Health Guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p>Email:support2moodify.com</p>
+          <p>Phone: +91-1234567899</p>
+        </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Made with 💚 to support your mental health journey.</p>
+        </div>
+      
+    </footer>
+
+<script>
+// Food groups
+const foodGroups = [
+  {name:'Fruits', img:'images/fruits.jpg', info:'Rich in vitamins and antioxidants, boosts mood and energy.', needed:'Daily to support focus and immunity'},
+  {name:'Green Vegetables', img:'images/vegetables.jpg', info:'Full of folate and minerals for mental clarity.', needed:'Daily to improve brain health'},
+  {name:'Pulses & Legumes', img:'images/pulses.jpg', info:'Provide protein and fiber, stabilizes energy.', needed:'During meals to maintain concentration'},
+  {name:'Nuts & Seeds', img:'images/nuts.jpg', info:'Contain healthy fats for brain function.', needed:'As snacks to boost focus'},
+  {name:'Whole Grains', img:'images/whole-grains.jpg', info:'Provide steady energy and support neurotransmitters.', needed:'Daily to prevent mental fatigue'},
+  {name:'Fermented Foods', img:'images/fermented-foods.jpg', info:'Supports gut-brain connection for mood and cognition.', needed:'Daily or several times a week'},
+  {name:'Herbs & Spices', img:'images/spices.jpg', info:'Anti-inflammatory and antioxidant properties.', needed:'Add to meals for overall health'},
+  {name:'Seeds (Flax, Chia)', img:'images/seeds.jpg', info:'Omega-3 and fiber for brain and gut health.', needed:'Add to breakfast or smoothies'}
+];
+
+// Tips categories
+const tipsGroups = [
+  {name:'Exercise', img:'images/Exercise.jpg', info:'Physical activity reduces stress and boosts energy.', needed:'When feeling low energy or stressed'},
+  {name:'Meditation', img:'images/meditation.jpg', info:'Calms the mind and improves focus.', needed:'When anxious or overwhelmed'},
+  {name:'Stretching', img:'images/stretching.jpg', info:'Relieves body tension and improves circulation.', needed:'During long study sessions'},
+  {name:'Sleep Routine', img:'images/sleep.jpg', info:'Maintaining consistent sleep enhances mood and focus.', needed:'Every night for optimal brain function'},
+  {name:'Hydration', img:'images/hydration.jpg', info:'Drinking water supports alertness and cognitive function.', needed:'Throughout the day'},
+  {name:'Journaling', img:'images/journaling.jpg', info:'Writing thoughts reduces mental load and stress.', needed:'When feeling stressed or sad'},
+  {name:'Deep Breathing', img:'images/breathing.jpg', info:'Reduces stress and calms the nervous system.', needed:'During anxiety or tension'},
+  {name:'Sunlight Exposure', img:'images/sunlight.jpg', info:'Improves mood and regulates circadian rhythm.', needed:'Daily for 15–20 min'}
+];
+
+// Function to create cards
+function createCards(containerId, items){
+  const container = document.getElementById(containerId);
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="${item.img}" alt="${item.name}">
+          <strong>${item.name}</strong>
+        </div>
+        <div class="card-back">
+          <p>${item.info}</p>
+          <p><em>Needed: ${item.needed}</em></p>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Load cards
+createCards('foodContainer', foodGroups);
+createCards('tipsContainer', tipsGroups);
+
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+</script>
+
+</body>
+</html>
