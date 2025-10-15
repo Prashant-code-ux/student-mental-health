@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ScreeningTestD.css">
+    <link rel="stylesheet" href="Test.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -65,18 +65,19 @@
      <!-- question 1 -->
    
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>1. Feel nervous, anxious, or on edge?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
         <button>MORE THAN HALF THE DAYS</button>
         <button>NEARLY EVERY DAY</button>
       </div>
+      </div>
     
      <!-- question 2 -->
       
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>2. Worry too much about different things?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -89,7 +90,7 @@
      <!-- question 3 -->
      
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>3. Found it hard to relax or calm down once started worrying?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -101,7 +102,7 @@
      <!-- question 4 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>4. Feel something bad might happen, even when things are fine?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -110,11 +111,10 @@
       </div>
     </div>
 
-     <!-- question 5 -->
+    <!-- question 5 -->
 
-       
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>5. Having trouble controlling worries or thoughts?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -124,9 +124,9 @@
     </div>
 
      <!-- question 6 -->
-
+       
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>6. Feel tired or low on energy even when I haven’t done much?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -134,13 +134,23 @@
         <button>NEARLY EVERY DAY</button>
       </div>
     </div>
-
 
      <!-- question 7 -->
 
+    <div class="question">
+      <p>7. Heart beats fast, sweat, or feel shaky when feel anxious?</p>
+      <div class="option">
+        <button>NOT AT ALL</button>
+        <button>SEVERAL DAYS</button>
+        <button>MORE THAN HALF THE DAYS</button>
+        <button>NEARLY EVERY DAY</button>
+      </div>
+    </div>
+
+     <!-- question 8 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>8. Get headaches, stomachaches, or muscle tension when stressed?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -149,24 +159,10 @@
       </div>
     </div>
 
- <!-- this is 8 question  -->
-
-      <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
-      <div class="option">
-        <button>NOT AT ALL</button>
-        <button>SEVERAL DAYS</button>
-        <button>MORE THAN HALF THE DAYS</button>
-        <button>NEARLY EVERY DAY</button>
-      </div>
-    </div>
-
-
-
-      <!-- this is 9 question  -->
+ <!-- this is 9 question  -->
 
        <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>9. Anxiety makes it hard to focus on studies or complete assignments?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -174,14 +170,11 @@
         <button>NEARLY EVERY DAY</button>
       </div>
     </div>
-
-
-
 
       <!-- this is 10 question  -->
 
       <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>10. Compare myself with others and feel I’m not good enough?</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -190,9 +183,14 @@
       </div>
     </div>
 
+     <div class="button_next button_next1">
+      <a href="Anxiety_optional.html" target="_blank" id="nextBtn">NEXT <i class="fa-solid fa-arrow-right"></i></a>
+     </div>
+             
+    </div>
+             
 
-
-
+    </div>
 
      <!-- footer -->
   <footer>
@@ -220,6 +218,90 @@
         </div>
       
     </footer>
+
+    <script>
+
+
+const optionScores = {
+  "NOT AT ALL": 0,
+  "SEVERAL DAYS": 1,
+  "MORE THAN HALF THE DAYS": 2,
+  "NEARLY EVERY DAY": 3
+};
+
+
+let answers = Array.from(document.querySelectorAll(".question")).map(() => null);
+
+document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
+  const buttons = questionEl.querySelectorAll("button");
+
+  buttons.forEach((btn, bIndex) => {
+    btn.addEventListener("click", () => {
+      
+      //buttons.forEach(b => b.classList.remove("active"));
+      //btn.classList.add("active");
+      questionEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+     btn.classList.add("active");
+
+
+      const score = optionScores[btn.textContent.trim()];
+      answers[qIndex] = score;
+      console.log(`Q${qIndex + 1}: ${btn.textContent} => ${score}`);
+    });
+  });
+});
+
+
+
+document.getElementById("nextBtn").addEventListener("click", (e) => {
+  
+  if (answers.includes(null)) {
+    e.preventDefault();
+   // alert("Please answer all questions before moving to next page.");
+    if (answers.includes(null)) {
+  e.preventDefault();
+  const msg = document.createElement("div");
+  msg.textContent = "⚠️ Please answer all questions before continuing.";
+  msg.className = "warning";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2500);
+  return;
+}
+    return;
+  }
+
+  
+  localStorage.setItem("anxietyAnswers", JSON.stringify(answers));
+
+  
+  const steps = document.querySelectorAll(".step");
+  steps[0].classList.add("completed");
+  steps[1].classList.add("active");
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedAnswers = JSON.parse(localStorage.getItem("anxietyAnswers"));
+  if (savedAnswers) {
+    savedAnswers.forEach((score, qIndex) => {
+      if (score !== null) {
+        const questionEl = document.querySelectorAll(".question")[qIndex];
+         if (!questionEl) return;
+        const buttons = questionEl.querySelectorAll("button");
+        const selectedBtn = Array.from(buttons).find(
+          btn => optionScores[btn.textContent.trim()] === score
+        );
+        if (selectedBtn) selectedBtn.classList.add("active");
+      }
+    });
+  }
+});
+
+ document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+</script>
+
+
     
 </body>
 </html>

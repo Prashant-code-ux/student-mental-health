@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Result</title>
-  <link rel="icon"  href="Home.png">
-  <link rel="stylesheet" href="ScreeningTestD.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="ResultPage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+ 
 </head>
 <body>
 <header>
@@ -21,7 +21,7 @@
   <div class="right-section">
       <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
       <div class="menu-toggle">&#9776;</div>
-    </div>
+  </div>
 </header>
 
 <div class="container">
@@ -51,11 +51,10 @@
   <h2 id="finalScore"></h2>
 </div>
 
-<div class="question" id="answersSection">
-</div>
+<div class="question" id="answersSection"></div>
 
 <div class="button_next">
-  <a href="HealthTest.html">Take Another Test</a>
+  <div class="another-test"><a href="HealthTest.html">Take Another Test</a></div>
 </div>
 
 <footer>
@@ -89,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const depressionAnswers = JSON.parse(localStorage.getItem("depressionAnswers")) || [];
   const optionalAnswers = JSON.parse(localStorage.getItem("optionalAnswers")) || [];
 
-  // Question texts
   const testQuestions = [
     "Little interest or pleasure in doing something?",
     "Feeling down, depressed, or hopeless?",
@@ -103,50 +101,48 @@ document.addEventListener("DOMContentLoaded", () => {
     "Difficulty performing daily responsibilities due to these feelings?"
   ];
 
-  const optionalQuestions = [
-    "Do you find it hard to get out of bed sometimes?",
-    "Do you lose interest in hobbies you used to enjoy?",
-    "Do you feel more irritable than usual?",
-    "Do you feel hopeless about the future?",
-    "Do you have trouble concentrating on tasks?",
-    "Do you experience changes in appetite or weight?",
-    "Do you feel fatigued or low on energy?",
-    "Do you have trouble sleeping or sleep too much?",
-    "Do you feel anxious or restless often?",
-    "Do you feel guilty or worthless frequently?"
-  ];
 
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
- 
   const totalScore = depressionAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
-  document.getElementById("finalScore").textContent = `Your Total Score: ${totalScore}`;
-
 
   let interpretation = "";
-  if (totalScore <= 4) interpretation = "Normal (Minimal or No Depression)";
-  else if (totalScore <= 9) interpretation = "Mild Depression";
-  else if (totalScore <= 14) interpretation = "Moderate Depression";
-  else if (totalScore <= 19) interpretation = "Moderately Severe Depression";
-  else interpretation = "Severe Depression";
+  let color = "";
+  if (totalScore <= 4) {
+    interpretation = "Normal (Minimal or No Depression)";
+    color = "#38B2AC";
+  } else if (totalScore <= 9) {
+    interpretation = "Mild Depression";
+    color = "#4DBD84";
+  } else if (totalScore <= 14) {
+    interpretation = "Moderate Depression";
+    color = "#F6C23E";
+  } else if (totalScore <= 19) {
+    interpretation = "Moderately Severe Depression";
+    color = "#F58042";
+  } else {
+    interpretation = "Severe Depression";
+    color = "#CC0000";
+  }
 
   document.getElementById("finalScore").innerHTML = 
-    `Your Total Score: <b>${totalScore}</b><br><span style="color:#cc0000">${interpretation}</span>`;
-
+    `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
 
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
+
   
   depressionAnswers.forEach((ans, i) => {
-    const ansText = ans!==null ? optionLabels[ans] : "Not answered";
+    const ansText = ans !== null ? optionLabels[ans] : "Not answered";
     html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
   });
 
+  
   optionalAnswers.forEach((ans, i) => {
-    if(ans!==null){
+    if(ans !== null){
       const ansText = optionalLabels[ans] || "Not answered";
-      html += `<li><b>Optional Q${i+1}:</b> ${optionalQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+      html += `<li><b>Optional Question ${i+1}:</b> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
     }
   });
 
@@ -154,7 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
   answersDiv.innerHTML = html;
 });
 
-document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+document.querySelector(".menu-toggle").addEventListener("click", () => 
+  document.querySelector("nav").classList.toggle("show")
+);
+
+
 </script>
 </body>
-</html>
+</html> 
+
+
+
+
+
