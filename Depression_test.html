@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon"  href="Home.png">
-    <link rel="stylesheet" href="ScreeningTestD.css">
+    <link rel="stylesheet" href="Test.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -73,6 +73,7 @@
         <button>MORE THAN HALF THE DAYS</button>
         <button>NEARLY EVERY DAY</button>
       </div>
+       </div>
     
      <!-- question 2 -->
       
@@ -176,9 +177,6 @@
       </div>
     </div>
 
-
-
-
       <!-- this is 10 question  -->
 
       <div class="question">
@@ -191,11 +189,10 @@
       </div>
     </div>
 
-     <div class="button_next">
-      <a href="Depression_optional.html" target="_blank" id="nextBtn">NEXT ></a>
+     <div class="button_next button_next1">
+      <a href="Depression_optional.html" target="_blank" id="nextBtn">NEXT <i class="fa-solid fa-arrow-right"></i></a>
      </div>
              
-    </div>
 
      <!-- footer -->
   <footer>
@@ -243,9 +240,11 @@ document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
   buttons.forEach((btn, bIndex) => {
     btn.addEventListener("click", () => {
       
-      buttons.forEach(b => b.classList.remove("active"));
-     
-      btn.classList.add("active");
+      //buttons.forEach(b => b.classList.remove("active"));
+      //btn.classList.add("active");
+      questionEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+     btn.classList.add("active");
+
 
       const score = optionScores[btn.textContent.trim()];
       answers[qIndex] = score;
@@ -260,11 +259,19 @@ document.getElementById("nextBtn").addEventListener("click", (e) => {
   
   if (answers.includes(null)) {
     e.preventDefault();
-    alert("Please answer all questions before moving to next page.");
+    // alert("Please answer all questions before moving to next page.");
+    if (answers.includes(null)) {
+  e.preventDefault();
+  const msg = document.createElement("div");
+  msg.textContent = "⚠️ Please answer all questions before continuing.";
+  msg.className = "warning";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2500);
+  return;
+}
+
     return;
   }
-
-  
   localStorage.setItem("depressionAnswers", JSON.stringify(answers));
 
   
@@ -290,6 +297,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+ document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
 
 </script>
 

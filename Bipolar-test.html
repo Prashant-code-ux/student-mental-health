@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon"  href="Home.png">
-    <link rel="stylesheet" href="ScreeningTestD.css">
+    <link rel="stylesheet" href="Test.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <title>Addiction Test</title>
+    <title>Bipolar Test</title>
 </head>
 <body>
      <header>
@@ -26,7 +26,7 @@
 
 
     <div class="container">
-      <h1>Depression Test</h1>
+      <h1>Bipolar Test</h1>
     </div>
 
     <div class="progress-container">
@@ -66,18 +66,19 @@
      <!-- question 1 -->
    
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>1. I experience extreme mood changes — from feeling very happy to very sad.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
         <button>MORE THAN HALF THE DAYS</button>
         <button>NEARLY EVERY DAY</button>
       </div>
+      </div>
     
      <!-- question 2 -->
       
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>2. I feel unusually energetic or excited for no clear reason.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -90,7 +91,7 @@
      <!-- question 3 -->
      
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>3. I talk more rapidly or feel pressure to keep talking.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -102,7 +103,7 @@
      <!-- question 4 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>4. I need less sleep than usual and still feel energetic.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -115,7 +116,7 @@
 
        
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>5. I feel unusually confident or powerful, as if I can do anything.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -127,7 +128,7 @@
      <!-- question 6 -->
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>6. I get easily distracted or find it hard to focus during certain periods.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -141,7 +142,7 @@
 
 
     <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>7. I make impulsive decisions, like spending too much or taking risks.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -153,7 +154,7 @@
  <!-- this is 8 question  -->
 
       <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>8. I feel down, hopeless, or uninterested in things I usually enjoy.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -167,7 +168,7 @@
       <!-- this is 9 question  -->
 
        <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>9. I notice cycles of high energy followed by deep tiredness or sadness.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -182,7 +183,7 @@
       <!-- this is 10 question  -->
 
       <div class="question">
-      <p>1. Little interest or pleasure in doing something?</p>
+      <p>10. My mood swings affect my work, or studies.</p>
       <div class="option">
         <button>NOT AT ALL</button>
         <button>SEVERAL DAYS</button>
@@ -191,13 +192,11 @@
       </div>
     </div>
 
-
-
-   
-
+     <div class="button_next button_next1">
+      <a href="Bipolar_optional.html" target="_blank" id="nextBtn">NEXT <i class="fa-solid fa-arrow-right"></i></a>
+     </div>
+             
     </div>
-
-
 
      <!-- footer -->
   <footer>
@@ -206,6 +205,7 @@
           <h3>Quick Links</h3>
           <a href="homePage.html" target="_blank">Home</a>
           <a href="About.html" target="_blank">About</a>
+          <a href="">Wellness tools</a>
           <a href="Learn.html" target="_blank">Learn about mental health</a>
         </div>
         <div class="footer-col">
@@ -225,7 +225,87 @@
         </div>
       
     </footer>
+<script>
+
+
+const optionScores = {
+  "NOT AT ALL": 0,
+  "SEVERAL DAYS": 1,
+  "MORE THAN HALF THE DAYS": 2,
+  "NEARLY EVERY DAY": 3
+};
+
+
+let answers = Array.from(document.querySelectorAll(".question")).map(() => null);
+
+document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
+  const buttons = questionEl.querySelectorAll("button");
+
+  buttons.forEach((btn, bIndex) => {
+    btn.addEventListener("click", () => {
+      
+      buttons.forEach(b => b.classList.remove("active"));
+     
+      btn.classList.add("active");
+
+      const score = optionScores[btn.textContent.trim()];
+      answers[qIndex] = score;
+      console.log(`Q${qIndex + 1}: ${btn.textContent} => ${score}`);
+    });
+  });
+});
+
+
+
+document.getElementById("nextBtn").addEventListener("click", (e) => {
+  
+  if (answers.includes(null)) {
+    e.preventDefault();
+   // alert("Please answer all questions before moving to next page.");
+    if (answers.includes(null)) {
+  e.preventDefault();
+  const msg = document.createElement("div");
+  msg.textContent = "⚠️ Please answer all questions before continuing.";
+  msg.className = "warning";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 2500);
+  return;
+}
+    return;
+  }
+
+  
+  localStorage.setItem("bipolarAnswers", JSON.stringify(answers));
+
+  
+  const steps = document.querySelectorAll(".step");
+  steps[0].classList.add("completed");
+  steps[1].classList.add("active");
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedAnswers = JSON.parse(localStorage.getItem("depressionAnswers"));
+  if (savedAnswers) {
+    savedAnswers.forEach((score, qIndex) => {
+      if (score !== null) {
+        const questionEl = document.querySelectorAll(".question")[qIndex];
+         if (!questionEl) return;
+        const buttons = questionEl.querySelectorAll("button");
+        const selectedBtn = Array.from(buttons).find(
+          btn => optionScores[btn.textContent.trim()] === score
+        );
+        if (selectedBtn) selectedBtn.classList.add("active");
+      }
+    });
+  }
+});
+
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+</script>
+
+
+
     
 </body>
 </html>
-

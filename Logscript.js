@@ -14,3 +14,5 @@ goToLogin.onclick = function(e) {
   signUpForm.style.display = "none";
   signInForm.style.display = "block";
 };
+
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));

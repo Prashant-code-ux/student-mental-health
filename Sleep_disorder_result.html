@@ -1,0 +1,165 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Result</title>
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="ResultPage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+ 
+</head>
+<body>
+<header>
+  <div class="logo">🌱 Moodify</div>
+  <nav>
+    <a href="homePage.html" target="_blank">Home</a>
+    <a href="About.html" target="_blank">About</a>
+    <a href="Learn.html" target="_blank">Learn about mental health</a>
+  </nav>
+  <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+  </div>
+</header>
+
+<div class="container">
+  <h1>Your Result</h1>
+</div>
+
+<div class="progress-container">
+  <div class="progress-bar">
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Test Question</p>
+    </div>
+    <div class="line"></div>
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Optional Question</p>
+    </div>
+    <div class="line"></div>
+    <div class="step active">
+      <div class="circle"></div>
+      <p>Your Result</p>
+    </div>
+  </div>
+</div>
+
+<div class="text">
+  <h2 id="finalScore"></h2>
+</div>
+
+<div class="question" id="answersSection"></div>
+
+<div class="button_next">
+  <div class="another-test"><a href="HealthTest.html">Take Another Test</a></div>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="">Wellness tools</a>
+      <a href="ContactForm.html" target="_blank">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <a href="#">Blog</a>
+      <a href="#">Self-Care Tips</a>
+      <a href="#">Mental Health Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Email:support2moodify.com</p>
+      <p>Phone: +91-1234567899</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Made with 💚 to support your mental health journey.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sleepdisorderAnswers = JSON.parse(localStorage.getItem("sleepdisorderAnswers")) || [];
+  const optionalAnswers = JSON.parse(localStorage.getItem("optionalAnswers")) || [];
+
+  const testQuestions = [
+    "Feel tensed or wound up?",
+    "Find it hard to relax, even during my free time?",
+    " Get easily upset or irritated over small things?.",
+    "Feel like I have too many things to do at once?",
+    "Feel nervous or anxious without a clear reason?",
+    "Have trouble concentrating or focusing on tasks?",
+    "Feel that my sleep or rest isn’t refreshing?",
+    "Experience headaches, fatigue, or muscle tension?",
+    "Feel emotionally drained or exhausted?",
+    "Feel overwhelmed by daily responsibilities?"
+  ];
+
+
+  const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
+  const optionalLabels = ["Never","Sometimes","Often","Always"];
+
+  const totalScore = sleepdisorderAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
+
+  let interpretation = "";
+  let color = "";
+  if (totalScore <= 4) {
+    interpretation = "Healthy Sleep Patterns";
+    color = "#38B2AC";
+  } else if (totalScore <= 9) {
+    interpretation = "Mild Sleep Difficulties";
+    color = "#4DBD84";
+  } else if (totalScore <= 14) {
+    interpretation = "Moderate Sleep Problems";
+    color = "#F6C23E";
+  } else if (totalScore <= 19) {
+    interpretation = "Significant Sleep Disturbance";
+    color = "#F58042";
+  } else {
+    interpretation = "Severe Sleep Disturbance";
+    color = "#CC0000";
+  }
+
+  document.getElementById("finalScore").innerHTML = 
+    `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
+
+  const answersDiv = document.getElementById("answersSection");
+  let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
+
+  
+  sleepdisorderAnswers.forEach((ans, i) => {
+    const ansText = ans !== null ? optionLabels[ans] : "Not answered";
+    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+  });
+
+  
+  optionalAnswers.forEach((ans, i) => {
+    if(ans !== null){
+      const ansText = optionalLabels[ans] || "Not answered";
+      html += `<li><b>Optional Question ${i+1}:</b> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+    }
+  });
+
+  html += "</ul>";
+  answersDiv.innerHTML = html;
+});
+
+document.querySelector(".menu-toggle").addEventListener("click", () => 
+  document.querySelector("nav").classList.toggle("show")
+);
+
+
+</script>
+</body>
+</html> 
+
+
+
+
+
