@@ -1,23 +1,3 @@
-// const signInForm = document.getElementById("signinForm");
-// const signUpForm = document.getElementById("signupForm");
-// const goToSignup = document.getElementById("goToSignup");
-// const goToLogin = document.getElementById("goToLogin");
-
-// goToSignup.onclick = function(e) {
-//   e.preventDefault();
-//   signInForm.style.display = "none";
-//   signUpForm.style.display = "block";
-// };
-
-// goToLogin.onclick = function(e) {
-//   e.preventDefault();
-//   signUpForm.style.display = "none";
-//   signInForm.style.display = "block";
-// };
-
-// document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
-
-
 const signInForm = document.getElementById("signinForm");
 const signUpForm = document.getElementById("signupForm");
 const goToSignup = document.getElementById("goToSignup");
@@ -36,6 +16,29 @@ goToLogin.onclick = (e) => {
   signInForm.style.display = "block";
 };
 
+    // ✅ New popup message function
+function showPopup(message, type) {
+  const popup = document.getElementById("popupMessage");
+  const popupText = document.getElementById("popupText");
+  const popupIcon = document.getElementById("popupIcon");
+
+  popupText.textContent = message;
+  popup.classList.remove("hidden", "success", "error");
+  popup.classList.add(type);
+
+  popupIcon.textContent = type === "success" ? "✅" : "❌";
+
+  popup.style.opacity = "1";
+
+  // Hide after 2 seconds
+  setTimeout(() => {
+    popup.style.opacity = "0";
+    popup.classList.add("hidden");
+  }, 2000);
+}
+
+
+  
 // --- LOGIN ---
 document.getElementById("signinForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -56,22 +59,26 @@ document.getElementById("signinForm").addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
-    alert(data.message);
 
-    if (res.ok) {
-      console.log("✅ Login successful:", data.user);
-      window.location.href = "homePage.html";
-    }
-  } catch (err) {
-    alert("❌ Error connecting to server");
-    console.error(err);
-  }
+   if (res.ok) {
+         
+         showPopup("Login Successful! Redirecting...", "success");
 
- 
+
+          setTimeout(() => (window.location.href = "homePage.html"), 1500);
+        } else {
+         
+         showPopup(data.message || "Invalid Username or Password!", "error");
+
+          
+        }
+      } catch (err) {
+        showMessage("loginMessageBox", "❌ Server connection error!", "error");
+      }
 });
 
 // --- SIGNUP ---
-document.getElementById("signupForm").addEventListener("submit", async (e) => {
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const username = document.getElementById("signupUsername").value.trim();
@@ -79,7 +86,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("signupPassword").value.trim();
 
   if (!username || !email || !password) {
-    alert("All fields are required!");
+    showPopup("⚠️ All fields are required!", "error");
     return;
   }
 
@@ -91,15 +98,17 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
-    alert(data.message);
 
     if (res.ok) {
-      console.log("✅ Registered successfully!");
-      signUpForm.style.display = "none";
-      signInForm.style.display = "block";
+      showPopup("✅ Registered successfully! You can now log in.", "success");
+      setTimeout(() => {
+        signUpForm.style.display = "none";
+        signInForm.style.display = "block";
+      }, 1500);
+    } else {
+      showPopup(`❌ ${data.message}`, "error");
     }
   } catch (err) {
-    alert("❌ Error connecting to server");
-    console.error(err);
+    showPopup("❌ Server connection error!", "error");
   }
 });

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +17,7 @@
           <label>Email</label>
         </div>
         <div class="input-group">
-          <input type="password" id="loginPassword" name="password" required autocomplete="off">
+          <input type="password" id="loginPassword" name="password" required autocomplete="new-password">
           <label>Password</label>
         </div>
         <button type="submit">Log In</button>
@@ -27,6 +26,14 @@
         </div>
       </form>
     </div>
+    <!-- Popup Message Box -->
+<div id="popupMessage" class="popup hidden">
+  <div class="popup-content">
+    <span class="popup-icon" id="popupIcon">✅</span>
+    <p id="popupText">Login Successful!</p>
+  </div>
+</div>
+
 
     <!-- SIGN UP FORM -->
     <div class="form-wrapper sign-up" id="signupForm" style="display:none;">
@@ -41,7 +48,7 @@
           <label>Email</label>
         </div>
         <div class="input-group">
-          <input type="password" id="signupPassword" name="password" required autocomplete="off">
+          <input type="password" id="signupPassword" name="password" required autocomplete="new-password">
           <label>Password</label>
         </div>
         <button type="submit">Sign Up</button>
@@ -51,8 +58,6 @@
       </form>
     </div>
   </div>
-
-
 
    <footer>
       <div class="footer-container">
@@ -82,6 +87,7 @@
     </footer>
 
 
-  <script src="Logscript.js"></script>
+  <script src="Logscript.js">
+  </script>
 </body>
 </html>
