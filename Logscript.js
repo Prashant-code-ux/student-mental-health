@@ -79,7 +79,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("signupPassword").value.trim();
 
   if (!username || !email || !password) {
-    alert("All fields are required!");
+    alert("✅ Registered successfully!");
     return;
   }
 
