@@ -237,29 +237,20 @@ let answers = Array.from(document.querySelectorAll(".question")).map(() => null)
 document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
   const buttons = questionEl.querySelectorAll("button");
 
-  buttons.forEach((btn, bIndex) => {
-
-     btn.addEventListener("click", () => {
-      // Remove active from all buttons in this question
-
+  buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      
-
+      // Remove active from all buttons in this question
       buttons.forEach(b => b.classList.remove("active"));
-     
       btn.classList.add("active");
-      //buttons.forEach(b => b.classList.remove("active"));
-      //btn.classList.add("active");
-      questionEl.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-     btn.classList.add("active");
 
-
+      // Save score
       const score = optionScores[btn.textContent.trim()];
       answers[qIndex] = score;
       console.log(`Q${qIndex + 1}: ${btn.textContent} => ${score}`);
     });
   });
 });
+
 
 
 
@@ -305,8 +296,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
- document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
 
 </script>
 
