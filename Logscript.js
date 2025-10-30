@@ -65,6 +65,11 @@ document.getElementById("signinForm").addEventListener("submit", async (e) => {
       //  localStorage.setItem("userId", data.user._id);   // user_id
 
          showPopup("Login Successful! Redirecting...", "success");
+        
+      
+         // Save login info to localStorage
+         localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("username", data.username || email.split("@")[0]);
 
 
           setTimeout(() => (window.location.href = "homePage.html"), 1500);
