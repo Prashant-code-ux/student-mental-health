@@ -86,9 +86,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   const password = document.getElementById("signupPassword").value.trim();
 
   if (!username || !email || !password) {
-
-    alert("✅ Registered successfully!");
-
     showPopup("⚠️ All fields are required!", "error");
     return;
   }
@@ -115,3 +112,11 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     showPopup("❌ Server connection error!", "error");
   }
 });
+
+
+document.getElementById("forgotPassword").addEventListener("click", (e) => {
+  e.preventDefault();
+  showPopup("🔑 Password reset link sent to your email!", "success");
+});
+
+

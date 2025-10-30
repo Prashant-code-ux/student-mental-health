@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify OTP | Moodify</title>
+  <link rel="icon"  href="Home.png">
+  <style>
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #eaf8f7; /* Soft mint background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .wrapper {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2f736e;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #b2dfdb;
+      border-radius: 12px;
+      outline: none;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #38b3ac;
+      box-shadow: 0 0 6px rgba(56, 179, 172, 0.3);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #38b3ac;
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #2f9e97;
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      font-size: 11px;
+      color: #9e9e9e;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Verify OTP</h2>
+    <input type="text" id="otp" maxlength="6" placeholder="Enter Verification Code">
+    <button id="verifyOtpBtn">Verify</button>
+    <div class="footer">© 2025 Moodify</div>
+  </div>
+
+  <script>
+    const email = localStorage.getItem("resetEmail");
+    if (!email) window.location.href = "forgot-password.html";
+
+    document.getElementById("verifyOtpBtn").onclick = async () => {
+      const otp = document.getElementById("otp").value.trim();
+      if (!otp) return alert("Please enter OTP");
+
+      const res = await fetch("http://localhost:5000/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp }),
+      });
+
+      const data = await res.json();
+      alert(data.message);
+
+      if (res.ok) {
+        localStorage.setItem("verifiedOtp", otp);
+        window.location.href = "reset-password.html";
+      }
+    };
+  </script>
+</body>
+</html>
