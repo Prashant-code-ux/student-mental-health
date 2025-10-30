@@ -61,7 +61,22 @@ const loginUser = async (req, res) => {
         console.log("User login error : ", error);
         return res.status(400).json(new ApiError(400, "Login failed!"))
     }
+
+
+
+    
 }
+
+// res.json({            //user_id
+//   message: "Login successful",
+//   user: {
+//     _id: user._id,
+//     username: user.username,
+//     email: user.email
+//   }
+// });
+
+
 
 
 module.exports =  { registerUser,loginUser }

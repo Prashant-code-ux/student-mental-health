@@ -62,6 +62,8 @@ document.getElementById("signinForm").addEventListener("submit", async (e) => {
 
    if (res.ok) {
          
+      //  localStorage.setItem("userId", data.user._id);   // user_id
+
          showPopup("Login Successful! Redirecting...", "success");
 
 
