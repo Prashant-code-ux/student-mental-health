@@ -32,7 +32,7 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       transition: all 0.5s ease-in-out;
     }
-
+    
     h2 {
       font-size: 28px;
       color: #000;
@@ -106,6 +106,25 @@
       transform: scale(1.05);
       background: linear-gradient(135deg, #2d7a77, #319795);
     }
+    .forgot-password {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.forgot-password a {
+  color: #0561ca;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+  color: #319795;
+}
+
 
     .signUp-link {
       text-align: center;

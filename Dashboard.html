@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moodify | Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+</head>
+<style>
+:root {
+  --mint-main: #38b3ac;      /* your brand color */
+  --mint-light: #b8ebe8;     /* lighter tone for backgrounds */
+  --mint-dark: #2a7f7a;      /* darker tone for text and accents */
+  --white: #ffffff;
+  --soft-bg: #f6fffe;        /* very soft mint background */
+  --text-dark: #2d2d2d;
+  --text-muted: #6b6b6b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--soft-bg);
+  color: var(--text-dark);
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  background: linear-gradient(180deg, var(--mint-main), var(--mint-light));
+  width: 240px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid var(--mint-dark);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 25px;
+}
+.sidebar nav {
+  flex-grow: 1;
+}
+.sidebar nav ul {
+  list-style: none;
+   padding-top: 10px;
+}
+
+.sidebar nav ul li {
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  color: var(--white);
+}
+
+.sidebar nav ul li:hover,
+.sidebar nav ul li.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--white);
+}
+
+
+
+.logout {
+  margin-top: auto;
+  color: #ffe0e0;
+  font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.profile-options {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 9999;
+  padding: 8px;
+  min-width: 160px;
+}
+
+.profile-options button {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.profile-options button:hover {
+  background: var(--mint-light);
+}
+
+.profile-options.show {
+  display: flex;
+}
+
+/* Topbar Profile */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  background: var(--white);
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.topbar h2 {
+  color: var(--mint-dark);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.profile-options {
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.2s ease;
+}
+
+.profile-options.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Background overlay */
+.profile-modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-modal-content {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.profile-modal-content img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.profile-modal-content button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: var(--mint-main);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.profile-modal-content button:hover {
+  background: var(--mint-dark);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+#crop-modal .profile-modal-content img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+#crop-modal .profile-modal-content h3 {
+  color: var(--mint-dark);
+  margin-bottom: 10px;
+}
+
+#crop-modal button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#crop-modal #save-crop {
+  background: var(--mint-main);
+  color: #fff;
+}
+
+#crop-modal #save-crop:hover {
+  background: var(--mint-dark);
+}
+
+#crop-modal #cancel-crop {
+  background: #ccc;
+  color: #333;
+}
+
+
+
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.profile-top img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--mint-main);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.profile-top img:hover {
+  transform: scale(1.05);
+}
+
+
+.welcome {
+  background: var(--mint-light);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.welcome h1 {
+  color: var(--mint-dark);
+}
+
+.mood-selector {
+  margin-top: 15px;
+}
+
+.mood-btn {
+  font-size: 1.6rem;
+  background: var(--white);
+  border: 2px solid var(--mint-main);
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mood-btn:hover {
+  background: var(--mint-main);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+/* Summary Section */
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  flex: 1 1 300px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+.activity {
+  margin-top: 35px;
+}
+
+.activity-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.activity-card {
+  background: var(--white);
+  border-radius: 15px;
+  padding: 20px;
+  flex: 1 1 250px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+}
+
+.activity-card h3 {
+  color: var(--mint-dark);
+  margin-bottom: 10px;
+}
+
+.activity-card p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--mint-main);
+}
+
+canvas {
+  width: 100% !important;
+  height: 250px !important;
+}
+
+/* Tools & Learn */
+.tools, .learn, .history, .quote {
+  margin-top: 35px;
+}
+
+.tool-cards, .learn-cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.tool-card, .learn-card {
+  background: var(--mint-main);
+  color: var(--white);
+  padding: 15px;
+  border-radius: 15px;
+  flex: 1 1 200px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.tool-card:hover, .learn-card:hover {
+  background: var(--mint-dark);
+  transform: translateY(-5px);
+}
+
+/* History Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: var(--mint-main);
+  color: var(--white);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Quote */
+.quote {
+  background: var(--mint-light);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 30px;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--mint-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+
+</style>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <h2 class="logo">🌿 Moodify</h2>
+
+      <nav>
+        <ul>
+          <li class="active"> Home</li>
+          <li>Wellness Tools</li>
+          <li> Learn</li>
+          <li> Settings</li>
+          <li id="logoutbtn" class="logout"> Logout</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Dashboard -->
+    <main class="main-content">
+
+        <header class="topbar">
+    <h2>Welcome back, <span id="username">Kumkum</span> 👋</h2>
+    <div class="profile-top">
+      <img src="profile.jpg" alt="Profile Photo" id="profile-pic">
+    </div>
+  </header>
+      <!-- Welcome Section -->
+      <section class="welcome">
+        <h1>Hey <span id="username">Kumkum</span> 👋</h1>
+        <p>How are you feeling today?</p>
+
+        <div class="mood-selector">
+          <button class="mood-btn">😊</button>
+          <button class="mood-btn">😐</button>
+          <button class="mood-btn">😞</button>
+        </div>
+      </section>
+
+      <!-- Mood Summary -->
+      <section class="summary">
+        <div class="card chart-card">
+          <h2>Your Mood Summary</h2>
+          <canvas id="moodPieChart"></canvas>
+        </div>
+
+        <div class="card chart-card">
+          <h2>Weekly Mood Trend</h2>
+          <canvas id="moodLineChart"></canvas>
+        </div>
+      </section>
+
+      <!-- User Activity Overview -->
+<section class="activity">
+  <h2>Your Activity Overview</h2>
+  <div class="activity-cards">
+    <div class="activity-card">
+      <h3>🧠 Tests Taken</h3>
+      <p id="tests-count">2</p>
+    </div>
+    <div class="activity-card">
+      <h3>📈 Average Mood</h3>
+      <p id="avg-mood">Happy 😊</p>
+    </div>
+    <div class="activity-card">
+      <h3>📅 Last Activity</h3>
+      <p id="last-activity">24 Oct 2025</p>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Test History -->
+      <section class="history">
+        <h2>Your Test History</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Test Name</th>
+              <th>Date Taken</th>
+              <th>Result</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody id="test-history">
+            <tr><td colspan="4">No data found yet</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Motivational Quote -->
+      <section class="quote">
+        <h2>Daily Motivation</h2>
+        <p id="quote-text">"You are stronger than you think 💪"</p>
+      </section>
+
+    </main>
+  </div>
+  <!-- Crop Image Modal -->
+<div id="crop-modal" class="profile-modal">
+  <div class="profile-modal-content" style="background:#fff; padding:15px; border-radius:15px;">
+    <h3>Adjust Your Profile Picture</h3>
+    <img id="crop-image" style="max-width:100%; border-radius:10px; margin-top:10px;">
+    <div style="margin-top:15px;">
+      <button id="save-crop">Save</button>
+      <button id="cancel-crop" style="background:#ccc; color:#333; margin-left:10px;">Cancel</button>
+    </div>
+  </div>
+</div>
+
+  <input type="file" id="upload-photo" accept="image/*" style="display:none">
+  
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Placeholder Test Data
+  const testHistory = [
+    { name: "Stress Test", date: "2025-10-20", result: "Moderate" },
+    { name: "Anxiety Test", date: "2025-10-24", result: "Mild" }
+  ];
+
+  // Update Activity Stats
+  document.getElementById("tests-count").innerText = testHistory.length;
+  document.getElementById("last-activity").innerText = testHistory[testHistory.length - 1].date;
+
+  // Fill Test Table
+  const tableBody = document.getElementById("test-history");
+  if (testHistory.length > 0) {
+    tableBody.innerHTML = testHistory.map(t => `
+      <tr>
+        <td>${t.name}</td>
+        <td>${t.date}</td>
+        <td>${t.result}</td>
+        <td><button class="view-btn">View</button></td>
+      </tr>
+    `).join('');
+  }
+
+  // Mood Charts
+  const moodPieChart = new Chart(document.getElementById("moodPieChart"), {
+    type: "pie",
+    data: {
+      labels: ["Happy", "Calm", "Anxious", "Sad"],
+      datasets: [{
+        data: [40, 30, 20, 10],
+        backgroundColor: ["#91d4b6", "#a8e6cf", "#ffd6a5", "#ffb5a7"],
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  const moodLineChart = new Chart(document.getElementById("moodLineChart"), {
+    type: "line",
+    data: {
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [{
+        label: "Mood Level",
+        data: [3, 4, 2, 5, 4, 3, 4],
+        fill: true,
+        borderColor: "#55b78a",
+        tension: 0.3
+      }]
+    },
+    options: { responsive: true }
+  });
+
+  // Random Quote
+  const quotes = [
+    "You are stronger than you think 💪",
+    "Small steps lead to big changes 🌈",
+    "Breathe. You’ve got this 🌿",
+    "It’s okay to take a break 🌸",
+    "Progress, not perfection 🌻"
+  ];
+  document.getElementById("quote-text").innerText = 
+    quotes[Math.floor(Math.random() * quotes.length)];
+
+  // Profile Menu + Cropper
+  const profilePic = document.getElementById("profile-pic");
+  const uploadInput = document.getElementById("upload-photo");
+  const optionBox = document.createElement("div");
+  optionBox.classList.add("profile-options");
+  optionBox.innerHTML = `
+    <button id="view-profile">View Profile</button>
+    <button id="upload-new">Upload Image</button>
+  `;
+  document.body.appendChild(optionBox);
+
+  // Show option box
+  profilePic.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const rect = profilePic.getBoundingClientRect();
+    const boxWidth = optionBox.offsetWidth || 160;
+    const leftPosition = rect.left + window.scrollX + rect.width / 2 - boxWidth / 2;
+    optionBox.style.top = `${rect.bottom + window.scrollY + 8}px`;
+    optionBox.style.left = `${leftPosition}px`;
+    optionBox.classList.toggle("show");
+  });
+
+  document.addEventListener("click", () => optionBox.classList.remove("show"));
+
+  optionBox.querySelector("#upload-new").addEventListener("click", (e) => {
+    e.stopPropagation();
+    optionBox.classList.remove("show");
+    uploadInput.click();
+  });
+
+  // Cropper Setup
+  let cropper;
+  const cropModal = document.getElementById("crop-modal");
+  const cropImage = document.getElementById("crop-image");
+  const saveCropBtn = document.getElementById("save-crop");
+  const cancelCropBtn = document.getElementById("cancel-crop");
+
+  uploadInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        cropImage.src = reader.result;
+        cropModal.style.display = "flex";
+        if (cropper) cropper.destroy();
+        cropper = new Cropper(cropImage, {
+          aspectRatio: 1,
+          viewMode: 1,
+          dragMode: "move",
+          background: false,
+          zoomOnWheel: true
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  saveCropBtn.addEventListener("click", () => {
+    const canvas = cropper.getCroppedCanvas({
+      width: 400,
+      height: 400,
+      imageSmoothingEnabled: true,
+      imageSmoothingQuality: "high",
+    });
+    profilePic.src = canvas.toDataURL("image/png", 1.0);
+    cropModal.style.display = "none";
+    cropper.destroy();
+  });
+
+  cancelCropBtn.addEventListener("click", () => {
+    cropModal.style.display = "none";
+    if (cropper) cropper.destroy();
+  });
+
+  // Profile View Modal
+  const modal = document.createElement("div");
+  modal.classList.add("profile-modal");
+  modal.innerHTML = `
+    <div class="profile-modal-content">
+      <img id="modal-image" src="" alt="Profile Image" />
+      <br><button id="close-modal">Close</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  optionBox.querySelector("#view-profile").addEventListener("click", (e) => {
+    e.stopPropagation();
+    optionBox.classList.remove("show");
+    const modalImage = document.getElementById("modal-image");
+    modalImage.src = profilePic.src;
+    modal.style.display = "flex";
+  });
+
+  document.getElementById("close-modal").addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+});
+
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("userLoggedIn");
+    localStorage.removeItem("userEmail");
+    window.location.href = "index.html";
+  });
+</script>
+
+</body>
+</html>
