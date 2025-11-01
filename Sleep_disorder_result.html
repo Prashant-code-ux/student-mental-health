@@ -83,6 +83,12 @@
   </div>
 </footer>
 
+
+
+<!-- ✅ Include reusable test save function -->
+<script src="saveTest.js"></script>
+
+<!-- ✅ Then write your main JS logic -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const sleepdisorderAnswers = JSON.parse(localStorage.getItem("sleepdisorderAnswers")) || [];
@@ -91,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const testQuestions = [
     "Feel tensed or wound up?",
     "Find it hard to relax, even during my free time?",
-    " Get easily upset or irritated over small things?.",
+    "Get easily upset or irritated over small things?",
     "Feel like I have too many things to do at once?",
     "Feel nervous or anxious without a clear reason?",
     "Have trouble concentrating or focusing on tasks?",
@@ -101,12 +107,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "Feel overwhelmed by daily responsibilities?"
   ];
 
-
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
+  // ✅ Calculate total score
   const totalScore = sleepdisorderAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
 
+  // ✅ Interpretation logic
   let interpretation = "";
   let color = "";
   if (totalScore <= 4) {
@@ -126,36 +133,43 @@ document.addEventListener("DOMContentLoaded", () => {
     color = "#CC0000";
   }
 
+  // ✅ Display result
   document.getElementById("finalScore").innerHTML = 
     `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
 
+  // ✅ Show user answers
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
 
-  
   sleepdisorderAnswers.forEach((ans, i) => {
     const ansText = ans !== null ? optionLabels[ans] : "Not answered";
-    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br>
+      <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
   });
 
-  
   optionalAnswers.forEach((ans, i) => {
     if(ans !== null){
       const ansText = optionalLabels[ans] || "Not answered";
-      html += `<li><b>Optional Question ${i+1}:</b> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+      html += `<li><b>Optional Question ${i+1}:</b> 
+        <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
     }
   });
 
   html += "</ul>";
   answersDiv.innerHTML = html;
+
+  // ✅ Save the test result (after rendering)
+  saveTestResult("Sleep Disorder Test", totalScore, interpretation);
+ 
+
 });
 
-document.querySelector(".menu-toggle").addEventListener("click", () => 
+// ✅ Menu toggle for mobile
+document.querySelector(".menu-toggle").addEventListener("click", () =>
   document.querySelector("nav").classList.toggle("show")
 );
-
-
 </script>
+
 </body>
 </html> 
 

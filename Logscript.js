@@ -39,6 +39,51 @@ function showPopup(message, type) {
 
 
   
+// // --- LOGIN ---
+// document.getElementById("signinForm").addEventListener("submit", async (e) => {
+//   e.preventDefault();
+
+//   const email = document.getElementById("loginEmail").value.trim();
+//   const password = document.getElementById("loginPassword").value.trim();
+
+//   if (!email || !password) {
+//     alert("All fields are required!");
+//     return;
+//   }
+
+//   try {
+//     const res = await fetch("http://localhost:3000/api/user/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ email, password }),
+//     });
+
+//     const data = await res.json();
+
+//    if (res.ok) {
+         
+//       //  localStorage.setItem("userId", data.user._id);   // user_id
+
+//          showPopup("Login Successful! Redirecting...", "success");
+        
+      
+//          // Save login info to localStorage
+//          localStorage.setItem("isLoggedIn", "true");
+//           localStorage.setItem("username", data.username || email.split("@")[0]);
+
+
+//           setTimeout(() => (window.location.href = "homePage.html"), 1500);
+//         } else {
+         
+//          showPopup(data.message || "Invalid Username or Password!", "error");
+
+          
+//         }
+//       } catch (err) {
+//         showMessage("loginMessageBox", "❌ Server connection error!", "error");
+//       }
+// });
+
 // --- LOGIN ---
 document.getElementById("signinForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -60,29 +105,28 @@ document.getElementById("signinForm").addEventListener("submit", async (e) => {
 
     const data = await res.json();
 
-   if (res.ok) {
-         
-      //  localStorage.setItem("userId", data.user._id);   // user_id
+    if (res.ok && data.user) {
+      // ✅ Save login info properly
+      // localStorage.setItem("isLoggedIn", "true");
+      // localStorage.setItem("userId", data.user._id);  // ✅ important for saving tests
+      // localStorage.setItem("username", data.user.username || email.split("@")[0]);
 
-         showPopup("Login Successful! Redirecting...", "success");
-        
-      
-         // Save login info to localStorage
-         localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("username", data.username || email.split("@")[0]);
-
-
-          setTimeout(() => (window.location.href = "homePage.html"), 1500);
-        } else {
-         
-         showPopup(data.message || "Invalid Username or Password!", "error");
-
-          
-        }
-      } catch (err) {
-        showMessage("loginMessageBox", "❌ Server connection error!", "error");
-      }
+      showPopup("Login Successful! Redirecting...", "success");
+        localStorage.setItem("isLoggedIn", "true");
+       localStorage.setItem("userId", data.user._id);     // ✅ Save MongoDB user ID
+      localStorage.setItem("username", data.user.username || email.split("@")[0]);
+       localStorage.setItem("userEmail", data.user.email);
+ 
+         setTimeout(() => (window.location.href = "homePage.html"), 1500);
+      //setTimeout(() => (window.location.href = "Dashboard.html"), 1500);
+    } else {
+      showPopup(data.message || "Invalid Username or Password!", "error");
+    }
+  } catch (err) {
+    showPopup("❌ Server connection error!", "error");
+  }
 });
+
 
 // --- SIGNUP ---
 document.getElementById("registerForm").addEventListener("submit", async (e) => {

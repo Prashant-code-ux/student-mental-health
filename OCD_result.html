@@ -83,6 +83,12 @@
   </div>
 </footer>
 
+
+
+<!-- ✅ Load reusable saveTest function -->
+<script src="saveTest.js"></script>
+
+<!-- ✅ Then your OCD test logic -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const ocdAnswers = JSON.parse(localStorage.getItem("ocdAnswers")) || [];
@@ -101,12 +107,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "I feel relief only after completing a repetitive action or ritual."
   ];
 
-
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
+  // ✅ Calculate total score
   const totalScore = ocdAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
 
+  // ✅ Determine interpretation
   let interpretation = "";
   let color = "";
   if (totalScore <= 4) {
@@ -126,19 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
     color = "#CC0000";
   }
 
+  // ✅ Display result text
   document.getElementById("finalScore").innerHTML = 
     `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
 
+  // ✅ Display answers
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
-
-  
   ocdAnswers.forEach((ans, i) => {
     const ansText = ans !== null ? optionLabels[ans] : "Not answered";
     html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
   });
 
-  
   optionalAnswers.forEach((ans, i) => {
     if(ans !== null){
       const ansText = optionalLabels[ans] || "Not answered";
@@ -148,14 +154,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   html += "</ul>";
   answersDiv.innerHTML = html;
+
+  // ✅ Save the test result to backend *after showing UI*
+  saveTestResult("OCD Test", totalScore, interpretation);
+
+
 });
 
+// ✅ Menu toggle
 document.querySelector(".menu-toggle").addEventListener("click", () => 
   document.querySelector("nav").classList.toggle("show")
 );
-
-
 </script>
+
 </body>
 </html> 
 

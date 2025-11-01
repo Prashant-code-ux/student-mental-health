@@ -113,225 +113,78 @@
   
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+  const username = localStorage.getItem("username");
+  const userId = localStorage.getItem("userId");
 
-  // Placeholder Test Data
-  const testHistory = [
-    { name: "Stress Test", date: "2025-10-20", result: "Moderate" },
-    { name: "Anxiety Test", date: "2025-10-24", result: "Mild" }
-  ];
-
-  // Update Activity Stats
-  document.getElementById("tests-count").innerText = testHistory.length;
-  document.getElementById("last-activity").innerText = testHistory[testHistory.length - 1].date;
-
-  // Fill Test Table
-  const tableBody = document.getElementById("test-history");
-  if (testHistory.length > 0) {
-    tableBody.innerHTML = testHistory.map(t => `
-      <tr>
-        <td>${t.name}</td>
-        <td>${t.date}</td>
-        <td>${t.result}</td>
-        <td><button class="view-btn">View</button></td>
-      </tr>
-    `).join('');
+  // 🧱 Redirect if not logged in
+  if (!userId || !username) {
+    alert("⚠️ Please log in to view your dashboard.");
+    window.location.href = "LoginPage.html";
+    return;
   }
 
-  // Mood Charts
-  const moodPieChart = new Chart(document.getElementById("moodPieChart"), {
-    type: "pie",
-    data: {
-      labels: ["Happy", "Calm", "Anxious", "Sad"],
-      datasets: [{
-        data: [40, 30, 20, 10],
-        backgroundColor: ["#91d4b6", "#a8e6cf", "#ffd6a5", "#ffb5a7"],
-      }]
-    },
-    options: { responsive: true }
-  });
-
-  const moodLineChart = new Chart(document.getElementById("moodLineChart"), {
-    type: "line",
-    data: {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      datasets: [{
-        label: "Mood Level",
-        data: [3, 4, 2, 5, 4, 3, 4],
-        fill: true,
-        borderColor: "#55b78a",
-        tension: 0.3
-      }]
-    },
-    options: { responsive: true }
-  });
-
-  // Random Quote
-  const quotes = [
-    "You are stronger than you think 💪",
-    "Small steps lead to big changes 🌈",
-    "Breathe. You’ve got this 🌿",
-    "It’s okay to take a break 🌸",
-    "Progress, not perfection 🌻"
-  ];
-  document.getElementById("quote-text").innerText = 
-    quotes[Math.floor(Math.random() * quotes.length)];
-
-  // Profile Menu + Cropper
-  const profilePic = document.getElementById("profile-pic");
-  const uploadInput = document.getElementById("upload-photo");
-  const optionBox = document.createElement("div");
-  optionBox.classList.add("profile-options");
-  optionBox.innerHTML = `
-    <button id="view-profile">View Profile</button>
-    <button id="upload-new">Upload Image</button>
-  `;
-  document.body.appendChild(optionBox);
-
-  // Show option box
-  profilePic.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const rect = profilePic.getBoundingClientRect();
-    const boxWidth = optionBox.offsetWidth || 160;
-    const leftPosition = rect.left + window.scrollX + rect.width / 2 - boxWidth / 2;
-    optionBox.style.top = `${rect.bottom + window.scrollY + 8}px`;
-    optionBox.style.left =` ${leftPosition}px`;
-    optionBox.classList.toggle("show");
-  });
-
-  document.addEventListener("click", () => optionBox.classList.remove("show"));
-
-  optionBox.querySelector("#upload-new").addEventListener("click", (e) => {
-    e.stopPropagation();
-    optionBox.classList.remove("show");
-    uploadInput.click();
-  });
-
-  // Cropper Setup
-  let cropper;
-  const cropModal = document.getElementById("crop-modal");
-  const cropImage = document.getElementById("crop-image");
-  const saveCropBtn = document.getElementById("save-crop");
-  const cancelCropBtn = document.getElementById("cancel-crop");
-
-  uploadInput.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        cropImage.src = reader.result;
-        cropModal.style.display = "flex";
-        if (cropper) cropper.destroy();
-        cropper = new Cropper(cropImage, {
-          aspectRatio: 1,
-          viewMode: 1,
-          dragMode: "move",
-          background: false,
-          zoomOnWheel: true
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-
-  saveCropBtn.addEventListener("click", () => {
-  const canvas = cropper.getCroppedCanvas({
-    width: 400,
-    height: 400,
-    imageSmoothingEnabled: true,
-    imageSmoothingQuality: "high",
-  });
-  const croppedImage = canvas.toDataURL("image/png", 1.0);
-  profilePic.src = croppedImage;
-  localStorage.setItem("profilePic", croppedImage); // ✅ Save image for homepage
-  cropModal.style.display = "none";
-  cropper.destroy();
-});
-
-
-  cancelCropBtn.addEventListener("click", () => {
-    cropModal.style.display = "none";
-    if (cropper) cropper.destroy();
-  });
-
-  // Profile View Modal
-  const modal = document.createElement("div");
-  modal.classList.add("profile-modal");
-  modal.innerHTML = `
-    <div class="profile-modal-content">
-      <img id="modal-image" src="" alt="Profile Image" />
-      <br><button id="close-modal">Close</button>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  optionBox.querySelector("#view-profile").addEventListener("click", (e) => {
-    e.stopPropagation();
-    optionBox.classList.remove("show");
-    const modalImage = document.getElementById("modal-image");
-    modalImage.src = profilePic.src;
-    modal.style.display = "flex";
-  });
-
-  document.getElementById("close-modal").addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
-
-});
-
-
-// document.getElementById("logoutBtn").addEventListener("click", () => {
-//     localStorage.removeItem("userLoggedIn");
-//     localStorage.removeItem("userEmail");
-//     window.location.href = "index.html";
-//   });
-
-document.getElementById("logoutbtn").addEventListener("click", () => {
-  localStorage.removeItem("isLoggedIn");
-  localStorage.removeItem("username");
-   localStorage.removeItem("profilePic"); // ✅ remove saved profile image
-  window.location.href = "homePage.html";
-});
-
-const username = localStorage.getItem("username");
-if (username) {
+  // Show username in the greeting
   document.querySelectorAll("#username").forEach(el => el.textContent = username);
-} else {
-  window.location.href = "LoginPage.html";
-}
 
+  // 🧱 Fetch test data from backend
+  const tableBody = document.getElementById("test-history");
+  const testsCount = document.getElementById("tests-count");
+  const lastActivity = document.getElementById("last-activity");
 
+  tableBody.innerHTML = "<tr><td colspan='4'>Loading your test history...</td></tr>";
 
+  fetch(`http://localhost:3000/api/test/get-tests/${userId}`)
+    .then(res => res.json())
+    .then(data => {
+      // Clear old content
+      tableBody.innerHTML = "";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const userEmail = localStorage.getItem("userEmail");
-
-  fetch(`http://localhost:5000/api/tests/${userEmail}`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        const testHistory = data.results;
-        const tableBody = document.getElementById("test-history");
-
-        tableBody.innerHTML = testHistory
-          .map(
-            (test) => `
-              <tr>
-                <td>${test.testName}</td>
-                <td>${new Date(test.date).toLocaleDateString()}</td>
-                <td>${test.result}</td>
-              </tr>`
-          )
-          .join("");
+      if (!data.tests || data.tests.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='4'>No Data Found</td></tr>";
+        testsCount.innerText = "0";
+        lastActivity.innerText = "-";
+        return;
       }
+
+      // 🧠 Sort by date (latest first)
+      const sortedTests = data.tests.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // 🧾 Fill test table
+      sortedTests.forEach(t => {
+        const date = new Date(t.date).toLocaleDateString();
+        const row = `
+          <tr>
+            <td>${t.testName}</td>
+            <td>${date}</td>
+            <td>
+              <span class="result-badge ${t.result.toLowerCase().split(' ')[0]}">${t.result}</span>
+            </td>
+            <td><button class="view-btn" onclick="viewTest('${t.testName}', '${t.score}', '${t.result}', '${date}')">View</button></td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+
+      // 🧩 Update summary cards
+      testsCount.innerText = sortedTests.length;
+      lastActivity.innerText = new Date(sortedTests[0].date).toLocaleDateString();
     })
-    .catch((err) => console.error(err));
+    .catch(err => {
+      console.error("Error fetching test data:", err);
+      tableBody.innerHTML = "<tr><td colspan='4'>⚠️ Error loading data.</td></tr>";
+    });
+
+  // Logout function
+  document.getElementById("logoutbtn").addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "homePage.html";
+  });
 });
 
+// 🧠 Function to view test details (optional)
+function viewTest(name, score, result, date) {
+  alert(`🧠 ${name}\nScore: ${score}\nResult: ${result}\nDate: ${date}`);
+}
 </script>
 
 

@@ -83,6 +83,12 @@
   </div>
 </footer>
 
+
+
+<!-- ✅ Include reusable backend function file first -->
+<script src="saveTest.js"></script>
+
+<!-- ✅ Then your main test logic -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const depressionAnswers = JSON.parse(localStorage.getItem("depressionAnswers")) || [];
@@ -101,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "Difficulty performing daily responsibilities due to these feelings?"
   ];
 
-
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
+  // ✅ Calculate total score
   const totalScore = depressionAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
 
   let interpretation = "";
@@ -126,19 +132,19 @@ document.addEventListener("DOMContentLoaded", () => {
     color = "#CC0000";
   }
 
+  // ✅ Show result text on the page
   document.getElementById("finalScore").innerHTML = 
     `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
 
+  // ✅ Show answers
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
-
   
   depressionAnswers.forEach((ans, i) => {
     const ansText = ans !== null ? optionLabels[ans] : "Not answered";
     html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
   });
 
-  
   optionalAnswers.forEach((ans, i) => {
     if(ans !== null){
       const ansText = optionalLabels[ans] || "Not answered";
@@ -148,17 +154,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   html += "</ul>";
   answersDiv.innerHTML = html;
+
+  // ✅ Now save the test result to the backend
+  saveTestResult("Depression Test", totalScore, interpretation);
+ 
+
 });
 
+// ✅ Toggle menu visibility
 document.querySelector(".menu-toggle").addEventListener("click", () => 
   document.querySelector("nav").classList.toggle("show")
 );
-
-
-
-
-
 </script>
+
 </body>
 </html> 
 

@@ -83,79 +83,95 @@
   </div>
 </footer>
 
+
+
+<!-- ✅ Load reusable saveTest.js script -->
+<script src="saveTest.js"></script>
+
+<!-- ✅ Then your result page logic -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const depressionAnswers = JSON.parse(localStorage.getItem("depressionAnswers")) || [];
+  // ✅ Get stored answers
+  const stressAnswers = JSON.parse(localStorage.getItem("stressAnswers")) || [];
   const optionalAnswers = JSON.parse(localStorage.getItem("optionalAnswers")) || [];
 
+  // ✅ Define test questions
   const testQuestions = [
-    "Little interest or pleasure in doing something?",
-    "Feeling down, depressed, or hopeless?",
-    "Trouble falling or staying asleep, or sleeping too much?",
-    "Feeling tired or having little energy?",
-    "Poor appetite or overeating?",
-    "Feeling bad about yourself — or that you are a failure?",
-    "Trouble concentrating on things, such as reading or watching TV?",
-    "Moving or speaking so slowly that other people noticed, or being fidgety or restless?",
-    "Thoughts that you would be better off dead or of hurting yourself?",
-    "Difficulty performing daily responsibilities due to these feelings?"
+    "I feel overwhelmed by daily responsibilities.",
+    "I find it hard to relax, even when I have free time.",
+    "I experience tension, headaches, or fatigue frequently.",
+    "I feel irritable or short-tempered with others.",
+    "I struggle to focus or concentrate on tasks.",
+    "I feel anxious or worried most of the time.",
+    "I often feel emotionally drained or exhausted.",
+    "I find myself sleeping too little or too much.",
+    "I feel pressure to meet deadlines or expectations.",
+    "I notice physical symptoms like a fast heartbeat or upset stomach when stressed."
   ];
-
 
   const optionLabels = ["NOT AT ALL","SEVERAL DAYS","MORE THAN HALF THE DAYS","NEARLY EVERY DAY"];
   const optionalLabels = ["Never","Sometimes","Often","Always"];
 
-  const totalScore = depressionAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
+  // ✅ Calculate total score
+  const totalScore = stressAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
 
+  // ✅ Interpret results
   let interpretation = "";
   let color = "";
   if (totalScore <= 4) {
-    interpretation = "Normal (Minimal or No Depression)";
+    interpretation = "Low Stress";
     color = "#38B2AC";
   } else if (totalScore <= 9) {
-    interpretation = "Mild Depression";
+    interpretation = "Mild Stress";
     color = "#4DBD84";
   } else if (totalScore <= 14) {
-    interpretation = "Moderate Depression";
+    interpretation = "Moderate Stress";
     color = "#F6C23E";
   } else if (totalScore <= 19) {
-    interpretation = "Moderately Severe Depression";
+    interpretation = "High Stress";
     color = "#F58042";
   } else {
-    interpretation = "Severe Depression";
+    interpretation = "Severe Stress";
     color = "#CC0000";
   }
 
+  // ✅ Display result on the page
   document.getElementById("finalScore").innerHTML = 
     `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
 
+  // ✅ Show user’s answers
   const answersDiv = document.getElementById("answersSection");
   let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
-
   
-  depressionAnswers.forEach((ans, i) => {
+  stressAnswers.forEach((ans, i) => {
     const ansText = ans !== null ? optionLabels[ans] : "Not answered";
-    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br>
+             <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
   });
 
-  
   optionalAnswers.forEach((ans, i) => {
     if(ans !== null){
       const ansText = optionalLabels[ans] || "Not answered";
-      html += `<li><b>Optional Question ${i+1}:</b> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+      html += `<li><b>Optional Question ${i+1}:</b> 
+               <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
     }
   });
 
   html += "</ul>";
   answersDiv.innerHTML = html;
+
+  // ✅ Save test result to backend AFTER showing results
+  saveTestResult("Stress Test", totalScore, interpretation);
+
+
 });
 
-document.querySelector(".menu-toggle").addEventListener("click", () => 
+// ✅ Mobile menu toggle
+document.querySelector(".menu-toggle").addEventListener("click", () =>
   document.querySelector("nav").classList.toggle("show")
 );
-
-
 </script>
+
 </body>
 </html> 
 
