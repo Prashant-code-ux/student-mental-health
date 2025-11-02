@@ -268,6 +268,64 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Avatar Selection Modal */
+#avatar-select-modal .profile-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.avatar-option {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  object-fit: cover;
+}
+
+.avatar-option:hover {
+  transform: scale(1.05);
+}
+
+.avatar-option.selected {
+  border-color: var(--mint-main);
+  box-shadow: 0 0 6px var(--mint-light);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  background: var(--mint-main);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.modal-actions button:hover {
+  background: var(--mint-dark);
+}
+
+
 .profile-wrapper {
   position: relative;
   display: inline-block;
@@ -521,6 +579,56 @@ th, td {
   border-bottom: 1px solid #ccc;
   text-align: center;
 }
+
+/* === Test Result Modal === */
+.test-modal {
+  display: none; 
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.test-modal-content {
+  background: white;
+  padding: 25px 35px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.3s ease;
+  max-width: 350px;
+}
+
+.test-modal-content h3 {
+  margin-bottom: 10px;
+  color: var(--mint-dark);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 
 /* Quote */
 .quote {

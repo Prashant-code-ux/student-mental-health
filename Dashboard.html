@@ -43,7 +43,7 @@
       <div class="profile-dropdown" id="profile-dropdown">
         <ul>
           <li id="view-profile">View Profile</li>
-          <li id="upload-photo-option">Upload Photo</li>
+          <li id="upload-photo-option">Edit Profile</li>
         </ul>
       </div>
     </div>
@@ -51,13 +51,6 @@
     </div>
   </header>
 
-  <!-- View Profile Modal -->
-<!-- <div id="view-profile-modal" class="profile-modal">
-  <div class="profile-modal-content" style="background:#fff; padding:25px; border-radius:20px; text-align:center;">
-    <img id="view-profile-pic" src="profile.jpg" alt="Profile" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #8bc34a;">
-    <button id="close-view-profile" style="margin-top:20px; background:#8bc34a; color:white; border:none; padding:8px 20px; border-radius:10px; cursor:pointer;">Close</button>
-  </div>
-</div> -->
 
 <!-- View Profile Modal -->
 <div id="view-profile-modal" class="profile-modal">
@@ -72,7 +65,7 @@
 
 
 <!-- Crop Modal -->
-<div id="crop-modal" class="profile-modal">
+<!-- <div id="crop-modal" class="profile-modal">
   <div class="profile-modal-content" id="crop-content">
     <h3>Crop Your Profile Photo</h3>
     <img id="crop-image" style="max-width:100%; display:block; margin:auto; border-radius:10px;">
@@ -81,23 +74,45 @@
       <button id="cancel-crop">Cancel</button>
     </div>
   </div>
+</div> -->
+<!-- Avatar Selection Modal -->
+<div id="avatar-select-modal" class="profile-modal">
+  <div class="profile-modal-content">
+    <h3>Select Your Avatar</h3>
+    <div class="avatar-grid">
+      <img src="Avatar/avatar1.jpeg" class="avatar-option" alt="Avatar 1">
+      <img src="Avatar/avatar2.jpeg" class="avatar-option" alt="Avatar 2">
+      <img src="Avatar/avatar3.jpeg" class="avatar-option" alt="Avatar 3">
+      <img src="Avatar/avatar4.jpeg" class="avatar-option" alt="Avatar 4">
+      <img src="Avatar/avatar5.jpeg" class="avatar-option" alt="Avatar 5">
+      <img src="Avatar/avatar6.jpeg" class="avatar-option" alt="Avatar 6">
+      <img src="Avatar/avatar7.jpeg" class="avatar-option" alt="Avatar 7">
+      <img src="Avatar/avatar8.jpeg" class="avatar-option" alt="Avatar 8">
+      <img src="Avatar/avatar9.jpeg" class="avatar-option" alt="Avatar 9">
+      <img src="Avatar/avatar10.jpeg" class="avatar-option" alt="Avatar 10">
+      <img src="Avatar/avatar11.jpeg" class="avatar-option" alt="Avatar 11">
+      <img src="Avatar/avatar12.jpeg" class="avatar-option" alt="Avatar 12">
+    </div>
+    <div class="modal-actions">
+      <button id="save-avatar">Save</button>
+      <button id="cancel-avatar">Cancel</button>
+    </div>
+  </div>
 </div>
 
+ <!-- Welcome Section -->
+  <section class="welcome">
+    <h1>Hey <span id="username">Kumkum</span> 👋</h1>
+      <p>How are you feeling today?</p>
 
-  
-      <!-- Welcome Section -->
-      <section class="welcome">
-        <h1>Hey <span id="username">Kumkum</span> 👋</h1>
-        <p>How are you feeling today?</p>
+    <div class="mood-selector">
+    <button class="mood-btn">😊</button>
+    <button class="mood-btn">😐</button>
+    <button class="mood-btn">😞</button>
+    </div>
+    </section>
 
-        <div class="mood-selector">
-          <button class="mood-btn">😊</button>
-          <button class="mood-btn">😐</button>
-          <button class="mood-btn">😞</button>
-        </div>
-      </section>
-
-      <!-- User Activity Overview -->
+<!-- User Activity Overview -->
 <section class="activity">
   <h2>Your Activity Overview</h2>
   <div class="activity-cards">
@@ -113,32 +128,45 @@
 </section>
 
 
-      <!-- Test History -->
-      <section class="history">
-        <h2>Your Test History</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Test Name</th>
-              <th>Date Taken</th>
-              <th>Result</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody id="test-history">
-            <tr><td colspan="4">No data found yet</td></tr>
-          </tbody>
-        </table>
-      </section>
+<!-- Test History -->
+<section class="history">
+<h2>Your Test History</h2>
+<table>
+<thead>
+<tr>
+<th>Test Name</th>
+<th>Date Taken</th>
+<th>Result</th>
+<th>View</th>
+</tr>
+</thead>
+<tbody id="test-history">
+<tr><td colspan="4">No data found yet</td></tr>
+</tbody>
+</table>
+</section>
 
-      <!-- Motivational Quote -->
-      <section class="quote">
-        <h2>Daily Motivation</h2>
-        <p id="quote-text">"You are stronger than you think 💪"</p>
-      </section>
+<!-- Motivational Quote -->
+<section class="quote">
+<h2>Daily Motivation</h2>
+<p id="quote-text">"You are stronger than you think 💪"</p>
+</section>
 
-    </main>
+<!-- Test Result Modal -->
+<div id="test-result-modal" class="test-modal">
+  <div class="test-modal-content">
+    <span id="close-test-modal" class="close-btn">&times;</span>
+    <h3 id="test-modal-title">Test Result</h3>
+    <p><strong>Test Name:</strong> <span id="modal-test-name"></span></p>
+    <p><strong>Score:</strong> <span id="modal-test-score"></span></p>
+    <p><strong>Result:</strong> <span id="modal-test-result"></span></p>
+    <p><strong>Date:</strong> <span id="modal-test-date"></span></p>
   </div>
+</div>
+
+
+</main>
+</div>
   
   
 <script>
@@ -212,9 +240,32 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 🧠 Function to view test details (optional)
+// function viewTest(name, score, result, date) {
+//   alert(`🧠 ${name}\nScore: ${score}\nResult: ${result}\nDate: ${date}`);
+// }
+
+// 🧠 Function to view test details (popup modal)
 function viewTest(name, score, result, date) {
-  alert(`🧠 ${name}\nScore: ${score}\nResult: ${result}\nDate: ${date}`);
+  document.getElementById("modal-test-name").textContent = name;
+  document.getElementById("modal-test-score").textContent = score;
+  document.getElementById("modal-test-result").textContent = result;
+  document.getElementById("modal-test-date").textContent = date;
+
+  document.getElementById("test-result-modal").style.display = "flex";
 }
+
+// Close popup when clicking X or outside
+document.getElementById("close-test-modal").addEventListener("click", () => {
+  document.getElementById("test-result-modal").style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  const modal = document.getElementById("test-result-modal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
 
 
 // 🧭 Profile Dropdown Logic
@@ -269,48 +320,92 @@ window.addEventListener("click", (event) => {
 
 
 //Upload photo option
+// uploadOption.addEventListener("click", () => {
+//   uploadInput.click();
+//   profileDropdown.style.display = "none";
+// });
+// Edit Profile (Avatar Selection)
 uploadOption.addEventListener("click", () => {
-  uploadInput.click();
+  avatarModal.style.display = "flex";
   profileDropdown.style.display = "none";
 });
 
-// Crop and upload image
-uploadInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    cropImage.src = event.target.result;
-    cropModal.style.display = "flex";
-    cropper = new Cropper(cropImage, {
-      aspectRatio: 1,
-      viewMode: 1,
-      dragMode: "move"
-    });
-  };
-  reader.readAsDataURL(file);
+// 🧸 Avatar Selection Logic
+const avatarModal = document.getElementById("avatar-select-modal");
+const avatarOptions = document.querySelectorAll(".avatar-option");
+const saveAvatarBtn = document.getElementById("save-avatar");
+const cancelAvatarBtn = document.getElementById("cancel-avatar");
+let selectedAvatar = null;
+
+// Select avatar
+avatarOptions.forEach(avatar => {
+  avatar.addEventListener("click", () => {
+    avatarOptions.forEach(a => a.classList.remove("selected"));
+    avatar.classList.add("selected");
+    selectedAvatar = avatar.src;
+  });
 });
+
+// Save selected avatar
+saveAvatarBtn.addEventListener("click", () => {
+  if (selectedAvatar) {
+    profilePic.src = selectedAvatar;
+    localStorage.setItem("userAvatar", selectedAvatar);
+  }
+  avatarModal.style.display = "none";
+});
+
+// Cancel avatar modal
+cancelAvatarBtn.addEventListener("click", () => {
+  avatarModal.style.display = "none";
+});
+
+// Load saved avatar on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedAvatar = localStorage.getItem("userAvatar");
+  if (savedAvatar) profilePic.src = savedAvatar;
+});
+
+
+
+// Crop and upload image
+// uploadInput.addEventListener("change", (e) => {
+//   const file = e.target.files[0];
+//   if (!file) return;
+
+//   const reader = new FileReader();
+//   reader.onload = (event) => {
+//     cropImage.src = event.target.result;
+//     cropModal.style.display = "flex";
+//     cropper = new Cropper(cropImage, {
+//       aspectRatio: 1,
+//       viewMode: 1,
+//       dragMode: "move"
+//     });
+//   };
+//   reader.readAsDataURL(file);
+// });
 
 // Save cropped image
-document.getElementById("save-crop").addEventListener("click", () => {
-  const canvas = cropper.getCroppedCanvas({
-  width: 500,
-  height: 500,
-  imageSmoothingEnabled: true,
-  imageSmoothingQuality: 'high'
-  });
+// document.getElementById("save-crop").addEventListener("click", () => {
+//   const canvas = cropper.getCroppedCanvas({
+//   width: 500,
+//   height: 500,
+//   imageSmoothingEnabled: true,
+//   imageSmoothingQuality: 'high'
+//   });
 
-  profilePic.src = canvas.toDataURL("image/png");
-  cropModal.style.display = "none";
-  cropper.destroy();
-});
+//   profilePic.src = canvas.toDataURL("image/png");
+//   cropModal.style.display = "none";
+//   cropper.destroy();
+// });
 
 // Cancel crop
-document.getElementById("cancel-crop").addEventListener("click", () => {
-  cropModal.style.display = "none";
-  cropper.destroy();
-});
+// document.getElementById("cancel-crop").addEventListener("click", () => {
+//   cropModal.style.display = "none";
+//   cropper.destroy();
+// });
 
 
 

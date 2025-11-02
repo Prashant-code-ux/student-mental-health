@@ -173,7 +173,8 @@ document.querySelector(".menu-toggle").addEventListener("click", () =>
   const loginLink = loginDiv.querySelector("a");
   const userLoggedIn = localStorage.getItem("isLoggedIn");
   const username = localStorage.getItem("username");
-  const profilePic = localStorage.getItem("profilePic") || "profile.jpg"; // default image
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
 
   if (userLoggedIn && username) {
     // Create new HTML for logged-in state
