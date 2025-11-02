@@ -73,6 +73,19 @@
     }
     
     }
+           .user-profile img {
+  transition: transform 0.3s ease;
+}
+.user-profile:hover img {
+  transform: scale(1.1);
+}
+.user-profile a {
+  font-weight: 600;
+  color: #2a7f7a;
+}
+.user-profile a:hover {
+  text-decoration: underline;
+}
 
 .main-container {
   flex: 1; 

@@ -36,9 +36,55 @@
         <header class="topbar">
     <h2>Welcome back, <span id="username"></span> 👋</h2>
     <div class="profile-top">
+      <!-- <img src="profile.jpg" alt="Profile Photo" id="profile-pic" class="profile-circle"> -->
+
+ <div class="profile-wrapper">
       <img src="profile.jpg" alt="Profile Photo" id="profile-pic" class="profile-circle">
+      <div class="profile-dropdown" id="profile-dropdown">
+        <ul>
+          <li id="view-profile">View Profile</li>
+          <li id="upload-photo-option">Upload Photo</li>
+        </ul>
+      </div>
+    </div>
+
     </div>
   </header>
+
+  <!-- View Profile Modal -->
+<!-- <div id="view-profile-modal" class="profile-modal">
+  <div class="profile-modal-content" style="background:#fff; padding:25px; border-radius:20px; text-align:center;">
+    <img id="view-profile-pic" src="profile.jpg" alt="Profile" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #8bc34a;">
+    <button id="close-view-profile" style="margin-top:20px; background:#8bc34a; color:white; border:none; padding:8px 20px; border-radius:10px; cursor:pointer;">Close</button>
+  </div>
+</div> -->
+
+<!-- View Profile Modal -->
+<div id="view-profile-modal" class="profile-modal">
+  <div class="profile-modal-content simple-profile">
+    <button id="close-view-profile" class="close-btn">&times;</button>
+    <img id="view-profile-pic" src="profile.jpg" alt="Profile" />
+  </div>
+</div>
+
+
+<input type="file" id="upload-photo" accept="image/*" style="display:none">
+
+
+<!-- Crop Modal -->
+<div id="crop-modal" class="profile-modal">
+  <div class="profile-modal-content" id="crop-content">
+    <h3>Crop Your Profile Photo</h3>
+    <img id="crop-image" style="max-width:100%; display:block; margin:auto; border-radius:10px;">
+    <div style="margin-top:15px;">
+      <button id="save-crop">Save</button>
+      <button id="cancel-crop">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+  
       <!-- Welcome Section -->
       <section class="welcome">
         <h1>Hey <span id="username">Kumkum</span> 👋</h1>
@@ -59,10 +105,6 @@
       <h3>🧠 Tests Taken</h3>
       <p id="tests-count">2</p>
     </div>
-    <!-- <div class="activity-card">
-      <h3>📈 Average Mood</h3>
-      <p id="avg-mood">Happy 😊</p>
-    </div> -->
     <div class="activity-card">
       <h3>📅 Last Activity</h3>
       <p id="last-activity">24 Oct 2025</p>
@@ -97,19 +139,7 @@
 
     </main>
   </div>
-  <!-- Crop Image Modal -->
-<div id="crop-modal" class="profile-modal">
-  <div class="profile-modal-content" style="background:#fff; padding:15px; border-radius:15px;">
-    <h3>Adjust Your Profile Picture</h3>
-    <img id="crop-image" style="max-width:100%; border-radius:10px; margin-top:10px;">
-    <div style="margin-top:15px;">
-      <button id="save-crop">Save</button>
-      <button id="cancel-crop" style="background:#ccc; color:#333; margin-left:10px;">Cancel</button>
-    </div>
-  </div>
-</div>
-
-  <input type="file" id="upload-photo" accept="image/*" style="display:none">
+  
   
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -118,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🧱 Redirect if not logged in
   if (!userId || !username) {
-    alert("⚠️ Please log in to view your dashboard.");
+    alert("⚠ Please log in to view your dashboard.");
     window.location.href = "LoginPage.html";
     return;
   }
@@ -171,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => {
       console.error("Error fetching test data:", err);
-      tableBody.innerHTML = "<tr><td colspan='4'>⚠️ Error loading data.</td></tr>";
+      tableBody.innerHTML = "<tr><td colspan='4'>⚠ Error loading data.</td></tr>";
     });
 
   // Logout function
@@ -185,9 +215,104 @@ document.addEventListener("DOMContentLoaded", () => {
 function viewTest(name, score, result, date) {
   alert(`🧠 ${name}\nScore: ${score}\nResult: ${result}\nDate: ${date}`);
 }
+
+
+// 🧭 Profile Dropdown Logic
+const profilePic = document.getElementById("profile-pic");
+const profileDropdown = document.getElementById("profile-dropdown");
+const uploadOption = document.getElementById("upload-photo-option");
+const uploadInput = document.getElementById("upload-photo");
+const cropModal = document.getElementById("crop-modal");
+const cropImage = document.getElementById("crop-image");
+let cropper;
+
+// Toggle dropdown when profile clicked
+profilePic.addEventListener("click", (e) => {
+  e.stopPropagation();
+  profileDropdown.style.display = 
+    profileDropdown.style.display === "block" ? "none" : "block";
+});
+
+// Hide dropdown when clicking outside
+document.addEventListener("click", (e) => {
+  if (!profileDropdown.contains(e.target) && e.target !== profilePic) {
+    profileDropdown.style.display = "none";
+  }
+});
+
+
+// View profile option
+document.getElementById("view-profile").addEventListener("click", () => {
+  const viewModal = document.getElementById("view-profile-modal");
+  const profilePicSrc = document.getElementById("profile-pic").src;
+
+  document.getElementById("view-profile-pic").src = profilePicSrc;
+
+  viewModal.style.display = "flex";
+  profileDropdown.style.display = "none";
+});
+
+
+// Close view profile modal
+document.getElementById("close-view-profile").addEventListener("click", () => {
+  document.getElementById("view-profile-modal").style.display = "none";
+});
+
+
+// Close modal when clicking outside content
+window.addEventListener("click", (event) => {
+  const viewModal = document.getElementById("view-profile-modal");
+  if (event.target === viewModal) {
+    viewModal.style.display = "none";
+  }
+});
+
+
+//Upload photo option
+uploadOption.addEventListener("click", () => {
+  uploadInput.click();
+  profileDropdown.style.display = "none";
+});
+
+// Crop and upload image
+uploadInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    cropImage.src = event.target.result;
+    cropModal.style.display = "flex";
+    cropper = new Cropper(cropImage, {
+      aspectRatio: 1,
+      viewMode: 1,
+      dragMode: "move"
+    });
+  };
+  reader.readAsDataURL(file);
+});
+
+// Save cropped image
+document.getElementById("save-crop").addEventListener("click", () => {
+  const canvas = cropper.getCroppedCanvas({
+  width: 500,
+  height: 500,
+  imageSmoothingEnabled: true,
+  imageSmoothingQuality: 'high'
+  });
+
+  profilePic.src = canvas.toDataURL("image/png");
+  cropModal.style.display = "none";
+  cropper.destroy();
+});
+
+// Cancel crop
+document.getElementById("cancel-crop").addEventListener("click", () => {
+  cropModal.style.display = "none";
+  cropper.destroy();
+});
+
 </script>
-
-
 
 </body>
 </html>

@@ -59,6 +59,20 @@
       cursor: pointer;
     }
 
+ .user-profile img {
+  transition: transform 0.3s ease;
+}
+.user-profile:hover img {
+  transform: scale(1.1);
+}
+.user-profile a {
+  font-weight: 600;
+  color: #2a7f7a;
+}
+.user-profile a:hover {
+  text-decoration: underline;
+}
+
     .container {
       height: 200px;
       background: linear-gradient(135deg, #99e4e0, #29696b);
