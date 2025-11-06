@@ -111,6 +111,24 @@
     color: #444;
     
   }
+    /* ===== Reveal Animation Base ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* ===== Active Animation ===== */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: tiny delay for smoother stagger on later sections */
+.container.active {
+  transition-delay: 0.2s;
+}
+
 
   .container{
     width: 90%;

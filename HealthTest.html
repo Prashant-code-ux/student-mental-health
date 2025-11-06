@@ -27,14 +27,14 @@
 
   <!-- Hero-section -->
 
-   <section class="hero-section">
+   <section class="hero-section reveal">
 
     <h1 >Take a Mental Health Test</h1>
     <p>Understanding your emotions is the first step to self-care. Take this quick test and  <br> gain  insights that can   help you take better care of yourself.</p>
     <p> <i> <b> "It only takes a few minutes, and you may discover something meaningful about yourself." </b> </i></p>
    </section>
 
-   <section class="test-container">
+   <section class="test-container reveal">
   
      <div class="test-card">
       <div class="test-title">Depression Test</div>
@@ -42,7 +42,6 @@
       <a href="Depression_test.html"> 
       <button class="start-btn">Start Test</button>
       </a>
-      
      </div>
      
       
@@ -57,11 +56,8 @@
        <div class="test-card">
       <div class="test-title">Stress Test</div>
       <div class="test-desc">Find out how stress is affecting your daily life and health.</div>
-      <a href="Stress_Details.html">
+      <a href="Stress-test.html">
       <button class="start-btn">Start Test</button>
-
-     
-
       </a>
      </div>
 
@@ -107,7 +103,7 @@
 
    <!-- How it works -->
 
-   <section class="how-it-works">
+   <section class="how-it-works reveal">
 
      <h1>How does it works?</h1>
      <p class="subtitle">Check your mental wellbeing in just three simple steps.</p>
@@ -171,6 +167,21 @@
 
   <script>
     document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+    // Scroll animation (reveal on scroll)
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target); // animate only once
+      }
+    });
+  }, { threshold: 0.2 }); // triggers when 20% visible
+
+  reveals.forEach(r => observer.observe(r));
+  
     document.addEventListener("DOMContentLoaded", () => {
   const loginDiv = document.querySelector(".login");
   const loginLink = loginDiv.querySelector("a");

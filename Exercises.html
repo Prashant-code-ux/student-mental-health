@@ -27,16 +27,16 @@
     
    <!-- Hero section -->
 
-    <div class="hero">
+    <div class="hero reveal">
         <div class="hero-content">
             <h1>Welcome to Your Mental Wellness Journey</h1>
             <p>Explore interactive exercises to calm your mood, boost focus, and reduce stress.</p>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container reveal">
  
-          <div class="exercise">
+          <div class="exercise reveal ">
             <img src="" alt="Feeling Wheel">
             <div class="exercise-content">
                 <h2>1. Identify your feelings: The Interactive Feeling Wheel</h2>
@@ -45,7 +45,7 @@
             </div>
           </div>
 
-           <div class="exercise">
+           <div class="exercise reveal">
             <img src="https://i.pinimg.com/1200x/1e/1d/5a/1e1d5a4febd787fbf03c56611df9a9b6.jpg" alt="Box Breathing exercise">
             <div class="exercise-content">
                 <h2>2. Regulate your Breath: Try the Box Breathing Exercise</h2>
@@ -54,7 +54,7 @@
             </div>
           </div>
 
-           <div class="exercise">
+           <div class="exercise reveal">
             <img src="https://i.pinimg.com/1200x/af/ab/94/afab945c3a610dcf5e87160cc1e8cc8d.jpg" alt="Grounding Technique">
             <div class="exercise-content">
                 <h2>3. Anchor Yourself: Use the 5-4-3-2-1 Grounding Techniques</h2>
@@ -63,7 +63,7 @@
             </div>
           </div>
 
-           <div class="exercise">
+           <div class="exercise reveal">
             <img src="https://via.placeholder.com/600x400?text=Feeling+Wheel" alt="Muscle Relaxation">
             <div class="exercise-content">
                 <h2>4. Online Progressive Muscle Relaxation(PMR) </h2>
@@ -73,7 +73,7 @@
           </div>
 
 
-           <div class="exercise">
+           <div class="exercise reveal">
             <img src="https://via.placeholder.com/600x400?text=Feeling+Wheel" alt="Influence Exercise">
             <div class="exercise-content">
                 <h2>5. Focus on what Matters: The Circle of Influence Exercise</h2>
@@ -114,7 +114,32 @@
 
   <script>
     document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
-       document.addEventListener("DOMContentLoaded", () => {
+    
+    document.addEventListener("DOMContentLoaded", () => {
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ✅ Animate hero and first container together after page loads
+  window.addEventListener("load", () => {
+    const hero = document.querySelector(".hero");
+    const firstContainer = document.querySelector(".container");
+    
+    if (hero) hero.classList.add("active");
+    if (firstContainer) firstContainer.classList.add("active");
+  });
+});
+  
+  document.addEventListener("DOMContentLoaded", () => {
   const loginDiv = document.querySelector(".login");
   const loginLink = loginDiv.querySelector("a");
   const userLoggedIn = localStorage.getItem("isLoggedIn");

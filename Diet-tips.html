@@ -25,16 +25,30 @@
     </div>
   </header>
 
-<div class="hero-section">
+<!-- <div class="hero-section reveal">
       <h1>Mind Boost — Diet & Tips</h1>
   <p>Click on a card to see the benefit and when it is needed</p>
-</div>
+</div> -->
 
-<h2>Food Groups</h2>
-<div class="container" id="foodContainer"></div>
+<section class="hero-section reveal">
+  <div class="hero-content">
+    <h1>Fuel Your Mind, Nourish Your Soul 🥑</h1>
+    <p class="hero-quote">
+      “A healthy mind begins with what you feed it — both food and thoughts.”
+    </p>
+    <p class="hero-subtext">
+      Discover foods and practices that boost your mood, focus, and well-being.
+    </p>
+    <a href="#foodContainer" class="hero-btn">Explore Now</a>
+  </div>
+</section>
 
-<h2>Tips & Practices</h2>
-<div class="container" id="tipsContainer"></div>
+
+<h2 class="reveal">Food Groups</h2>
+<div class="container reveal" id="foodContainer"></div>
+
+<h2 class="reveal">Tips & Practices</h2>
+<div class="container reveal" id="tipsContainer"></div>
 
   <!-- footer -->
   <footer>
@@ -64,6 +78,25 @@
     </footer>
 
 <script>
+
+// Animate hero and first container on load
+window.addEventListener("load", () => {
+  document.querySelector(".hero-section").classList.add("active");
+  document.querySelector("#foodContainer").classList.add("active");
+  document.querySelectorAll("h2")[0].classList.add("active"); // "Food Groups" heading
+});
+
+// Animate others on scroll
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+
+
 // Food groups
 const foodGroups = [
   {name:'Fruits', img:'images/fruits.jpg', info:'Rich in vitamins and antioxidants, boosts mood and energy.', needed:'Daily to support focus and immunity'},

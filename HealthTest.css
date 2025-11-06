@@ -113,6 +113,18 @@
         color: #444;
         
     }
+        /* Scroll reveal base state */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+/* When visible */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .test-container{
         display: grid;

@@ -127,6 +127,18 @@
     .hero-content button:hover{
         background:#2C7A7B;
     }
+    /* --- Scroll Animation --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
     .features{
         display:flex;

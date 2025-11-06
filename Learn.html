@@ -27,7 +27,7 @@
 
   <!-- Hero-section -->
 
-   <section class="hero-section">
+   <section class="hero-section reveal">
 
     <h1 >Learn More About Mental Health Disorders</h1>
     <p>Understanding your emotions is the first step to self-care. Take this quick test and  <br> gain  insights that can   help you take better care of yourself.</p>
@@ -138,15 +138,14 @@
 
    <!-- Learn about diseases -->
 
-   <section class="diseases">
+   <section class="diseases reveal">
           
     <p class="description">Explore common mental health conditions and ways to understand them better.</p>
 
         <div class="disease-cards">
 
           <div class="disease-card">
-              
-            <i class="fa-solid fa-face-frown icon"></i>
+            <img src="Images/depression.jpg" alt="Depression" class="disease-img">
             <h3>Depression</h3>
             <p>Persistent sadness, loss of interest, and low energy impacting daily life.</p>
             <a href="Depression_Detail.html" class="learn-btn">Learn More</a>
@@ -250,7 +249,23 @@
     </footer>
 
   <script>
+
     document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+  // Scroll animation (reveal on scroll)
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target); // animate only once
+      }
+    });
+  }, { threshold: 0.2 }); // triggers when 20% visible
+
+  reveals.forEach(r => observer.observe(r));
+
     document.addEventListener("DOMContentLoaded", () => {
   const loginDiv = document.querySelector(".login");
   const loginLink = loginDiv.querySelector("a");
