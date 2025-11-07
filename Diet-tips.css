@@ -75,20 +75,20 @@
     }
     
     }
-               .user-profile img {
-  transition: transform 0.3s ease;
-}
-.user-profile:hover img {
-  transform: scale(1.1);
-}
-.user-profile a {
-  font-weight: 600;
-  color: #2a7f7a;
-}
-.user-profile a:hover {
-  text-decoration: underline;
-}
-  .hero-section {
+    .user-profile img {
+     transition: transform 0.3s ease;
+     }
+    .user-profile:hover img {
+    transform: scale(1.1);
+    }
+    .user-profile a {
+    font-weight: 600;
+    color: #2a7f7a;
+    }
+    .user-profile a:hover {
+    text-decoration: underline;
+    }
+  /* .hero-section {
     background:#38B2AC;
     color: white;
     padding: 30px 10px;
@@ -101,7 +101,81 @@
   .hero-section p {
      margin: 5px 0 0; 
      font-size: 1rem; 
-    }
+    } */
+     .hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #38b2ac, #81e6d9);
+  color: white;
+  padding: 70px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('images/healthy-bg.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: auto;
+}
+
+.hero-content h1 {
+  font-size: 2.3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-quote {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #f0fff4;
+}
+
+.hero-subtext {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.hero-btn {
+  background: white;
+  color: #319795;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.hero-btn:hover {
+  background: #2c7a7b;
+  color: white;
+  transform: translateY(-3px);
+}
+
+
+   .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 
   h2 {
     color:#2C7A7B;
