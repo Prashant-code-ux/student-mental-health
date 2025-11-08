@@ -394,9 +394,9 @@ footer {
 }
 
 .footer-col a:hover {
-    color: #d4fff2;
+  color: #fff;
+  text-decoration: underline;
 }
-
 .footer-bottom {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.3);

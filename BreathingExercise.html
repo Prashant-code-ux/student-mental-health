@@ -26,6 +26,14 @@
     </div>
   </header>
 
+  <div class="title">
+  <span class="title-bold">Online Box Breathing Exercise</span><br>
+  <span class="title-small">"A simple breathing exercise to find your calm, at a pace that’s personal to you."
+<br>
+  </span>
+</div>
+
+  <div class="container-box">
   <div class="container">
   <!-- Circle with countdown inside -->
   <div id="circle">4</div>
@@ -42,6 +50,116 @@
     </div>
   </div>
 </div>
+</div>
+
+<div class="result" id="result"></div>
+</div>
+<h2 class="how-to-use">How To Use The Resource</h2>
+<p class="how-to-text">
+  There is no right or wrong way to use this resource. We encourage you to personalize it for your needs and what you find most helpful or accessible.
+</p>
+
+<!-- 🌼 FAQ SECTION START -->
+<div class="faq-section">
+  <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      1. What is the Feeling Wheel on Moodify?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        The Feeling Wheel on <strong>Moodify</strong> is an interactive tool that helps you recognize and express your emotions. 
+        It begins with broad feelings and gently guides you toward more specific emotions, allowing you to better understand what you’re truly feeling in the moment.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      2. How does the Feeling Wheel enhance emotional understanding?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Moodify’s Feeling Wheel encourages reflection and emotional awareness. 
+        By exploring different layers of emotions, you begin to notice subtle feelings and patterns that often go unnoticed. 
+        This deeper understanding can improve emotional communication, self-awareness, and inner balance.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      3. Is the Feeling Wheel suitable for everyone?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Yes, the Feeling Wheel is designed for everyone — no matter your age or background. 
+        It’s a simple, gentle guide that can support anyone who wishes to understand their emotions better, whether for self-care, journaling, or personal growth.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      4. How do I use the Feeling Wheel?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Using the Feeling Wheel is simple. Start by clicking on a main feeling that best describes your current state. 
+        Then, explore the next set of emotions that appear, going deeper until you find the word that fits how you feel most closely. 
+        There’s no rush — take your time and let your emotions unfold naturally.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      5. Will the Feeling Wheel make me feel relaxed and calm?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Many users find that Moodify’s Feeling Wheel helps them feel more centered and calm. 
+        By naming your feelings, you create emotional clarity and self-acceptance. 
+        While it may not instantly remove stress, it offers a gentle moment of mindfulness and reflection — which often leads to calmness.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- 🌼 FAQ SECTION END -->
+
+
+  <!-- footer -->
+  <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="homePage.html" target="_blank">Home</a>
+          <a href="About.html" target="_blank">About</a>
+          <a href="Learn.html" target="_blank">Learn about mental health</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="#">Blog</a>
+           <a href="#">Self-Care Tips</a>
+            <a href="#">Mental Health Guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p>Email:support2moodify.com</p>
+          <p>Phone: +91-1234567899</p>
+        </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Made with 💚 to support your mental health journey.</p>
+        </div>
+      
+    </footer>
 
 <script>
 const circle = document.getElementById('circle');
@@ -177,6 +295,15 @@ resetBtn.addEventListener('click', () => {
     `;
   }
 });
+
+document.querySelectorAll(".faq-question").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const container = btn.parentElement;
+    container.classList.toggle("active");
+  });
+});
+
+
 </script>
     
 </body>

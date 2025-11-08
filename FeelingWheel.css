@@ -1,0 +1,425 @@
+*{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+    body {
+         font-family:'Quicksand',sans-serif;
+        background:linear-gradient(to bottom right,#e6fff9,#f2fbff);
+        color:#2D3748;
+        min-height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0;
+       
+        
+}
+
+    header{
+        position: fixed;
+         top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        padding:1rem 2rem;
+        background:#fff;
+        box-shadow:0 4px 12px rgba(0,0,0,.05);
+    }
+    .logo{
+        font-size:1.4rem;
+        font-weight:700;
+        color:#38B2AC;
+    }
+    nav{
+        display:flex;
+        gap:30px;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    nav a,.login a{
+        color:#2D3748;
+        text-decoration:none;
+        font-weight:600;
+    }
+    nav a:hover,.login a:hover{
+        color:#319795;
+    }
+    .right-section{
+        display:flex;
+        align-items:center;
+        gap:15px;
+    }
+    .menu-toggle{
+        display:none;
+        font-size:1.8rem;
+        cursor:pointer;
+    }
+
+    @media(max-width:768px){
+      nav{
+        position:absolute;
+        top:60px;left:0;
+        right:0;
+        background:#fff;flex-direction:column;
+        align-items:center;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .4s;
+    }
+      nav.show{
+        max-height:300px;
+        padding:1rem 0;
+    }
+      .menu-toggle{
+        display:block;
+    }
+    
+    }
+
+    .user-profile img {
+     transition: transform 0.3s ease;
+     }
+    .user-profile:hover img {
+     transform: scale(1.1);
+     }
+    .user-profile a {
+     font-weight: 600;
+     color: #2a7f7a;
+     }
+    .user-profile a:hover {
+     text-decoration: underline;
+     }
+
+ .title {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.title-bold {
+  font-size: 28px;       /* Bigger font size */
+  font-weight: bold;
+}
+
+.title-small {
+  font-size: 16px;       /* Smaller font size */
+  font-weight: normal;    /* Plain text */
+}
+
+.container-box {
+  background: rgba(255, 255, 255, 0.2); /* transparent white */
+  border: 2px solid rgba(0, 0, 0, 0.1); /* subtle border */
+  border-radius: 15px;
+  padding: 20px;
+  display: inline-block;       /* shrink-wrap around boxes */
+   min-width: 300px;           /* optional: minimum size */
+  transition: all 0.3s ease;   /* smooth resize when boxes added */
+  flex-direction: column;  /* stack boxes and result vertically */
+  align-items: center;  
+  margin: 40px auto;
+   justify-content: center;
+    
+}
+.instruction {
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+  white-space: nowrap; /* makes it stay in one line */
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 1s ease, transform 1s ease;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.instruction.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.instruction.hide {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+
+
+.feeling-heading {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+   width: 100%;            /* make boxes fit container width */
+}
+
+
+.feeling-box {
+  position: relative;
+  width: 120px;
+  height: 60px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  clip-path: polygon(50% 0%, 90% 20%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 10% 20%);
+  animation: blobMove 4s infinite alternate ease-in-out;
+}
+
+@keyframes blobMove {
+  0% { clip-path: polygon(50% 0%, 90% 20%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 10% 20%); }
+  25% { clip-path: polygon(55% 5%, 88% 22%, 95% 52%, 80% 80%, 50% 98%, 18% 82%, 5% 48%, 12% 18%); }
+  50% { clip-path: polygon(52% 2%, 92% 18%, 97% 50%, 87% 83%, 50% 100%, 14% 88%, 2% 52%, 8% 22%); }
+  75% { clip-path: polygon(48% 0%, 89% 25%, 98% 52%, 86% 85%, 50% 100%, 12% 80%, 0% 50%, 10% 15%); }
+  100% { clip-path: polygon(50% 0%, 90% 20%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 10% 20%); }
+}
+
+.feeling-text {
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 18px;
+   text-align: center;  
+   font-weight: 500;
+  color: #333;
+}
+.how-to-use {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2d2d2d;
+  margin-top: 60px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards 0.8s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.how-to-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  max-width: 700px;
+  margin: 15px auto 0;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards 1.2s;
+}
+.faq-section {
+  max-width: 850px;
+  text-align: center;
+}
+
+.faq-heading {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.faq-container {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 18px 22px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #006d77;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+  padding: 0 22px;
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin: 0;
+  padding-bottom: 18px;
+}
+
+.faq-container.active .faq-answer {
+  max-height: 400px;
+  opacity: 1;
+  padding-top: 10px;
+}
+
+.faq-container.active .arrow {
+  transform: rotate(180deg);
+}
+
+  h2 {
+    font-size: 2rem;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 40px 80px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    width: 320px;
+    text-align: left;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 18px 22px 25px;
+  }
+
+  .card-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .card {
+      width: 90%;
+    }
+  }
+
+   footer{
+        margin-top: 0;
+        background-color: #38B2AC;
+        color: white;
+        position: relative;
+        padding-top:50px;
+        bottom: 0;
+         margin-top: 80px;
+         width: 100%;
+    }
+   
+    .footer-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        padding: 0 12% 10px;
+    }
+    .footer-col h3{
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+        color: #d4fff2;
+    }
+    .footer-col a, .footer-col p {
+      font-size:0.95rem;
+      color:#f0f0f0;
+      text-decoration:none;
+      margin:6px 0;
+      display:block;
+      transition:0.3s;
+    }
+
+.footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+    .footer-bottom{
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.3);
+        padding: 20px;
+        font-size: 0.9rem;
+        color: #eee;
+    }
