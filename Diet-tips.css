@@ -296,7 +296,10 @@
       display:block;
       transition:0.3s;
     }
-
+    .footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
 
     .footer-bottom{
         text-align: center;

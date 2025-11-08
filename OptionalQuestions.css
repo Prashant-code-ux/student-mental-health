@@ -460,11 +460,11 @@
       display: block;
       transition: 0.3s;
     }
-
-    .footer-col a:hover {
-      color: #d4fff2;
-    }
-
+.footer-col a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+   
     .footer-bottom {
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.3);

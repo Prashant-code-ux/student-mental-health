@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Interactive Feeling Wheel</title>
+  <link rel="icon"  href="Home.png">
+<link rel="stylesheet" href="FeelingWheel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+     <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+<div class="title">
+  <span class="title-bold">Online Interactive Feeling Wheel</span><br>
+  <span class="title-small">Stuck with the question: “How am I feeling?”<br>
+  This is a simple tool to help you explore and build awareness about your feelings in this moment.</span>
+</div>
+
+
+<div class="container-box">
+     <div class="feeling-heading">I'm Feeling _______</div>
+<div id="main-container"></div>
+<div class="instruction" id="instruction">
+  Click on any of the feeling blobs above, to find the words that can most closely express how you are feeling right now.
+</div>
+
+<div class="result" id="result"></div>
+</div>
+<h2 class="how-to-use">How To Use The Resource</h2>
+<p class="how-to-text">
+  There is no right or wrong way to use this resource. We encourage you to personalize it for your needs and what you find most helpful or accessible.
+</p>
+
+<!-- 🌼 FAQ SECTION START -->
+<div class="faq-section">
+  <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      1. What is the Feeling Wheel on Moodify?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        The Feeling Wheel on <strong>Moodify</strong> is an interactive tool that helps you recognize and express your emotions. 
+        It begins with broad feelings and gently guides you toward more specific emotions, allowing you to better understand what you’re truly feeling in the moment.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      2. How does the Feeling Wheel enhance emotional understanding?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Moodify’s Feeling Wheel encourages reflection and emotional awareness. 
+        By exploring different layers of emotions, you begin to notice subtle feelings and patterns that often go unnoticed. 
+        This deeper understanding can improve emotional communication, self-awareness, and inner balance.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      3. Is the Feeling Wheel suitable for everyone?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Yes, the Feeling Wheel is designed for everyone — no matter your age or background. 
+        It’s a simple, gentle guide that can support anyone who wishes to understand their emotions better, whether for self-care, journaling, or personal growth.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      4. How do I use the Feeling Wheel?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Using the Feeling Wheel is simple. Start by clicking on a main feeling that best describes your current state. 
+        Then, explore the next set of emotions that appear, going deeper until you find the word that fits how you feel most closely. 
+        There’s no rush — take your time and let your emotions unfold naturally.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq-container">
+    <button class="faq-question">
+      5. Will the Feeling Wheel make me feel relaxed and calm?
+      <span class="arrow">&#9662;</span>
+    </button>
+    <div class="faq-answer">
+      <p>
+        Many users find that Moodify’s Feeling Wheel helps them feel more centered and calm. 
+        By naming your feelings, you create emotional clarity and self-acceptance. 
+        While it may not instantly remove stress, it offers a gentle moment of mindfulness and reflection — which often leads to calmness.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- 🌼 FAQ SECTION END -->
+
+  <h2>Other Exercises</h2>
+
+  <div class="card-container">
+
+    <a href="#" class="card">
+      <img src="images/fruits.jpg" alt="Progressive Muscle Relaxation">
+      <div class="card-content">
+        <h3>Online Progressive Muscle Relaxation (PMR) Exercise</h3>
+        <p>Reduce physical tension and mental stress with this guided relaxation technique.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card">
+      <img src="https://images.unsplash.com/photo-1604881980749-08e9d408b882" alt="Circle of Influence CBT Grounding Exercise">
+      <div class="card-content">
+        <h3>Circle of Influence CBT Grounding Exercise</h3>
+        <p>Learn to focus your energy effectively by understanding what you can control and influence.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card">
+      <img src="https://images.unsplash.com/photo-1616627454381-c9b9ccdc57c4" alt="Box Breathing Exercise">
+      <div class="card-content">
+        <h3>Online Box Breathing Exercise</h3>
+        <p>A simple breathing exercise to find your calm, at a pace that's personal to you.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card">
+      <img src="https://images.unsplash.com/photo-1617196034796-73b3c5ec5f4d" alt="Gratitude Reflection">
+      <div class="card-content">
+        <h3>Gratitude Reflection Exercise</h3>
+        <p>Focus on moments of gratitude to shift your attention toward positivity and balance.</p>
+      </div>
+    </a>
+
+  </div>
+  
+   <!-- footer -->
+  <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="homePage.html" target="_blank">Home</a>
+          <a href="About.html" target="_blank">About</a>
+          <a href="Learn.html" target="_blank">Learn about mental health</a>
+        </div>
+        <div class="footer-col">
+          <h3>Resources</h3>
+          <a href="#">Blog</a>
+           <a href="#">Self-Care Tips</a>
+            <a href="#">Mental Health Guides</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p>Email:support2moodify.com</p>
+          <p>Phone: +91-1234567899</p>
+        </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Made with 💚 to support your mental health journey.</p>
+        </div>
+      
+    </footer>
+
+<script>
+const feelingsStep1 = ["Bad", "Fearful", "Angry", "Sad", "Happy", "Surprised"];
+const feelingsStep2 = {
+  "Bad": ["Frustrated", "Unwell", "Tired"],
+  "Fearful": ["Anxious", "Nervous", "Worried"],
+  "Angry": ["Annoyed", "Irritated", "Resentful"],
+  "Sad": ["Lonely", "Disappointed", "Hopeless"],
+  "Happy": ["Joyful", "Excited", "Content"],
+  "Surprised": ["Shocked", "Amazed", "Confused"]
+};
+const feelingsStep3 = {
+  "Frustrated": ["Need a break", "Talk to someone"],
+  "Unwell": ["Rest", "See a doctor"],
+  "Tired": ["Sleep", "Relax"],
+  "Anxious": ["Meditate", "Breathe"],
+  "Nervous": ["Prepare more", "Seek support"],
+  "Worried": ["Write it down", "Talk to someone"],
+  "Annoyed": ["Take a walk", "Listen to music"],
+  "Irritated": ["Deep breath", "Step back"],
+  "Resentful": ["Reflect", "Express feelings"],
+  "Lonely": ["Call a friend", "Join a group"],
+  "Disappointed": ["Journal", "Accept & move on"],
+  "Hopeless": ["Seek help", "Practice gratitude"],
+  "Joyful": ["Share happiness", "Celebrate"],
+  "Excited": ["Plan activity", "Express creatively"],
+  "Content": ["Relax", "Reflect positively"],
+  "Shocked": ["Process quietly", "Talk it out"],
+  "Amazed": ["Share experience", "Explore more"],
+  "Confused": ["Clarify", "Ask questions"]
+};
+
+const mainContainer = document.getElementById('main-container');
+const resultDiv = document.getElementById('result');
+const feelingHeading = document.querySelector('.feeling-heading');
+
+// Generate bright pastel color
+function randomColor() {
+  const r = Math.floor(Math.random() * 156 + 100);
+  const g = Math.floor(Math.random() * 156 + 100);
+  const b = Math.floor(Math.random() * 156 + 100);
+  return `rgb(${r},${g},${b})`;
+}
+
+// Create boxes for a given step
+function createBoxes(items, step, parentBox = mainContainer) {
+  // Remove only boxes from the same step
+  const existing = parentBox.querySelector(`.box-container[data-step="${step}"]`);
+  if (existing) existing.remove();
+
+  const boxContainer = document.createElement('div');
+  boxContainer.classList.add('box-container');
+  boxContainer.dataset.step = step;
+  boxContainer.style.opacity = 0;
+  boxContainer.style.transition = "opacity 0.4s ease";
+
+  items.forEach(item => {
+    const box = document.createElement('div');
+    box.classList.add('feeling-box');
+
+    const blob = document.createElement('div');
+    blob.classList.add('blob');
+    blob.style.background = randomColor();
+    box.appendChild(blob);
+
+    const text = document.createElement('div');
+    text.classList.add('feeling-text');
+    text.textContent = item;
+    box.appendChild(text);
+
+    box.addEventListener('click', () => {
+      // 🟢 Update the heading only with the final clicked item
+      feelingHeading.textContent = "I'm Feeling " + item;
+
+      if (step === 1) {
+        createBoxes(feelingsStep2[item], 2, parentBox);
+        const step3 = parentBox.querySelector(`.box-container[data-step="3"]`);
+        if (step3) step3.remove();
+      } 
+      else if (step === 2) {
+        createBoxes(feelingsStep3[item], 3, parentBox);
+      } 
+      else if (step === 3) {
+        saveFeeling(item);
+
+        const containerBox = document.querySelector('.container-box');
+        const previousThankYou = containerBox.querySelector('.thank-you');
+        if (previousThankYou) previousThankYou.remove();
+
+        const thankYou = document.createElement('div');
+        thankYou.classList.add('title-small', 'thank-you');
+        thankYou.style.marginTop = "15px";
+        thankYou.style.fontSize = "16px";
+        thankYou.style.textAlign = "center";
+        thankYou.textContent = "Thank you for sharing your feeling!";
+        containerBox.appendChild(thankYou);
+      }
+    });
+
+    boxContainer.appendChild(box);
+  });
+
+  parentBox.appendChild(boxContainer);
+
+  // Fade-in effect
+  requestAnimationFrame(() => {
+    boxContainer.style.opacity = 1;
+  });
+}
+
+function saveFeeling(feeling) {
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const dateStr = now.toLocaleDateString('en-US', options);
+  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  const message = `You can make a note, that 'On ${dateStr} at ${timeStr}, I felt ${feeling}'.`;
+  resultDiv.textContent = message;
+}
+
+// Initialize
+createBoxes(feelingsStep1, 1);
+
+// Show the instruction message with smooth fade-up when page loads
+window.addEventListener("load", () => {
+  const instruction = document.getElementById("instruction");
+  if (!instruction) return;
+  setTimeout(() => instruction.classList.add("show"), 300);
+});
+
+// Hide instruction smoothly when any feeling box is clicked
+// Attach to mainContainer (more precise) and use closest() to detect clicks anywhere inside a box
+mainContainer.addEventListener("click", (e) => {
+  // if click happened inside a .feeling-box (text, blob or box itself)
+  if (e.target.closest(".feeling-box")) {
+    const instruction = document.getElementById("instruction");
+    if (instruction && !instruction.classList.contains("hide")) {
+      instruction.classList.add("hide");
+      // remove element from DOM after the CSS transition completes
+      setTimeout(() => {
+        if (instruction.parentNode) instruction.parentNode.removeChild(instruction);
+      }, 800);
+    }
+  }
+});
+
+document.querySelectorAll(".faq-question").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const container = btn.parentElement;
+    container.classList.toggle("active");
+  });
+});
+  const accordions = document.querySelectorAll('.accordion');
+  accordions.forEach(acc => {
+    acc.addEventListener('click', () => {
+      acc.classList.toggle('active');
+      const sign = acc.querySelector('span');
+      sign.textContent = acc.classList.contains('active') ? '-' : '+';
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const loginLink = loginDiv.querySelector("a");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+
+  if (userLoggedIn && username) {
+    // Create new HTML for logged-in state
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+
+</script>
+
+
+</body>
+</html>
