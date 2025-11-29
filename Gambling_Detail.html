@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gambling Addiction - Moodify</title>
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="Details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="logo">🌱 Moodify</div>
+  <nav>
+    <a href="homePage.html" target="_blank">Home</a>
+    <a href="About.html" target="_blank">About</a>
+    <a href="Learn.html" target="_blank">Learn about mental health</a>
+  </nav>
+  <div class="right-section">
+    <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+    <div class="menu-toggle">&#9776;</div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Gambling Addiction</h1>
+  <p>Recognize the signs, understand the risks, and discover ways to regain control</p>
+</section>
+
+<!-- Article Section -->
+<section class="article">
+  <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1200&q=80" alt="Gambling Addiction Awareness">
+
+  <h2>What Is Gambling Addiction?</h2>
+  <p>
+    Gambling addiction, also known as <strong>compulsive gambling</strong> or <strong>gambling disorder</strong>, 
+    is the uncontrollable urge to keep gambling despite the negative impact it has on your life. 
+    It’s a behavioral addiction that can affect mental health, relationships, and financial stability.
+  </p>
+
+  <h2>How Gambling Affects Mental Health</h2>
+  <p>
+    While gambling may begin as a form of entertainment, it can quickly lead to emotional distress, anxiety, and depression. 
+    People often chase losses or gamble to escape stress, leading to a destructive cycle that’s hard to break.
+  </p>
+
+  <h2>Common Signs and Symptoms</h2>
+  <ul>
+    <li>Spending more money or time on gambling than planned</li>
+    <li>Lying to family or friends about gambling habits</li>
+    <li>Borrowing money or selling belongings to gamble</li>
+    <li>Feeling restless or irritable when trying to cut down</li>
+    <li>Gambling to escape problems or emotional pain</li>
+    <li>Neglecting work, studies, or relationships</li>
+    <li>Trying repeatedly (and failing) to stop gambling</li>
+  </ul>
+
+  <h2>Causes and Risk Factors</h2>
+  <ul>
+    <li>Stress, anxiety, or depression</li>
+    <li>Financial problems or desire for quick money</li>
+    <li>Family history of addiction</li>
+    <li>Loneliness or social isolation</li>
+    <li>Exposure to gambling environments or online betting apps</li>
+  </ul>
+
+  <h2>Effects of Gambling Addiction</h2>
+  <p>
+    Uncontrolled gambling can lead to serious financial debt, strained relationships, legal troubles, 
+    and emotional burnout. It can also trigger co-occurring mental health issues like depression or substance abuse.
+  </p>
+
+  <h2>Steps Toward Recovery</h2>
+  <p>
+    Recovery from gambling addiction is possible. The first step is recognizing the problem and seeking help. 
+    Here are some practical ways to begin healing:
+  </p>
+  <ul>
+    <li><strong>Reach Out for Support:</strong> Talk to trusted friends, family, or a counselor.</li>
+    <li><strong>Join Support Groups:</strong> Programs like Gamblers Anonymous offer peer guidance and encouragement.</li>
+    <li><strong>Limit Access:</strong> Avoid online gambling platforms and betting triggers.</li>
+    <li><strong>Therapy:</strong> Cognitive Behavioral Therapy (CBT) helps manage urges and change thought patterns.</li>
+    <li><strong>Self-Care:</strong> Exercise, mindfulness, and new hobbies can reduce stress and cravings.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <strong>Important:</strong> If gambling is affecting your mental health, finances, or relationships, 
+    professional help is available. Seeking support is a sign of strength — not weakness.
+  </div>
+
+  <a href="Gambling_Addiction_Test.html" class="btn">Take a Gambling Addiction Self-Assessment</a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <a href="#">Blog</a>
+      <a href="#">Self-Care Tips</a>
+      <a href="#">Mental Health Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Email: support2moodify.com</p>
+      <p>Phone: +91-1234567899</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Made with 💚 to help individuals regain control and live addiction-free.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+  if (userLoggedIn && username) {
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>

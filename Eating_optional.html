@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="OptionalQuestions.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <title> Optional Questions</title>
+</head>
+<body>
+  <!-- existing HTML content unchanged -->
+
+   <header>
+    <div class="logo">🌱 Moodify</div>
+    <nav>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </nav>
+    <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+  <section class="hero-section">
+  <div class="hero-content">
+    <h1>Eating Disorder Test</h1>
+    <p class="hero-quote">
+      “You are not alone — understanding how you feel is the first step to healing.”
+    </p>
+    <p class="hero-subtext">
+      This short test helps you reflect on your emotions and get a clearer picture of your mental state.
+    </p>
+    <a href="#testStart" class="hero-btn">Start Test</a>
+  </div>
+</section>
+<span id="testStart"></span>
+
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="step active">
+        <div class="circle"></div>
+        <p>Test Question</p>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="step">
+        <div class="circle"></div>
+        <p>Optional Question</p>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="step">
+        <div class="circle"></div>
+        <p>Your Result</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text">
+    <p><b>Optional Questions:</b> These questions are for your general knowledge and awareness. 
+    You may answer as many as you like — none are compulsory.</p>
+    <div class="note">
+      <p>Note: Your responses here will not affect your test score.</p>
+    </div>
+  </div>
+
+  <!-- Main Optional Questions -->
+  <div class="form-container">
+  <form id="optionalForm">
+
+    <div class="question">
+      <label>1. How have you been feeling emotionally lately?</label>
+      <div class="options">
+        <input type="radio" id="calm" name="emotion"><label for="calm">Calm</label>
+        <input type="radio" id="anxious" name="emotion"><label for="anxious">Anxious</label>
+        <input type="radio" id="sad" name="emotion"><label for="sad">Sad</label>
+        <input type="radio" id="motivated" name="emotion"><label for="motivated">Motivated</label>
+        <input type="radio" id="tired" name="emotion"><label for="tired">Tired</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>2. How often do you take breaks to relax or unwind during the day?</label>
+      <div class="options">
+        <input type="radio" id="regularly" name="break"><label for="regularly">Regularly</label>
+        <input type="radio" id="sometimes" name="break"><label for="sometimes">Sometimes</label>
+        <input type="radio" id="rarely" name="break"><label for="rarely">Rarely</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>3. How would you describe your energy levels most days?</label>
+      <div class="options">
+        <input type="radio" id="high" name="energy"><label for="high">High</label>
+        <input type="radio" id="moderate" name="energy"><label for="moderate">Moderate</label>
+        <input type="radio" id="low" name="energy"><label for="low">Low</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>4. How many hours of sleep do you get per night on average?</label>
+      <input type="text" placeholder="e.g., 6–7 hours">
+    </div>
+
+    <div class="question">
+      <label>5. What are some things that make you feel relaxed or at peace?</label>
+      <input type="text" placeholder="e.g., listening to music, being with friends, nature...">
+    </div>
+
+    <div class="question">
+      <label>6. Do you feel you have someone you can talk to when things get tough?</label>
+      <div class="options">
+        <input type="radio" id="talk_yes" name="talk"><label for="talk_yes">Yes</label>
+        <input type="radio" id="talk_sometimes" name="talk"><label for="talk_sometimes">Sometimes</label>
+        <input type="radio" id="talk_no" name="talk"><label for="talk_no">No</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>7. On a scale of 1–10, how would you rate your overall mental well-being today?</label>
+      <input type="range" min="1" max="10" value="5" id="rating">
+      <p>Your rating: <span id="ratingValue">5</span>/10</p>
+    </div>
+
+    <div class="question">
+      <label>8. Age:</label>
+      <input type="text" name="age" placeholder="e.g., 25">
+    </div>
+
+    <div class="question">
+      <label>9. Gender:</label>
+      <div class="options">
+        <input type="radio" id="male" name="gender"><label for="male">Male</label>
+        <input type="radio" id="female" name="gender"><label for="female">Female</label>
+        <input type="radio" id="other" name="gender"><label for="other">Other / Prefer not to say</label>
+      </div>
+    </div>
+
+  </div>
+  <div class="button_next button_next2 ">
+    <div class="previous-btn"><a href="Eating_Disorder_Test.html" id="prevBtn"><i class="fa-solid fa-arrow-left"></i> PREVIOUS</a></div>
+    <div class="result-btn"><a href="Eating_result.html" id="nextBtn">VIEW RESULT <i class="fa-solid fa-arrow-right"></i></a></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="homePage.html" target="_blank">Home</a>
+        <a href="About.html" target="_blank">About</a>
+        <a href="">Wellness tools</a>
+        <a href="Learn.html" target="_blank">Learn about mental health</a>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <a href="#">Blog</a>
+        <a href="#">Self-Care Tips</a>
+        <a href="#">Mental Health Guides</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: support2moodify.com</p>
+        <p>Phone: +91-1234567899</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Made with 💚 to support your mental health journey.</p>
+    </div>
+  </footer>
+
+  <script>
+    const optionScores = {
+      "Never": 0,
+      "Sometimes": 1,
+      "Often": 2,
+      "Always": 3
+    };
+
+    let answers = Array.from(document.querySelectorAll(".question")).map(() => null);
+
+    document.querySelectorAll(".question").forEach((questionEl, qIndex) => {
+      const buttons = questionEl.querySelectorAll("button");
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          buttons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const score = optionScores[btn.textContent.trim()] ?? null;
+          answers[qIndex] = score;
+        });
+      });
+    });
+
+   // document.getElementById("nextBtn").addEventListener("click", () => {
+     // localStorage.setItem("optionalAnswers", JSON.stringify(answers));
+     // const steps = document.querySelectorAll(".step");
+     // if (steps[1]) steps[1].classList.add("completed");
+     // if (steps[2]) steps[2].classList.add("active");
+   // });
+
+    // Mark first step as completed and second as active when the page loads
+window.addEventListener("DOMContentLoaded", () => {
+  const steps = document.querySelectorAll(".step");
+  if (steps[0]) steps[0].classList.add("completed"); // tick mark on first
+  if (steps[1]) steps[1].classList.add("active"); // highlight second
+});
+
+// Update range value dynamically
+const ratingSlider = document.getElementById("rating");
+const ratingValue = document.getElementById("ratingValue");
+
+ratingSlider.addEventListener("input", () => {
+  ratingValue.textContent = ratingSlider.value;
+});
+
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+
+ document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+        document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const loginLink = loginDiv.querySelector("a");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+
+  if (userLoggedIn && username) {
+    // Create new HTML for logged-in state
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+
+
+  </script>
+</body>
+</html>

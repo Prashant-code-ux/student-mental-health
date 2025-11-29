@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gambling Addiction Test Result</title>
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="ResultPage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<header>
+  <div class="logo">🎯 Moodify</div>
+  <nav>
+    <a href="homePage.html" target="_blank">Home</a>
+    <a href="About.html" target="_blank">About</a>
+    <a href="Learn.html" target="_blank">Learn about mental health</a>
+  </nav>
+  <div class="right-section">
+      <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+      <div class="menu-toggle">&#9776;</div>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Your Gambling Addiction Test Result</h1>
+    <p class="hero-quote">
+      “Acknowledging the problem is the first step to taking back control.”
+    </p>
+    <p class="hero-subtext">
+      This result helps you reflect on your gambling habits and whether they may be impacting your life or relationships.
+    </p>
+  </div>
+</section>
+
+<div class="progress-container">
+  <div class="progress-bar">
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Test Question</p>
+    </div>
+    <div class="line"></div>
+    <div class="step completed">
+      <div class="circle"></div>
+      <p>Optional Question</p>
+    </div>
+    <div class="line"></div>
+    <div class="step completed active">
+      <div class="circle"></div>
+      <p>Your Result</p>
+    </div>
+  </div>
+</div>
+
+<div class="text">
+  <h2 id="finalScore"></h2>
+</div>
+
+<div class="question" id="answersSection"></div>
+
+<div class="button_next">
+  <div class="another-test"><a href="HealthTest.html">Take Another Test</a></div>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="">Wellness tools</a>
+      <a href="ContactForm.html" target="_blank">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <a href="#">Blog</a>
+      <a href="#">Self-Care Tips</a>
+      <a href="#">Mental Health Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Email: support2moodify.com</p>
+      <p>Phone: +91-1234567899</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Made with 💚 to support your mental health journey.</p>
+  </div>
+</footer>
+
+<!-- ✅ Load saveTest.js first -->
+<script src="saveTest.js"></script>
+
+<!-- ✅ Then main script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const gamblingAnswers = JSON.parse(localStorage.getItem("gamblingAnswers")) || [];
+  const optionalAnswers = JSON.parse(localStorage.getItem("optionalAnswers")) || [];
+
+  const testQuestions = [
+    "Have you bet more money than you could afford to lose?",
+    "Have you needed to gamble with larger amounts of money to get the same excitement?",
+    "After losing money gambling, have you gone back another day to try to win it back?",
+    "Have you borrowed money or sold anything to get money to gamble?",
+    "Have you felt that you might have a problem with gambling?",
+    "Has gambling caused you any health problems, including stress or anxiety?",
+    "Have people criticized your betting or told you that you have a gambling problem?",
+    "Has your gambling caused any financial problems for you or your household?",
+    "Have you felt guilty about the way you gamble or what happens when you gamble?"
+  ];
+
+  const optionLabels = ["NEVER","SOMETIMES","MOST OF THE TIME","ALMOST ALWAYS"];
+  const optionalLabels = ["Never","Sometimes","Often","Always"];
+
+  const totalScore = gamblingAnswers.reduce((a,b)=>a+(b!==null?b:0),0);
+
+  let interpretation = "";
+  let color = "";
+
+  if (totalScore <= 2) {
+    interpretation = "No Gambling Problem Detected";
+    color = "#38B2AC";
+  } else if (totalScore <= 5) {
+    interpretation = "Low Risk — Some Risky Gambling Behavior";
+    color = "#4DBD84";
+  } else if (totalScore <= 8) {
+    interpretation = "Moderate Risk — Gambling May Be Causing Some Issues";
+    color = "#F6C23E";
+  } else if (totalScore <= 12) {
+    interpretation = "High Risk — Possible Problem Gambling";
+    color = "#F58042";
+  } else {
+    interpretation = "Severe Gambling Problem — Professional Help Strongly Advised";
+    color = "#CC0000";
+  }
+
+  document.getElementById("finalScore").innerHTML = 
+    `Your Total Score: <b>${totalScore}</b><br><span style="color:${color};">${interpretation}</span>`;
+
+  const answersDiv = document.getElementById("answersSection");
+  let html = "<h3>Your Answers:</h3><ul style='text-align:left'>";
+  gamblingAnswers.forEach((ans, i) => {
+    const ansText = ans !== null ? optionLabels[ans] : "Not answered";
+    html += `<li><b>Q${i+1}:</b> ${testQuestions[i]} <br> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+  });
+  optionalAnswers.forEach((ans, i) => {
+    if(ans !== null){
+      const ansText = optionalLabels[ans] || "Not answered";
+      html += `<li><b>Optional Question ${i+1}:</b> <span style="color:#009688">Your Answer: ${ansText}</span></li><br>`;
+    }
+  });
+  html += "</ul>";
+  answersDiv.innerHTML = html;
+
+  saveTestResult("Gambling Addiction Test", totalScore, interpretation);
+});
+
+// ✅ Menu toggle
+document.querySelector(".menu-toggle").addEventListener("click", () => 
+  document.querySelector("nav").classList.toggle("show")
+);
+
+// ✅ User login display logic
+document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+  if (userLoggedIn && username) {
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+</script>
+</body>
+</html>

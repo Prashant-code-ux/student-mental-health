@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Daily Mood Tracker</title>
-  <link rel="stylesheet" href="MoodTracker.css">
-  <link rel="icon"  href="Home.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="MoodTracker.css"> -->
+   <link rel="stylesheet" href="MoodTracker.css">
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
 </head>
+
+   
+
 <body>
-      <header>
+  <header>
     <div class="logo">🌱 Moodify</div>
     <nav>
       <a href="homePage.html" target="_blank">Home</a>
@@ -23,134 +26,53 @@
     </div>
   </header>
 
-  <h1>📝 Daily Mood Tracker</h1>
+  <main class="mood-container">
+    <h1>📝 Daily Mood Tracker</h1>
 
-  <div class="mood-buttons">
-    <button data-mood="😄">😄</button>
-    <button data-mood="🙂">🙂</button>
-    <button data-mood="😐">😐</button>
-    <button data-mood="😔">😔</button>
-    <button data-mood="😢">😢</button>
-  </div>
-
-  <textarea id="note" rows="3" placeholder="Optional note..."></textarea>
-  <button id="save">Save Mood</button>
-
-  <div id="history">
-    <h2>📅 Mood History</h2>
-    <ul id="log"></ul>
-  </div>
-
-
-     <!-- footer -->
-  <footer>
-      <div class="footer-container">
-        <div class="footer-col">
-          <h3>Quick Links</h3>
-          <a href="homePage.html" target="_blank">Home</a>
-          <a href="About.html" target="_blank">About</a>
-          <a href="Learn.html" target="_blank">Learn about mental health</a>
-        </div>
-        <div class="footer-col">
-          <h3>Resources</h3>
-          <a href="#">Blog</a>
-           <a href="#">Self-Care Tips</a>
-            <a href="#">Mental Health Guides</a>
-        </div>
-        <div class="footer-col">
-          <h3>Contact</h3>
-          <p>Email:support2moodify.com</p>
-          <p>Phone: +91-1234567899</p>
-        </div>
-        </div>
-        <div class="footer-bottom">
-          <p>Made with 💚 to support your mental health journey.</p>
-        </div>
-      
-    </footer>
-
-
-  <script>
-    function loadLog() {
-      const log = JSON.parse(localStorage.getItem('moodLog') || '[]');
-      const ul = document.getElementById('log');
-      ul.innerHTML = '';
-      log.forEach((entry, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <strong>${entry.date}</strong> — ${entry.mood}<br>
-          ${entry.note || ''}<br>
-          <button class="delete-btn" data-index="${index}">Delete</button>
-        `;
-        ul.appendChild(li);
-      });
-
-      document.querySelectorAll('.delete-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const index = parseInt(btn.getAttribute('data-index'));
-          deleteEntry(index);
-        });
-      });
-    }
-
-    function deleteEntry(index) {
-      const log = JSON.parse(localStorage.getItem('moodLog') || '[]');
-      log.splice(index, 1); // Remove one item at position index
-      localStorage.setItem('moodLog', JSON.stringify(log));
-      loadLog();
-    }
-
-    document.querySelectorAll('.mood-buttons button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.mood-buttons button').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      });
-    });
-
-    document.getElementById('save').addEventListener('click', () => {
-      const selectedBtn = document.querySelector('.mood-buttons .selected');
-      if (!selectedBtn) {
-        alert('Please select a mood.');
-        return;
-      }
-
-      const mood = selectedBtn.getAttribute('data-mood');
-      const note = document.getElementById('note').value;
-      const date = new Date().toLocaleString();
-
-      const log = JSON.parse(localStorage.getItem('moodLog') || '[]');
-      log.unshift({ mood, note, date });
-      localStorage.setItem('moodLog', JSON.stringify(log));
-
-      document.getElementById('note').value = '';
-      selectedBtn.classList.remove('selected');
-
-      loadLog();
-    });
-
-    loadLog();
-
-       document.addEventListener("DOMContentLoaded", () => {
-  const loginDiv = document.querySelector(".login");
-  const loginLink = loginDiv.querySelector("a");
-  const userLoggedIn = localStorage.getItem("isLoggedIn");
-  const username = localStorage.getItem("username");
-  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
-
-
-  if (userLoggedIn && username) {
-    // Create new HTML for logged-in state
-    loginDiv.innerHTML = `
-      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-        <img src="${profilePic}" alt="Profile" 
-             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
-        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+    <div class="mood-card">
+      <div class="mood-buttons">
+        <button data-mood="😄">😄</button>
+        <button data-mood="🙂">🙂</button>
+        <button data-mood="😐">😐</button>
+        <button data-mood="😔">😔</button>
+        <button data-mood="😢">😢</button>
       </div>
-    `;
-  }
-});
-  
-  </script>
 
+      <textarea id="note" rows="3" placeholder="Write something about your day..."></textarea>
+      <button id="save">Save Mood</button>
+    </div>
+
+    <div id="history">
+      <h2>📅 Mood History</h2>
+      <ul id="log"></ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="homePage.html" target="_blank">Home</a>
+        <a href="About.html" target="_blank">About</a>
+        <a href="Learn.html" target="_blank">Learn about mental health</a>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <a href="#">Blog</a>
+        <a href="#">Self-Care Tips</a>
+        <a href="#">Mental Health Guides</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <p>Email: support2moodify.com</p>
+        <p>Phone: +91-1234567899</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Made with 💚 to support your mental health journey.</p>
+    </div>
+  </footer>
+
+  <script src="MoodTracker.js"></script>
 </body>
 </html>

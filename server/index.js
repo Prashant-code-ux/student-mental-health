@@ -37,3 +37,11 @@ app.use("/api/test", testRoutes);
 
 
 
+// const otpRoutes = require("./routes/otp");
+// app.use("/api/otp", otpRoutes);
+
+
+
+
+
+

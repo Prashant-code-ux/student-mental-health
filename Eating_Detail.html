@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eating Disorders - Moodify</title>
+  <link rel="icon" href="Home.png">
+  <link rel="stylesheet" href="Details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="logo">🌱 Moodify</div>
+  <nav>
+    <a href="homePage.html" target="_blank">Home</a>
+    <a href="About.html" target="_blank">About</a>
+    <a href="Learn.html" target="_blank">Learn about mental health</a>
+  </nav>
+  <div class="right-section">
+    <div class="login"><i class="fa-solid fa-user"></i> <a href="LoginPage.html" target="_blank">Login</a></div>
+    <div class="menu-toggle">&#9776;</div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1>Eating Disorders</h1>
+  <p>Understanding causes, warning signs, and ways to seek help</p>
+</section>
+
+<!-- Article Section -->
+<section class="article">
+  <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80" alt="Eating Disorder Awareness">
+
+  <h2>What Are Eating Disorders?</h2>
+  <p>
+    Eating disorders are serious mental health conditions that involve unhealthy relationships with food, body image, and self-esteem. 
+    They can affect people of all ages, genders, and backgrounds. Recognizing the signs early and seeking help is vital for recovery.
+  </p>
+
+  <h2>Types of Eating Disorders</h2>
+  <ul>
+    <li><strong>Anorexia Nervosa:</strong> Extreme restriction of food intake, intense fear of gaining weight, and distorted body image.</li>
+    <li><strong>Bulimia Nervosa:</strong> Episodes of binge eating followed by purging behaviors like vomiting or excessive exercise.</li>
+    <li><strong>Binge-Eating Disorder (BED):</strong> Eating large amounts of food in a short time, often accompanied by guilt or loss of control.</li>
+    <li><strong>Other Specified Feeding or Eating Disorders (OSFED):</strong> Conditions that don’t meet full criteria of other disorders but still cause distress.</li>
+  </ul>
+
+  <h2>Common Causes</h2>
+  <p>Eating disorders often develop from a combination of psychological, biological, and social factors, such as:</p>
+  <ul>
+    <li>Low self-esteem or body dissatisfaction</li>
+    <li>Pressure to look a certain way (especially on social media)</li>
+    <li>Stressful life events or trauma</li>
+    <li>Family or cultural influences around food and appearance</li>
+    <li>Genetic or biological predispositions</li>
+  </ul>
+
+  <h2>Warning Signs</h2>
+  <ul>
+    <li>Preoccupation with weight, food, or dieting</li>
+    <li>Skipping meals or eating in secret</li>
+    <li>Extreme exercise routines</li>
+    <li>Significant weight changes (loss or gain)</li>
+    <li>Feeling guilt or shame after eating</li>
+    <li>Withdrawal from friends or social events involving food</li>
+  </ul>
+
+  <h2>Health Effects</h2>
+  <p>
+    If left untreated, eating disorders can lead to serious health problems like heart issues, digestive complications, weakened immunity, 
+    or even life-threatening conditions. Emotional consequences like depression and anxiety are also common.
+  </p>
+
+  <h2>Recovery and Support</h2>
+  <p>
+    Recovery is possible with the right support system and treatment plan. Early intervention is key to better outcomes.
+  </p>
+  <ul>
+    <li><strong>Therapy:</strong> Cognitive Behavioral Therapy (CBT) and family-based therapy can help change thought patterns and behaviors.</li>
+    <li><strong>Medical Support:</strong> Monitoring physical health with professional care.</li>
+    <li><strong>Nutritional Counseling:</strong> Building a balanced, healthy relationship with food.</li>
+    <li><strong>Support Groups:</strong> Sharing experiences with others who understand.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <strong>Remember:</strong> Eating disorders are not about food alone — they are about emotions, control, and self-worth. Help and recovery are always possible.
+  </div>
+
+  <a href="Eating_Disorder_Test.html" class="btn">Take an Eating Disorder Self-Assessment</a>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="homePage.html" target="_blank">Home</a>
+      <a href="About.html" target="_blank">About</a>
+      <a href="Learn.html" target="_blank">Learn about mental health</a>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <a href="#">Blog</a>
+      <a href="#">Self-Care Tips</a>
+      <a href="#">Mental Health Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>Email: support2moodify.com</p>
+      <p>Phone: +91-1234567899</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Made with 💚 to promote healthy relationships with food and body image.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+  if (userLoggedIn && username) {
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>

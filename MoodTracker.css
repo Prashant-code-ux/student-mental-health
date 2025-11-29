@@ -1,4 +1,4 @@
- *{
+*{
         margin:0;
         padding:0;
         box-sizing:border-box;
@@ -73,7 +73,7 @@
     }
     
     }
-       .user-profile img {
+     .user-profile img {
   transition: transform 0.3s ease;
 }
 .user-profile:hover img {
@@ -87,101 +87,155 @@
   text-decoration: underline;
 }
 
-    h1, h2 {
-      text-align: center;
-    }
+h1, h2 {
+  text-align: center;
+  color: #2b6b68;
+}
 
-    .mood-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+/* ---------- MAIN SECTION ---------- */
+.mood-container {
+  flex: 1;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
 
-    .mood-buttons button {
-      font-size: 2rem;
-      padding: 15px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+/* Glass-style card */
+.mood-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
 
-    .mood-buttons button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-    }
+/* ---------- MOOD BUTTONS ---------- */
+.mood-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
 
-    .mood-buttons button.selected {
-      box-shadow: 0 0 10px #007bff;
-      transform: scale(1.2);
-    }
+.mood-buttons button {
+  font-size: 30px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
 
-    .mood-buttons button[data-mood="😄"] { background: #ffea70; }
-    .mood-buttons button[data-mood="🙂"] { background: #d0f0c0; }
-    .mood-buttons button[data-mood="😐"] { background: #f5f5dc; }
-    .mood-buttons button[data-mood="😔"] { background: #ffe4e1; }
-    .mood-buttons button[data-mood="😢"] { background: #d3d3f3; }
+.mood-buttons button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
 
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      margin-bottom: 15px;
-      resize: vertical;
-    }
+.mood-buttons button.selected {
+  background: #38b3ac;
+  color: white;
+  transform: scale(1.2);
+  box-shadow: 0 0 20px #38b3acaa;
+}
 
-    button#save {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
+/* ---------- TEXTAREA ---------- */
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid #38b3ac;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+  transition: box-shadow 0.3s;
+}
 
-    button#save:hover {
-      background: #218838;
-    }
+textarea:focus {
+  box-shadow: 0 0 10px rgba(56, 179, 172, 0.3);
+}
 
-    #history {
-      margin-top: 30px;
-    }
+/* ---------- SAVE BUTTON ---------- */
+#save {
+  margin-top: 15px;
+  background: #38b3ac;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
 
-    ul#log {
-      list-style: none;
-      padding: 0;
-    }
+#save:hover {
+  background: #2b8c86;
+  transform: scale(1.05);
+}
 
-    ul#log li {
-      background: #fff;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-left: 6px solid #007bff;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+/* ---------- HISTORY ---------- */
+#history {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  backdrop-filter: blur(10px);
+}
 
-    ul#log li button.delete-btn {
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      margin-top: 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
+#log {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    ul#log li button.delete-btn:hover {
-      background: #c82333;
-    }
+#log li {
+  background: white;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
 
-     footer{
+.delete-btn {
+  background: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  cursor: pointer;
+  float: right;
+}
+
+.delete-btn:hover {
+  background: #e14b4b;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .mood-buttons button {
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  #save {
+    font-size: 14px;
+  }
+}
+
+   footer{
         margin-top: 0;
         background-color: #38B2AC;
         color: white;
@@ -209,10 +263,7 @@
       display:block;
       transition:0.3s;
     }
-   .footer-col a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
+
 
     .footer-bottom{
         text-align: center;
@@ -221,3 +272,4 @@
         font-size: 0.9rem;
         color: #eee;
     }
+
