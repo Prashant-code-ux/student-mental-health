@@ -85,22 +85,6 @@
 
   reveals.forEach(el => observer.observe(el));
 
-
-
-//     document.addEventListener("DOMContentLoaded", () => {
-//   const loginLink = document.querySelector(".login a");
-//   const userLoggedIn = localStorage.getItem("isLoggedIn");
-//   const username = localStorage.getItem("username");
-
-//   if (userLoggedIn && username) {
-//     // Replace Login link with "My Profile (username)"
-//     loginLink.textContent = `Hi, ${username} 👋`;
-//     loginLink.href = "Dashboard.html";
-//     loginLink.target = "_self"; // open in same tab
-//   }
-// });
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const loginDiv = document.querySelector(".login");
   const loginLink = loginDiv.querySelector("a");

@@ -26,10 +26,10 @@
     </div>
   </header>
 
-  <main class="mood-container">
+  <main class="mood-container reveal">
     <h1>📝 Daily Mood Tracker</h1>
 
-    <div class="mood-card">
+    <div class="mood-card reveal">
       <div class="mood-buttons">
         <button data-mood="😄">😄</button>
         <button data-mood="🙂">🙂</button>
@@ -42,7 +42,7 @@
       <button id="save">Save Mood</button>
     </div>
 
-    <div id="history">
+    <div id="history" class="reveal">
       <h2>📅 Mood History</h2>
       <ul id="log"></ul>
     </div>
@@ -73,6 +73,41 @@
     </div>
   </footer>
 
-  <script src="MoodTracker.js"></script>
+  <script>
+      document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
+     // Scroll animation effect
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target); // triggers only once
+      }
+    });
+  }, { threshold: 0.2 });
+
+  reveals.forEach(el => observer.observe(el));
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const loginDiv = document.querySelector(".login");
+  const loginLink = loginDiv.querySelector("a");
+  const userLoggedIn = localStorage.getItem("isLoggedIn");
+  const username = localStorage.getItem("username");
+  const profilePic = localStorage.getItem("userAvatar") || "profile.jpg";
+
+
+  if (userLoggedIn && username) {
+    // Create new HTML for logged-in state
+    loginDiv.innerHTML = `
+      <div class="user-profile" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+        <img src="${profilePic}" alt="Profile" 
+             style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #38b3ac;">
+        <a href="Dashboard.html" style="text-decoration:none;color:#333;">Hi, ${username} 👋</a>
+      </div>
+    `;
+  }
+});
+  </script>
 </body>
 </html>

@@ -95,6 +95,17 @@
 .image:hover {
     transform: scale(1.05);
 }
+.about-img {
+    background-image: url("Images/yoga.jpg");   /* change this */
+}
+
+.mission-img {
+    background-image: url("Images/meditation2.jpg"); /* change this */
+}
+
+.help-img {
+    background-image: url("Images/relaxation.jpg");    /* change this */
+}
 
     section .text{
         flex: 1;
