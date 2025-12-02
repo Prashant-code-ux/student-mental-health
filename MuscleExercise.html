@@ -178,6 +178,9 @@
     </footer>
 
 <script>
+localStorage.setItem("pmrDate", new Date().toLocaleDateString());
+
+
 const steps = [
   { muscle: 'Hands', action: 'Clench your fists tightly', emoji: '✊', duration: 5 },
   { muscle: 'Arms', action: 'Tense your biceps', emoji: '💪', duration: 5 },
@@ -203,6 +206,11 @@ function startStep(stepIndex) {
     progressBar.style.width = '100%';
     startBtn.style.display = 'inline-block';
     document.body.style.background = '#f0f4f8';
+
+       // Increment session
+    let session = parseInt(localStorage.getItem("pmrSession") || "0");
+    session++;
+    localStorage.setItem("pmrSession", session);
     return;
   }
 

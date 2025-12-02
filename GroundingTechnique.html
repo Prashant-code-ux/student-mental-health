@@ -188,6 +188,10 @@
       
     </footer>
 <script>
+// localStorage.setItem("groundingDate", new Date().toLocaleDateString());
+// localStorage.setItem("groundingStatus", "Completed Successfully!");
+
+
 const steps = [
     {icon: "fa-eye", text: "Look around and name 5 things you can see.", max: 5},
     {icon: "fa-hand-paper", text: "Touch and notice 4 things you can feel.", max: 4},
@@ -249,6 +253,10 @@ function nextStep() {
         answersList.appendChild(li);
     });
 }
+// ✅ Update "Last Done" text only after completing all steps
+if (currentStep > steps.length) {
+    document.getElementById("grounding-date").textContent = "Session Completed";
+}
 
  document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector("nav").classList.toggle("show"));
         document.addEventListener("DOMContentLoaded", () => {
@@ -276,6 +284,21 @@ document.querySelectorAll(".faq-question").forEach((btn) => {
     container.classList.toggle("active");
   });
 });
+
+let groundingSession = localStorage.getItem("groundingSessionCount");
+
+// If no session saved yet → start from 0
+groundingSession = groundingSession ? parseInt(groundingSession) : 0;
+
+// Increase session count by 1
+groundingSession++;
+
+// Save the updated count
+localStorage.setItem("groundingSessionCount", groundingSession);
+
+// Save the message
+localStorage.setItem("groundingStatus", `Session ${groundingSession} completed successfully!`);
+
 </script>
 
 </body>

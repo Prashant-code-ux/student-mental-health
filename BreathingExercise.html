@@ -187,6 +187,11 @@
     </footer>
 
 <script>
+//Save breathing exercise completion date
+const today = new Date().toLocaleDateString();
+localStorage.setItem("breathingDate", today);
+
+
 const circle = document.getElementById('circle');
 const text = document.getElementById('text');
 const score = document.getElementById('score');
@@ -220,6 +225,7 @@ let paused = false;
 let timer;
 let quoteIndex = 0;
 const stepSeconds = 4; // seconds for each step
+
 
 function updateUI(secondsLeft) {
   text.innerText = running ? cycle[index].action : "Click Start";
@@ -271,6 +277,9 @@ startBtn.addEventListener('click', () => {
     paused = false;
     index = 0;
     breaths = 0;
+    totalSeconds = 0; // reset timer
+    startSessionTimer(); // start counting seconds
+    // sessionStartTime = Date.now();
     startBtn.disabled = true;
     pauseBtn.disabled = false;
     runCycle();
@@ -287,6 +296,8 @@ resetBtn.addEventListener('click', () => {
   running = false;
   paused = false;
   clearTimeout(timer);
+  stopSessionTimer(); // stop counting
+  saveBreathingData(); // save time & breaths
   index = 0;
   breaths = 0;
   circle.style.transform = "scale(1)";
@@ -327,6 +338,44 @@ document.querySelectorAll(".faq-question").forEach((btn) => {
     container.classList.toggle("active");
   });
 });
+
+let totalSeconds = 0; // Track total time
+let sessionTimer; // Timer for counting seconds
+
+function startSessionTimer() {
+  sessionTimer = setInterval(() => {
+    totalSeconds++;
+  }, 1000);
+}
+
+function stopSessionTimer() {
+  clearInterval(sessionTimer);
+}
+
+// Save breathing session data
+function saveBreathingData() {
+  const today = new Date().toLocaleDateString();
+  localStorage.setItem("breathingDate", today);
+  localStorage.setItem("breathsTaken", breaths);
+  localStorage.setItem("breathingTime", totalSeconds); // Save total time in seconds
+}
+
+function saveBreathingSession() {
+  const userId = localStorage.getItem("userId");
+
+  fetch("http://localhost:3000/api/exercise/breathing", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: userId,
+      breaths: breaths,
+      timeTaken: totalSeconds // calculate total time in seconds
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log("Saved:", data))
+  .catch(err => console.error("Error:", err));
+}
 
 
 </script>

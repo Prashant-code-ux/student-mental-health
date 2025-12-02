@@ -178,6 +178,7 @@
     </footer>
 
 <script>
+
 const feelingsStep1 = ["Bad", "Fearful", "Angry", "Sad", "Happy", "Surprised"];
 const feelingsStep2 = {
   "Bad": ["Frustrated", "Unwell", "Tired"],
@@ -261,6 +262,7 @@ function createBoxes(items, step, parentBox = mainContainer) {
       else if (step === 3) {
         saveFeeling(item);
 
+
         const containerBox = document.querySelector('.container-box');
         const previousThankYou = containerBox.querySelector('.thank-you');
         if (previousThankYou) previousThankYou.remove();
@@ -274,6 +276,8 @@ function createBoxes(items, step, parentBox = mainContainer) {
         containerBox.appendChild(thankYou);
       }
     });
+   
+
 
     boxContainer.appendChild(box);
   });
@@ -287,13 +291,19 @@ function createBoxes(items, step, parentBox = mainContainer) {
 }
 
 function saveFeeling(feeling) {
-  const now = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const dateStr = now.toLocaleDateString('en-US', options);
-  const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-  const message = `You can make a note, that 'On ${dateStr} at ${timeStr}, I felt ${feeling}'.`;
+  const username = localStorage.getItem("username") || "User";
+  
+  // Save feeling for dashboard or later display
+  localStorage.setItem("feelingMood", feeling);
+
+  // Save a message with username
+  const message = `${username} felt "${feeling}"`;
+  localStorage.setItem("feelingMessage", message);
+
+  // Show it on the page immediately
   resultDiv.textContent = message;
 }
+
 
 // Initialize
 createBoxes(feelingsStep1, 1);
@@ -356,8 +366,7 @@ document.querySelectorAll(".faq-question").forEach((btn) => {
   }
 });
 
+
 </script>
-
-
 </body>
 </html>

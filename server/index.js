@@ -1,9 +1,11 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const routes = require("./routes/route");
 const connectDB = require("./connectDB/ConnectDb");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+
 
 connectDB();
 
@@ -36,12 +38,7 @@ const testRoutes = require("./routes/TestRoute");
 app.use("/api/test", testRoutes);
 
 
-
-// const otpRoutes = require("./routes/otp");
-// app.use("/api/otp", otpRoutes);
-
-
-
-
-
+const exerciseRoutes = require("./routes/Exercise");
+// Routes
+app.use("/api/exercise", exerciseRoutes);
 

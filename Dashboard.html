@@ -62,19 +62,6 @@
 
 
 <input type="file" id="upload-photo" accept="image/*" style="display:none">
-
-
-<!-- Crop Modal -->
-<!-- <div id="crop-modal" class="profile-modal">
-  <div class="profile-modal-content" id="crop-content">
-    <h3>Crop Your Profile Photo</h3>
-    <img id="crop-image" style="max-width:100%; display:block; margin:auto; border-radius:10px;">
-    <div style="margin-top:15px;">
-      <button id="save-crop">Save</button>
-      <button id="cancel-crop">Cancel</button>
-    </div>
-  </div>
-</div> -->
 <!-- Avatar Selection Modal -->
 <div id="avatar-select-modal" class="profile-modal">
   <div class="profile-modal-content">
@@ -146,6 +133,53 @@
 </table>
 </section>
 
+<section class="exercise-section">
+  <h2>Your Exercises</h2>
+
+  <div class="exercise-grid">
+
+    <!-- Breathing -->
+    <div class="exercise-box">
+      <h3>Breathing Exercise</h3>
+      <span class="type physical">Physical</span>
+      <p>Last Done: <span id="breathing-date">Not done yet</span></p>
+      <p>Time Taken: <span id="breathing-time">0</span> sec</p>
+  <p>Total Breaths: <span id="breathing-breaths">0</span></p>
+    </div>
+
+    <!-- Grounding -->
+    <div class="exercise-box">
+      <h3>Grounding Exercise</h3>
+      <span class="type physical">Physical</span>
+      <p>Last Done: <span id="grounding-date">Not done yet</span></p>
+      <p id="grounding-status" style="color: #2e8b57; font-weight: 600;"></p>
+
+      <!-- <a href="GroundingTechnique.html"><button id="grounding-btn">Start</button></a> -->
+    </div>
+
+    <!-- Feeling Wheel -->
+    <div class="exercise-box">
+      <h3>Interactive Feeling Wheel</h3>
+      <span class="type mental">Mental</span>
+      <p>Last Done: <span id="feeling-date">Not done yet</span></p>
+       <p id="feeling-date"></p>
+
+      <!-- <a href="FeelingWheel.html"><button id="feeling-btn">Start</button></a> -->
+    </div>
+
+    <!-- PM Exercise -->
+    <div class="exercise-box">
+      <h3>PMR Exercise</h3>
+      <span class="type mental">Mental</span>
+      <p>Last Done: <span id="pmr-date">Not done yet</span></p>
+       <p id="pmr-session-msg" style="color:#2e8b57; font-weight:600;"></p>
+     <!-- <a href="MuscleExercise.html"> <button id="pmr-btn">Start</button></a> -->
+    </div>
+
+  </div>
+</section>
+
+
 <!-- Motivational Quote -->
 <section class="quote">
 <h2>Daily Motivation</h2>
@@ -200,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("username");
   const userId = localStorage.getItem("userId");
 
-  // 🧱 Redirect if not logged in
+  //  Redirect if not logged in
   if (!userId || !username) {
     alert("⚠ Please log in to view your dashboard.");
     window.location.href = "LoginPage.html";
@@ -210,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Show username in the greeting
   document.querySelectorAll("#username").forEach(el => el.textContent = username);
 
-  // 🧱 Fetch test data from backend
+  //  Fetch test data from backend
   const tableBody = document.getElementById("test-history");
   const testsCount = document.getElementById("tests-count");
   const lastActivity = document.getElementById("last-activity");
@@ -230,10 +264,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 🧠 Sort by date (latest first)
+      //  Sort by date (latest first)
       const sortedTests = data.tests.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      // 🧾 Fill test table
+      //  Fill test table
       sortedTests.forEach(t => {
         const date = new Date(t.date).toLocaleDateString();
         const row = `
@@ -249,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBody.innerHTML += row;
       });
 
-      // 🧩 Update summary cards
+      //  Update summary cards
       testsCount.innerText = sortedTests.length;
       lastActivity.innerText = new Date(sortedTests[0].date).toLocaleDateString();
     })
@@ -264,12 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "homePage.html";
   });
 });
-
-// 🧠 Function to view test details (optional)
-// function viewTest(name, score, result, date) {
-//   alert(`🧠 ${name}\nScore: ${score}\nResult: ${result}\nDate: ${date}`);
-// }
-
 // 🧠 Function to view test details (popup modal)
 function viewTest(name, score, result, date) {
   document.getElementById("modal-test-name").textContent = name;
@@ -291,10 +319,7 @@ window.addEventListener("click", (e) => {
     modal.style.display = "none";
   }
 });
-
-
-
-// 🧭 Profile Dropdown Logic
+//  Profile Dropdown Logic
 const profilePic = document.getElementById("profile-pic");
 const profileDropdown = document.getElementById("profile-dropdown");
 const uploadOption = document.getElementById("upload-photo-option");
@@ -344,20 +369,11 @@ window.addEventListener("click", (event) => {
   }
 });
 
-
-//Upload photo option
-// uploadOption.addEventListener("click", () => {
-//   uploadInput.click();
-//   profileDropdown.style.display = "none";
-// });
-// Edit Profile (Avatar Selection)
 uploadOption.addEventListener("click", () => {
   avatarModal.style.display = "flex";
   profileDropdown.style.display = "none";
 });
-
-
-// 🧸 Avatar Selection Logic
+// Avatar Selection Logic
 const avatarModal = document.getElementById("avatar-select-modal");
 const avatarOptions = document.querySelectorAll(".avatar-option");
 const saveAvatarBtn = document.getElementById("save-avatar");
@@ -391,47 +407,50 @@ cancelAvatarBtn.addEventListener("click", () => {
 window.addEventListener("DOMContentLoaded", () => {
   const savedAvatar = localStorage.getItem("userAvatar");
   if (savedAvatar) profilePic.src = savedAvatar;
-});
+}); 
+
+const exerciseData = JSON.parse(localStorage.getItem("boxBreathingData")) || {};
+
+// Load exercise dates from localStorage
+document.getElementById("breathing-date").textContent =
+  localStorage.getItem("breathingDate") || "Not done yet";
+
+document.getElementById("breathing-breaths").textContent =
+  localStorage.getItem("breathsTaken") || 0;
+
+document.getElementById("breathing-time").textContent =
+  localStorage.getItem("breathingTime") || 0;
+
+
+document.getElementById("grounding-date").textContent =
+  localStorage.getItem("groundingDate") || "Not done yet";
+
+const groundingStatus = localStorage.getItem("groundingStatus");
+
+if (groundingStatus) {
+    document.getElementById("grounding-status").textContent = groundingStatus;
+}
 
 
 
-// Crop and upload image
-// uploadInput.addEventListener("change", (e) => {
-//   const file = e.target.files[0];
-//   if (!file) return;
+document.getElementById("feeling-date").textContent =
+  localStorage.getItem("feelingDate") || "Not done yet";
+// Get last feeling message
+const feelingMsg = localStorage.getItem("feelingMessage") || "No feeling recorded yet";
+document.getElementById("feeling-date").textContent = feelingMsg;
 
-//   const reader = new FileReader();
-//   reader.onload = (event) => {
-//     cropImage.src = event.target.result;
-//     cropModal.style.display = "flex";
-//     cropper = new Cropper(cropImage, {
-//       aspectRatio: 1,
-//       viewMode: 1,
-//       dragMode: "move"
-//     });
-//   };
-//   reader.readAsDataURL(file);
-// });
 
-// Save cropped image
-// document.getElementById("save-crop").addEventListener("click", () => {
-//   const canvas = cropper.getCroppedCanvas({
-//   width: 500,
-//   height: 500,
-//   imageSmoothingEnabled: true,
-//   imageSmoothingQuality: 'high'
-//   });
+document.getElementById("pmr-date").textContent =
+  localStorage.getItem("pmrDate") || "Not done yet";
 
-//   profilePic.src = canvas.toDataURL("image/png");
-//   cropModal.style.display = "none";
-//   cropper.destroy();
-// });
+  // PMR Last Done
+document.getElementById("pmr-date").textContent =
+    localStorage.getItem("pmrDate") || "Not done yet";
 
-// Cancel crop
-// document.getElementById("cancel-crop").addEventListener("click", () => {
-//   cropModal.style.display = "none";
-//   cropper.destroy();
-// });
+// PMR Session Message
+const pmrSession = localStorage.getItem("pmrSession");
+document.getElementById("pmr-session-msg").textContent =
+    pmrSession ? `Session ${pmrSession} completed successfully!` : "";
 
 
 
