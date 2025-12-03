@@ -330,8 +330,6 @@ window.addEventListener("load", () => {
   setTimeout(() => instruction.classList.add("show"), 300);
 });
 
-// Hide instruction smoothly when any feeling box is clicked
-// Attach to mainContainer (more precise) and use closest() to detect clicks anywhere inside a box
 mainContainer.addEventListener("click", (e) => {
   // if click happened inside a .feeling-box (text, blob or box itself)
   if (e.target.closest(".feeling-box")) {

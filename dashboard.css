@@ -73,8 +73,6 @@ body {
   color: var(--white);
 }
 
-
-
 .logout {
   margin-top: auto;
   color: #ffe0e0;
@@ -432,42 +430,6 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-}
-
-
-
-.welcome {
-  background: var(--mint-light);
-  border-radius: 20px;
-  padding: 25px;
-  text-align: center;
-  margin-bottom: 25px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-}
-
-.welcome h1 {
-  color: var(--mint-dark);
-}
-
-.mood-selector {
-  margin-top: 15px;
-}
-
-.mood-btn {
-  font-size: 1.6rem;
-  background: var(--white);
-  border: 2px solid var(--mint-main);
-  border-radius: 12px;
-  padding: 8px 12px;
-  margin: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.mood-btn:hover {
-  background: var(--mint-main);
-  color: var(--white);
-  transform: translateY(-3px);
 }
 
 /* Summary Section */
