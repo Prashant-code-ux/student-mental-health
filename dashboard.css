@@ -679,15 +679,6 @@ th, td {
   color: #aa0069;
 }
 
-/* .exercise-box button {
-  margin-top: 10px;
-  padding: 10px 18px;
-  border: none;
-  background: var(--mint-main);
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-} */
 
 .exercise-box button:hover {
   background: var(--mint-dark);
@@ -705,6 +696,26 @@ th, td {
 
 .exercise-box button:hover {
   background: var(--mint-dark);
+}
+
+.my-mood {
+  margin-top: 40px;
+  background: #f6fff8;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.my-mood h2 {
+  margin-bottom: 20px;
+  color: rgb(22, 22, 22);
+}
+
+.mood-history-box {
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 

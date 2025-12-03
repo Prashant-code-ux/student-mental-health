@@ -42,10 +42,10 @@
       <button id="save">Save Mood</button>
     </div>
 
-    <div id="history" class="reveal">
+    <!-- <div id="history" class="reveal">
       <h2>📅 Mood History</h2>
       <ul id="log"></ul>
-    </div>
+    </div> -->
   </main>
 
   <footer>
@@ -107,6 +107,56 @@
       </div>
     `;
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const moodButtons = document.querySelectorAll(".mood-buttons button");
+  const noteInput = document.getElementById("note");
+  const saveButton = document.getElementById("save");
+
+  let selectedMood = null;
+
+  // Handle mood selection
+  moodButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      selectedMood = button.getAttribute("data-mood");
+
+      // Optional: highlight selected mood
+      moodButtons.forEach(btn => btn.classList.remove("selected"));
+      button.classList.add("selected");
+    });
+  });
+
+  // Save mood and note to localStorage
+  saveButton.addEventListener("click", () => {
+    const note = noteInput.value.trim();
+
+    if (!selectedMood) {
+      alert("Please select a mood!");
+      return;
+    }
+  
+    // Get existing mood history or initialize empty array
+    let moodHistory = JSON.parse(localStorage.getItem("moodHistory")) || [];
+
+    // Add new entry
+    const entry = {
+      mood: selectedMood,
+      note: note,
+      date: new Date().toLocaleString()
+    };
+    moodHistory.push(entry);
+
+    // Save back to localStorage
+    localStorage.setItem("moodHistory", JSON.stringify(moodHistory));
+
+    // Optional: clear inputs
+    noteInput.value = "";
+    moodButtons.forEach(btn => btn.classList.remove("selected"));
+    selectedMood = null;
+
+    alert("Mood saved successfully!");
+  });
 });
   </script>
 </body>

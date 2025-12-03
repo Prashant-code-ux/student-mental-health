@@ -171,3 +171,18 @@ document.getElementById("forgotPassword").addEventListener("click", (e) => {
 });
 
 
+window.addEventListener("DOMContentLoaded", async () => {
+  const userId = localStorage.getItem("userId");
+  if (!userId) return;
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/profile/${userId}`);
+    const data = await res.json();
+    if (data.profileUrl) profilePic.src = data.profileUrl;
+  } catch (err) {
+    console.error("Failed to load profile picture", err);
+  }
+});
+localStorage.setItem("userId", data.user._id);
+localStorage.setItem("username", data.user.username);
+localStorage.setItem("isLoggedIn", true);

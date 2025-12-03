@@ -31,7 +31,7 @@ app.listen(3000, () => {
   console.log("✅ Server is running on http://localhost:3000");
 });
 
-module.exports = app;
+// module.exports = app;
 
 
 const testRoutes = require("./routes/TestRoute");
@@ -39,6 +39,19 @@ app.use("/api/test", testRoutes);
 
 
 const exerciseRoutes = require("./routes/Exercise");
-// Routes
-app.use("/api/exercise", exerciseRoutes);
 
+
+// require routes
+const exerciseRoutes2 = require("./routes/exerciseRoutes");
+app.use("/api/exercise2", exerciseRoutes2);
+
+const feelingRoutes = require('./routes/feelingRoutes');
+app.use('/api/feeling', feelingRoutes);
+
+const pmrRoutes = require('./routes/pmr');
+app.use('/api/exercise/pmr', pmrRoutes);
+
+const moodRoutes = require("./routes/moodRoutes");
+app.use("/api/mood", moodRoutes);
+
+module.exports = app;

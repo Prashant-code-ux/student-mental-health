@@ -24,7 +24,7 @@
         <ul>
           <a href="homePage.html"><li class="active"> Home</li></a>
           <a href="WellnessTools.html"><li>Wellness Tools</li></a>
-          <a href="Learn.html">  <li> Learn</li></a>
+          <a href="Learn.html">  <li> Learn More</li></a>
           <a href="#"><li id="logoutbtn" class="logout"> Logout</li></a>
         </ul>
       </nav>
@@ -175,6 +175,18 @@
        <p id="pmr-session-msg" style="color:#2e8b57; font-weight:600;"></p>
      <!-- <a href="MuscleExercise.html"> <button id="pmr-btn">Start</button></a> -->
     </div>
+
+  </div>
+</section>
+
+<!-- My Mood Section -->
+<section class="my-mood">
+  <h2>My Mood</h2>
+
+  <div class="mood-history-box">
+    <p><strong>Today's Mood:</strong> <span id="today-mood">Not selected yet</span></p>
+    <p><strong>Last Updated:</strong> <span id="mood-updated">--</span></p>
+    
 
   </div>
 </section>
@@ -430,6 +442,32 @@ const groundingStatus = localStorage.getItem("groundingStatus");
 if (groundingStatus) {
     document.getElementById("grounding-status").textContent = groundingStatus;
 }
+function loadGroundingData() {
+  const userId = localStorage.getItem("userId");
+  if (!userId) return;
+
+  fetch(`http://localhost:3000/api/exercise/grounding/last/${userId}`)
+    .then(res => res.json())
+    .then(res => {
+      if (res && res.session) {
+        const session = res.session;
+        document.getElementById("grounding-date").textContent = new Date(session.completedAt).toLocaleString();
+        document.getElementById("grounding-status").textContent = session.message;
+      } else {
+        document.getElementById("grounding-date").textContent = "Not done yet";
+        document.getElementById("grounding-status").textContent = "";
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching grounding data:", err);
+    });
+}
+
+// call it on dashboard load
+document.addEventListener("DOMContentLoaded", () => {
+  // ... your other load calls ...
+  loadGroundingData();
+});
 
 
 
@@ -452,8 +490,23 @@ const pmrSession = localStorage.getItem("pmrSession");
 document.getElementById("pmr-session-msg").textContent =
     pmrSession ? `Session ${pmrSession} completed successfully!` : "";
 
+// Function to update today's mood section
+function updateTodaysMood() {
+  const moodData = JSON.parse(localStorage.getItem("moodHistory")) || [];
+  if (moodData.length === 0) {
+    document.getElementById("today-mood").textContent = "Not selected yet";
+    document.getElementById("mood-updated").textContent = "--";
+    return;
+  }
 
+  // Get the latest mood entry
+  const latestMood = moodData[moodData.length - 1];
+  document.getElementById("today-mood").textContent = `${latestMood.mood} - ${latestMood.note}`;
+  document.getElementById("mood-updated").textContent = latestMood.date;
+}
 
+// Call it on page load
+document.addEventListener("DOMContentLoaded", updateTodaysMood);
 
 </script>
 
